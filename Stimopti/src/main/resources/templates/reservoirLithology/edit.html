@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+input[type=text] {
+  width: 100%;
+  }
+</style>
+<script th:inline="javascript">
+var pid=[[${details.getId()}]];
+
+$("#savefield").click(function(){
+	$.ajax({
+		url:"/reservoirLithology/upsavefield",
+		type : "POST",
+		data :$("#mainform").serialize(),
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+			$("#form").hide();
+			$("#fill").show();
+		}
+	});
+});
+
+$(".dfclass").click(function(){
+	var id =$(this).closest('td').find('input[name=hiddenid]').val();
+	$.ajax({
+		url:"/reservoirLithology/upremovefield",
+		type : "POST",
+		data:{pid:pid,id:id},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+			$("#form").hide();
+			$("#fill").show();
+		}
+	});
+});
+
+$("#update").click(function(){
+
+	$.ajax({
+		url:"/reservoirLithology/upsave",
+		type : "POST",
+		data :$("#mainform").serialize(),
+		success:function(res){
+		console.log(res);
+		}
+	});
+	
+});
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+	<div class="row text-center">
+	<h3>GEOPHYSICAL WELL DATA(EDITTtttttt)</h3>
+	<form id="mainform">
+	<table class="table table-striped jambo_table bulk_action">
+				<thead>
+					<tr>
+						<td>From Depth <br>(Ft)	</td>
+						<td>To Depth <br>(Ft)</td>
+						<td>Tvd <br>(Ft)</td>
+						<td>Perm <br>(mD)</td>
+						<td>Poro</td>
+						<td>Zonal Pressure <br>(psi)</td>
+						<td>Pre-Stim skin</td>
+						<td>Pre-Stim PI</td>
+						<td></td>
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr th:each="fluid: ${rList}">
+						<td><input type="number" class="form-control" th:name="input" th:value="${fluid.frommDefthFT}"></td>
+						<td><input type="number" class="form-control" th:name="input" th:value="${fluid.toDefthFT}"></td>
+						<td><input type="number" class="form-control" th:name="input"  th:value="${fluid.tVDFT}"></td>
+						<td><input type="number" class="form-control" th:name="input" th:value="${fluid.permMD}"></td>
+						<td><input type="number" class="form-control" th:name="input" th:value="${fluid.poro}"></td>
+						<td><input type="number" class="form-control" th:name="input" th:value="${fluid.zonePressPSI}"></td>
+						<td><input type="number" class="form-control" th:name="input" th:value="${fluid.prestimskin}"></td>
+						<td><input type="number" class="form-control" th:name="input" th:value="${fluid.prestimpi}"></td>
+						<td><input id="removefield" class="dfclass btn btn-danger" type="button"
+							value="X" />
+							<input type="hidden" th:value="${fluid.id}" th:name="hiddenid">
+						</td>
+					</tr>
+					
+					<tr>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input id="savefield" class="btn btn-primary"
+							type="button" value="+"></td>
+					</tr>
+				
+				</tbody>
+				<tfoot>
+				<tr>
+					<td colspan="8" class="text-center"><button type="button" id="update"
+							class="btn btn-primary">Update</button></td>
+				</tr>
+			</tfoot>
+			</table>
+			<input type="text" hidden="true" th:value="${details.getId()}"
+					th:name="pid" />
+	</form>	
+	</div>
+</body>
+</html>

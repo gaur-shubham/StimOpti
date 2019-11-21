@@ -23,6 +23,7 @@ import com.petroleumsoft.stimopti.repo.PenetrationRepo;
 import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
 import com.petroleumsoft.stimopti.repo.ReservoirLithologyRepo;
 import com.petroleumsoft.stimopti.services.ReadExcel;
+import com.petroleumsoft.stimopti.services.ReservoirLithologyService;
 
 @Controller
 @SessionAttributes(names = "details")
@@ -36,6 +37,8 @@ public class ReservoirLithologyController {
 	ReadExcel readExcel;
 	@Autowired
 	PenetrationRepo penetrationRepo;
+	@Autowired
+	ReservoirLithologyService lithologyService;
 
 	private static final String map = "reservoirLithology";
 
@@ -64,11 +67,13 @@ public class ReservoirLithologyController {
 	public String list(@ModelAttribute("reservoirLithology") ReservoirLithology reservoirLithology,
 			@RequestParam("id") Integer id, Model model) {
 		ProjectDetails details = projectDetailsRepository.findById(id).orElse(null);
-		if (reservoirLithologyRepo.findByprojectDetails(details).isEmpty()) {
+		if (reservoirLithologyRepo.findByProjectDetails(details).isEmpty()) {
 			model.addAttribute("reservoirLithology", new ReservoirLithology());
+			model.addAttribute("details", details);
 			return map + "/list";
 		}
-		model.addAttribute("rList", reservoirLithologyRepo.findByprojectDetails(details));
+		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
+		model.addAttribute("details", details);
 		return map + "/showlist";
 	}
 
@@ -82,9 +87,61 @@ public class ReservoirLithologyController {
 	@PostMapping("/importwelllog")
 	public String importwelllog(Model model, @RequestParam("file") MultipartFile file, @RequestParam("id") Integer id,
 			HttpSession session) throws Exception {
+		ProjectDetails details = projectDetailsRepository.findById(id).orElse(null);
 		System.out.println(" : Reading Lithology : ");
 		List<ReservoirLithology> rList = readExcel.saveExcel(file, id);
 		model.addAttribute("rList", rList);
+		model.addAttribute("details", details);
 		return map + "/showlist";
+	}
+	
+	@PostMapping("/savefield")
+	public String savefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("input") List<String> input) {
+		lithologyService.saveField(pid, input,"import");
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
+		model.addAttribute("details", details);
+		return map + "/list";
+	}
+	
+	@PostMapping("/removefield")
+	public String removefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("id") Integer id) {
+		lithologyService.deleteField(pid, id);
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
+		model.addAttribute("details", details);
+		return map + "/list";
+	}
+	
+	@PostMapping("/upsavefield")
+	public String upSavefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("input") List<String> input) {
+		lithologyService.saveField(pid, input,"update");
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
+		model.addAttribute("details", details);
+		return map + "/edit";
+	}
+	
+	@PostMapping("/upremovefield")
+	public String upDemovefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("id") Integer id) {
+		lithologyService.deleteField(pid, id);
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
+		model.addAttribute("details", details); 
+		return map + "/edit";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(Model model,@RequestParam("pid") Integer pid) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		model.addAttribute("details", details);
+		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
+		return map + "/edit";
+	}
+	
+	@PostMapping("/upsave")
+	public String upsave(Model model,@RequestParam("pid") Integer pid,@RequestParam("input") List<String> input) {
+		System.out.println(">> "+input);
+		return null;
 	}
 }

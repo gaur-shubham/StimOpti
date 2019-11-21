@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+<script th:inline="javascript">
+var pid=[[${details.getId()}]];
+
+$("#edit").click(function(){
+	$.ajax({
+		url:"/reservoirLithology/edit",
+		type : "POST",
+		data:{pid:pid},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
+</script>
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
@@ -10,12 +25,12 @@
 	
 		<thead>
 			<tr class="headings">
-				<th class="column-title">From Depth (Ft)</th>
-				<th class="column-title">To Depth (Ft)</th>
-				<th class="column-title">Tvd (Ft)</th>
-				<th class="column-title">Perm (mD)</th>
+				<th class="column-title">From Depth<br> (Ft)</th>
+				<th class="column-title">To Depth<br> (Ft)</th>
+				<th class="column-title">Tvd <br>(Ft)</th>
+				<th class="column-title">Perm<br> (mD)</th>
 				<th class="column-title">Poro</th>
-				<th class="column-title">Zonal Pressure (psi)</th>
+				<th class="column-title">Zonal Pressure<br> (psi)</th>
 				<th class="column-title">Pre-stim SKin</th>
 				<th class="column-title">Pre-Stim PI</th>
 			</tr>
@@ -35,7 +50,7 @@
 		
 	</table>
 	
-		<button th:style="'width:20%;'" type="button"
+		<button id="edit" th:style="'width:20%;'" type="button"
 						class="btn btn-primary">   Edit</button>
 		
 	</div>

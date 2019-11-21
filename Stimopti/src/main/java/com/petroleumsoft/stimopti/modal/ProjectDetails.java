@@ -104,6 +104,9 @@ public class ProjectDetails {
 
 	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
 	private Collection<Coreflood> coreflood;
+	
+	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
+	private Collection<ReservoirLithology> reservoir;
 
 	/* End of the Block */
 
@@ -195,6 +198,14 @@ public class ProjectDetails {
 
 	public void setBaseDiverter(Collection<BaseDiverter> baseDiverter) {
 		this.baseDiverter = baseDiverter;
+	}
+	
+	public Collection<ReservoirLithology> getReservoir() {
+		return reservoir;
+	}
+
+	public void setReservoir(Collection<ReservoirLithology> reservoir) {
+		this.reservoir = reservoir;
 	}
 
 	/* End of the getter and setter block */

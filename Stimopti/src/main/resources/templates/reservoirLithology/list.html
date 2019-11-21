@@ -4,96 +4,198 @@
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
-
-	                      <script th:inline="javascript">
-		                    $('#rform').submit(function(e) {
-							e.preventDefault();
-							var file = $('#file2').val()
-							var fileExtension = file.substring(file.lastIndexOf('.') + 1);
-							if (fileExtension == "xlsx"|| fileExtension == "txt"|| fileExtension == "las") {
-								var jForm = new FormData();
-								jForm.append("file",$('#file2').get(0).files[0]);
-								var v = document.getElementById('val').value;
-										$.ajax({
-											url : "/reservoirLithology/importwelllog?id="+ v,
-											type : "POST",
-											data : jForm,
-											contentType : false,
-											cache : false,
-											processData : false,
-											success : function(data) {
-												$("#loadtable").html(data);
-												$("#exampleModal").modal("show");
-											}
-										});
-							} else {
-								alert("Please insert correct file type .");
-
+	<script th:inline="javascript">
+	var pid=[[${details.getId()}]];
+	
+    $( "#button" ).click(function() {
+        $( "#fill" ).slideToggle( "slow" );
+        $( "#form" ).slideToggle( "slow" );    
+        var val = document.getElementById('button').value;
+        if(val=="Enter Manually"){
+        $( "#success-alert" ).css("display","block" );
+        document.getElementById('button').value = "Import Well Log";
+        }
+        else{
+        $( "#success-alert" ).css('display','none' );
+        document.getElementById('button').value = "Enter Manually";
+        }
+        });
+	
+		$('#rform').submit(
+				function(e) {
+					e.preventDefault();
+					var file = $('#file2').val()
+					var fileExtension = file
+							.substring(file.lastIndexOf('.') + 1);
+					if (fileExtension == "xlsx" || fileExtension == "txt"
+							|| fileExtension == "las") {
+						var jForm = new FormData();
+						jForm.append("file", $('#file2').get(0).files[0]);
+						var v = document.getElementById('val').value;
+						$.ajax({
+							url : "/reservoirLithology/importwelllog?id=" + v,
+							type : "POST",
+							data : jForm,
+							contentType : false,
+							cache : false,
+							processData : false,
+							success : function(data) {
+								$("#loadtable").html(data);
+								$("#exampleModal").modal("show");
 							}
-
 						});
-	                  </script>
+					} else {
+						alert("Please insert correct file type .");
 
-	<form enctype="multipart/form-data" id="rform" method="POST"
-		name="demoform">
-		<div class="form-group ">
-			<p style="color: red;">* Select Well Log File (las/txt)/ Import
-				Well Logging Data Excel Only In The Format Provided By
-				PetroleumSoft.</p>
-			<input name="welllog" id="file2" type="file">
+					}
+
+				});
+		$("#savefield").click(function(){
+			$.ajax({
+				url:"/reservoirLithology/savefield",
+				type : "POST",
+				data :$("#inputform").serialize(),
+				success:function(res){
+					$("#loadtable").html(res);
+					$("#exampleModal").modal("show");
+					$("#form").hide();
+					$("#fill").show();
+				}
+			});
+		});
+		
+		$(".dfclass").click(function(){
+			var id =$(this).closest('td').find('input[name=hiddenid]').val();
+			$.ajax({
+				url:"/reservoirLithology/removefield",
+				type : "POST",
+				data:{pid:pid,id:id},
+				success:function(res){
+					$("#loadtable").html(res);
+					$("#exampleModal").modal("show");
+					$("#form").hide();
+					$("#fill").show();
+				}
+			});
+		});
+	</script>
+	<style>
+#loadtable {
+	text-align: left;
+}
+</style>
+	<!-- aa -->
+	<div class="row" id="form">
+		<div class="col-lg-4 col-xs-6">
+
+			<form enctype="multipart/form-data" id="rform" method="POST"
+				name="demoform">
+				<div class="form-group ">
+					<p style="color: red;">* Select Well Log File (las/txt)/ Import
+						Well Logging Data Excel Only In The Format Provided By
+						PetroleumSoft.</p>
+					<a href=""><i class="fa fa-download"></i> Download Geophysical
+						Data Excel Format</a> <input name="welllog" id="file2" type="file">
+				</div>
+				<div class="form-group ">
+					<input type="submit" value="Import" class="btn btn-primary"
+						id="importData" />
+				</div>
+				<input id="val" type="text" hidden="true" name="id"
+					th:value="${details.id}" />
+			</form>
+
 		</div>
-		<div class="form-group ">
-			<input type="submit" value="Import" class="btn btn-primary"
-				id="importData" />
+		<div class="col-lg-8 col-xs-6">
+			<h3>Note:</h3>
+			<ul>
+				Users can input Well Logging Data (Perm/Poro over depth (MD), TVD,
+				formation pressure ) in anyone of the three ways :
+
+				<li><b> Import well log ( Porosity log in .las/txt) file</b></li>
+				<li><b> Import excel file (Perm/Poro over depth, excel
+						format provided)</b></li>
+				<li><b> Enter manually (Perm/Poro, TVD and formation
+						pressure)</b></li>
+				<br> Specified unit for Pre-Stim PI of (Oil /Gas) based on unit
+				selection (Metric/Field).
+				<br>
+
+				<li><b> Pre-Stim PI Unit for Oil Producing Well
+						(bbls/day-psi)</b></li>
+				<li><b> Pre-Stim PI Unit for Gas Producing Well
+						(Mscf/day-psi)</b></li>
+
+			</ul>
 		</div>
-		<input id="val" type="text" hidden="true" name="id" th:value="${details.id}" />
-	</form>
+
+	</div>
+
+	<!-- aa -->
+
+	<input type="button" class="btn btn-primary" value="Enter Manually"
+		id="button">
 
 
 
-<div th:if="${rList!=null}">
-	<h4 style="font-weight: bolder;" class="text-center">GEOPHYSICAL
+
+	<div class="tab-pane active" id="fill" style="display: none;">
+		<h4 style="font-weight: bolder;" class="text-center">GEOPHYSICAL
 			WELL DATA</h4>
-	<table class="table table-striped jambo_table bulk_action">
-		<thead>
-			<tr>
-				<td>From Depth (Ft)</td>
-				<td>To Depth (Ft)</td>
-				<td>Tvd (Ft)</td>
-				<td>Perm (mD)</td>
-				<td>Poro</td>
-				<td>Zonal Pressure</td>
-				<td>Pre-Stim skin</td>
-				<td>Pre-Stim PI</td>
+		<form id="inputform">
+			<table class="table table-striped jambo_table bulk_action">
+				<thead>
+					<tr>
+						<td>From Depth <br>(Ft)	</td>
+						<td>To Depth <br>(Ft)</td>
+						<td>Tvd <br>(Ft)</td>
+						<td>Perm <br>(mD)</td>
+						<td>Poro</td>
+						<td>Zonal Pressure <br>(psi)</td>
+						<td>Pre-Stim skin</td>
+						<td>Pre-Stim PI</td>
+						<td></td>
+					</tr>
 
-
-			</tr>
-
-		</thead>
-
-		<tbody>
-			<tr th:each="reser: ${rList}">
-				<td th:text="${reser.fromDefthFT}" />
-				<td th:text="${reser.toDefthFT}" />
-				<td th:text="${reser.tVDFT}" />
-				<td th:text="${reser.permMD}" />
-				<td th:text="${reser.poro}" />
-				<td th:text="${reser.zonePressPSI}" />
-				<td th:text="${reser.prestimskin}" />
-				<td th:text="${reser.prestimpi}" />
-				
-				
-				
-
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="5" class="text-center"><button type="button"
-						class="btn btn-primary">Edit</button></td>
-			</tr>
-		</tfoot>
-	</table>
+				</thead>
+				<tbody>
+					<tr th:each="fluid: ${rList}">
+						<td th:text="${fluid.frommDefthFT}"></td>
+						<td th:text="${fluid.toDefthFT}"></td>
+						<td th:text="${fluid.tVDFT}"></td>
+						<td th:text="${fluid.permMD}"></td>
+						<td th:text="${fluid.poro}"></td>
+						<td th:text="${fluid.zonePressPSI}"></td>
+						<td th:text="${fluid.prestimskin}"></td>
+						<td th:text="${fluid.prestimpi}"></td>
+						<td><input id="removefield" class="dfclass btn btn-danger" type="button"
+							value="Remove">
+							<input type="hidden" th:value="${fluid.id}" th:name="hiddenid">
+						</td>
+					</tr>
+					<tr>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input id="savefield" class="btn btn-primary"
+							type="button" value="Save"></td>
+					</tr>
+				</tbody>
+				<!-- 	<tfoot>
+				<tr>
+					<td colspan="8" class="text-center"><button type="button"
+							class="btn btn-primary">Edit</button></td>
+				</tr>
+			</tfoot> -->
+			</table>
+			<input type="text" hidden="true" th:value="${details.getId()}"
+				th:name="pid" />
+		</form>
 	</div>
 </body>
 </html>

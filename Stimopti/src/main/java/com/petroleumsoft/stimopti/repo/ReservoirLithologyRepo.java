@@ -10,5 +10,6 @@ import com.petroleumsoft.stimopti.modal.ReservoirLithology;
 
 @Repository
 public interface ReservoirLithologyRepo extends JpaRepository<ReservoirLithology,Integer> {
-public List<ReservoirLithology> findByprojectDetails(ProjectDetails details);
+	public List<ReservoirLithology> findByProjectDetails(ProjectDetails projectDetails);
+	public void deleteByProjectDetailsAndId(ProjectDetails projectDetails,Integer id);
 }
