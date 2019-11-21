@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+<script th:inline="javascript">
+
+
+$("#aid").change(function(){
+	var id=[[${session.details.id}]];
+	var aval=$("#aid").val();
+ $.ajax({
+	     url : "/acidProperties/changelistAcid",
+		type : "POST",
+		data : {id:id,aval:aval},
+		success : function(data) {
+			$("#loadtable").html(data);
+			$("#exampleModal").modal("show");
+		}
+	 
+ });
+});
+
+$("#edit").click(function(){
+	var id=[[${session.details.id}]];
+	var aval=$("#aid").val();
+	$.ajax({
+		url:"/acidProperties/edit",
+		type : 'POST',
+		data : {id:id,aval:aval},
+		success : function(res) {
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
+</script>
+	<div>
+		<h4 style="font-weight: bolder;" class="text-center">Acid
+			Properties</h4>
+		<table class="table table-bordered table-hover text-left">
+	
+		<tr>
+		<td>Acid Name</td>
+		<td>
+		<select id="aid">
+		<option  th:each="aname:${anamelist}" th:value="${aname}">[[${aname}]]</option>
+		</select>
+		</td>
+		</tr>
+			<tr th:each="acid :${acidp}">
+			<td th:text="${acid.an}"/>
+			<td th:text="${acid.av}"/>
+			</tr>
+		</table>
+
+<div class="row text-center"> 
+		<button id="edit" th:style="'width:20%;'" type="button"
+			class="btn btn-primary">Edit</button>
+			</div>
+	</div>
+</body>
+</html>

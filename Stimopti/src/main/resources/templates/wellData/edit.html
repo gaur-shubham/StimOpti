@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit WellData</title>
+<style>
+.editinput{
+border:none;
+}
+</style>
+<script th:inline="javascript">
+var pid=[[${session.details.id}]];
+$("#update").click(function(){
+	url="/wellData/updateWell"
+	$.ajax({
+		url:url,
+		type:'POST',
+		data:$("#updateWell").serialize(),
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
+</script>
+</head>
+<body>
+	<form id="updateWell">
+		<div class="row">
+		<h3 class="text-center">WELL DATA</h3>
+			<table class="table table-striped jambo_table bulk_action">
+				<tbody>
+					<tr th:each="well: ${wellDatalist}">
+						<td><input class=" editinput" type="text" th:style="'width:100%;'"  th:name="wp" th:value="${well.wp}" readonly/></td>
+						<td><input class="form-control editinput" type="text" th:style="'width:100%;'"  th:name="wv" th:value="${well.wv}" autofocus /></td>
+				</tbody>
+			</table>
+			<input type="hidden" th:value="${session.details.id}" th:name="pid" />
+			<br>
+			<div class="row text-center">
+				<button id="update" th:style="'width:auto;'" type="button"
+					class="btn btn-primary">Update</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

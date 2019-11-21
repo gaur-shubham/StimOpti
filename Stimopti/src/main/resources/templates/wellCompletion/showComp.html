@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:inline="javascript">
+$("#td0").click(function(){
+	 var valv=$("#0").is(':checked');
+	 if(valv==false){
+     $("#0").prop('checked',true); 
+		 var wp=$("#0").val();
+		 var pid=[[${session.details.id}]];
+		$.ajax({
+			url : "/wellCompletion/changeComp",
+			type : "POST",
+			data:{pid:pid,wp:wp},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
+	 }
+	$("#td0")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+$("#td1").click(function(){
+	 var valv=$("#1").is(':checked');
+	 if(valv==false){
+	     $("#1").prop('checked',true); 
+			 var wp=$("#1").val();
+			 var pid=[[${session.details.id}]];
+			$.ajax({
+				url : "/wellCompletion/changeComp",
+				type : "POST",
+				data:{pid:pid,wp:wp},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td1")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+$("#td2").click(function(){
+	 var valv=$("#2").is(':checked');
+	 if(valv==false){
+	     $("#2").prop('checked',true); 
+			 var wp=$("#2").val();
+			 var pid=[[${session.details.id}]];
+			$.ajax({
+				url : "/wellCompletion/changeComp",
+				type : "POST",
+				data:{pid:pid,wp:wp},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td2")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+
+var light=[[${session.cp}]];
+if(light=="Open Hole"){
+	 $("#0").prop('checked',true); 	
+	 $("#td0")
+	    .removeClass('btn-default')
+	    .addClass('btn-success');
+		$("#td1")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+		$("#td2")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+}
+if(light=="Cased Hole"){
+	 $("#1").prop('checked',true); 	
+	 $("#td1")
+	    .removeClass('btn-default')
+	    .addClass('btn-success');
+		$("#td0")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+		$("#td2")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+}
+if(light=="Slotted Liner"){
+	 $("#2").prop('checked',true); 	
+	 $("#td2")
+	    .removeClass('btn-default')
+	    .addClass('btn-success');
+		$("#td1")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+		$("#td0")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+}
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+	<div>
+		
+		<form>
+			<div class="row ">
+				<div class="col-md-12" style="margin-bottom: 20px;">
+
+					<span>
+						<button type="button" id="td0" class="btn" data-color="success">
+							<input name="wv" id="0" type="radio" value="Open Hole" />Open Hole
+						</button>
+					</span>
+					 <span>
+						<button type="button" id="td1" class="btn" data-color="success">
+							Cased Hole <input name="wv" id="1" type="radio"
+								value="Cased Hole" />
+						</button>
+					</span> 
+					<span>
+						<button type="button" id="td2" class="btn" data-color="success">
+							Slotted Liner <input name="wv" id="2" type="radio" value="Slotted Liner" />
+						</button>
+					</span>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<div class="row text-left">
+		<h3 class="text-center">Well Completion dfgfg</h3>
+		<table class="table table-striped jambo_table bulk_action">
+			<tbody>
+				<tr class="even pointer" th:each="comp: ${compList}">
+					<td class=" " th:text="${comp.cp}"></td>
+					<td class=" " th:text="${comp.cv}"></td>
+			</tbody>
+
+		</table>
+<div class="row text-center"> 
+		<button th:style="'width:20%;'" type="button"
+			class="btn btn-primary">Edit</button>
+			</div>
+
+	</div>
+</body>
+</html>

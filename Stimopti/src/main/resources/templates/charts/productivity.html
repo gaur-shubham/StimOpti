@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Chart code -->
+<script th:inline="javascript">
+Highcharts.chart('loaddata', {
+
+	title : {
+		text : 'Post Stimulation Productivity (bbls/day-psi)'
+	},
+
+	yAxis : {
+		title : {
+			text : 'Depth'
+		}
+	},
+	xAxis : {
+		zoomEnabled: true,
+		title : {
+			text : 'Productivity'
+		}
+	},
+	legend : {
+		layout : 'horizontal'
+	},
+
+	plotOptions : {
+		series : {
+			label : {
+				connectorAllowed : true
+			}
+		}
+	},
+
+	series: [
+		
+		{
+		
+		data: [
+			[# th:each="entry: ${prodList}"]
+
+			{
+	             x: [(${entry.depth})],
+ 	             y: [(${entry.productivity})],
+ 	            name: "Productivity",
+ 	            color: "green"
+
+		   }, 
+		   [/]
+		   ],
+
+	    },
+		],
+	responsive : {
+		rules : [ {
+			condition : {
+				maxWidth : 500
+			},
+			chartOptions : {
+				legend : {
+					layout : 'horizontal',
+					align : 'center',
+					verticalAlign : 'bottom'
+				}
+			}
+		} ]
+	}
+
+});
+</script>
+</head>
+<body>
+</body>

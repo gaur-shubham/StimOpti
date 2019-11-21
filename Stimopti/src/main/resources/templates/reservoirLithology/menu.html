@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/template.html}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.modal-content {
+	overflow-x: auto;
+}
+
+.cart {
+	background-color: white;
+	animation: mymove 10s infinite;
+}
+
+@
+keyframes mymove {
+	from {left: 0px;
+}
+
+to {
+	left: 300px;
+}
+
+}
+#sidebar {
+	display: none;
+}
+
+.cart:hover #sidebar {
+	display: block;
+}
+
+#myProgress {
+	width: 100%;
+	background-color: #ddd;
+}
+
+#myBar {
+	width: 10%;
+	height: 30px;
+	background-color: #f39c12;
+	text-align: center;
+	line-height: 30px;
+	color: white;
+}
+</style>
+<script th:inline="javascript">
+var id ;
+id =[[${details.id}]];
+
+	function move() {
+		$("#myBar").show();
+		var elem = document.getElementById("myBar");
+		var width = 20;
+		var id = setInterval(frame, 100);
+		function frame() {
+			if (width >= 100) {
+				clearInterval(id);
+			} else {
+				width++;
+				elem.style.width = width + '%';
+				elem.innerHTML = width * 1 + '%';
+			}
+		}
+	}
+	$(document).ready(function(){
+		$("#rl").click(function(){
+			$.ajax({
+				url: "/reservoirLithology/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		$("#ip").click(function(){
+			$.ajax({
+				url: "/injectionplan/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		$("#wd").click(function(){
+			$.ajax({
+				url: "/wellData/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		
+		$("#pe").click(function(){
+			$.ajax({
+				url: "/pumpingEquipment/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		$("#ap").click(function(){
+			$.ajax({
+				url: "/acidProperties/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		$("#dp").click(function(){
+			$.ajax({
+				url: "/diverters/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		$("#fd").click(function(){
+			$.ajax({
+				url: "/formationDamage/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		
+		
+		$("#rfp").click(function(){
+			$.ajax({
+				url: "/fluidProperties/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		
+		$("#cd").click(function(){
+			$.ajax({
+				url: "/wellCompletion/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		
+		$("#cf").click(function(){
+			$.ajax({
+				url: "/coreflood/list",
+				type: "POST",
+				data: {id:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
+		
+		
+		
+		
+		$("#demoform").submit(function(event){  
+			event.preventDefault();
+			 move();
+				$.ajax({
+					url: "/projectDetails/generateInput",
+					type: "POST",
+					data: {id:id},
+					success: function(data) {
+						alert("Simulation Done");
+			        	window.location.href = "http://" + location.host + "/charts/show/";
+					}
+				});
+		});
+		
+		$("#sgraph").click(function(){
+        	window.location.href = "http://" + location.host + "/charts/show/";
+		});
+		
+		
+	});
+		
+	
+	
+	
+</script>
+</head>
+
+<body class="nav-md">
+	<!-- top tiles -->
+	<div class="right_col" role="main" layout:fragment="content">
+		<div class="">
+			<div class="page-title">
+				<div class="title_left">
+					<h3>
+						Projects <small>Listing design</small>
+					</h3>
+				</div>
+
+				<div class="title_right">
+					<div
+						class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								placeholder="Search for..."> <span
+								class="input-group-btn">
+								<button class="btn btn-default" type="button">Go!</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="clearfix"></div>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>
+								Form Design <small>different form elements</small>
+							</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-expanded="false"><i
+										class="fa fa-wrench"></i></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="#">Settings 1</a></li>
+										<li><a href="#">Settings 2</a></li>
+									</ul></li>
+								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div
+							class="box-body tab-content text-center nav-tabs-custom box-solid">
+							<br />
+							<div class="row">
+								<div class="col-md-12 menu-down">
+									<button id="rl" type="button"
+										class="btn btn-round btn-default btn-lg" data-toggle="modal">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Geophysical
+										Data
+									</button>
+
+									<button id="ip" type="button"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Injection
+										Plan
+									</button>
+									<button type="button" id="wd"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Well
+										Data
+									</button>
+									<button id="pe" type="button"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Pumping
+										Equipment
+									</button>
+
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-12 menu-down">
+									<button id="ap" type="button"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Acid
+										Properties
+
+									</button>
+
+									<button id="cf" type="button"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Core
+										Flood Data
+									</button>
+									<button id="dp" type="button"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Diverter
+										Properties
+									</button>
+									<button type="button" id="rfp"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Reservoir
+										Fluid Properties
+									</button>
+
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-12 menu-down">
+									<button type="button" class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Potential
+										Hazard (for Recipe Design)
+
+									</button>
+
+									<button type="button" id="fd"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Formation
+										Damage & Mineralogy
+									</button>
+
+									<button id="cd" type="button"
+										class="btn btn-round btn-default btn-lg">
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Completion
+										Data
+									</button>
+
+								</div>
+
+							</div>
+							<div th:if="${graph==false}" class="row" id="showrunsim"
+								style="display: display;">
+								<div class="w3-container">
+									<h2>Click Button To Run Simulation</h2>
+									<div class="w3-light-grey">
+										<div id="myBar" class="w3-container w3-green w3-center"
+											style="width: 20%; display: none;">20%</div>
+									</div>
+									<br>
+									<form id="demoform" method="POST" name="demoform">
+										<button id="run1"
+											style="width: 20%; height: 9%; font-size: 20px;"
+											class="btn btn-warning">Run Simulator</button>
+									</form>
+								</div>
+							</div>
+							<div th:if="${graph==true}" class="row" id="showrunsim"
+								style="display: display;">
+								<div class="w3-container">
+									<h2>Click Button To Run Simulation</h2>
+									<div class="w3-light-grey">
+										<div id="myBar" class="w3-container w3-green w3-center"
+											style="width: 20%; display: none;">20%</div>
+									</div>
+									<br>
+									<div class="row">
+										<div class="col-md-2 col-sm-2 col-xs-2"></div>
+										<div class="col-md-4 col-sm-4 col-xs-4">
+											<form id="demoform" method="POST" name="demoform">
+												<button id="run1"
+													style="width: 25%; height: 9%; font-size: 12px;"
+													class="btn btn-warning">Run Simulator</button>
+											</form>
+										</div>
+										<div class="col-md-4 col-sm-4 col-xs-4">
+											<button name="abv"
+												style="width: 25%; height: 9%; font-size: 12px;" id="sgraph"
+												class="btn btn-primary">Show Graphs</button>
+										</div>
+
+										<div class="col-md-2 col-sm-2 col-xs-2"></div>
+
+									</div>
+
+								</div>
+							</div>
+
+							<div class="modal fade" id="exampleModal" tabindex="-1"
+								role="dialog" data-backdrop="static" data-keyboard="false"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div style="width: 78%;" class="modal-dialog" role="document">
+
+									<div class="modal-content" style="border-radius: 20px;">
+										<div class="modal-pop-header" style="padding: 20px;">
+											<button style="border-radius: 20px;" type="button"
+												class="close" data-dismiss="modal" aria-label="Close">
+												<span style="font-size: 20px;" aria-hidden="true">&times;</span>
+											</button>
+										</div>
+
+										<div class="modal-body" id="loadtable" style="padding: 20px;">
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+</body>
+
+</html>

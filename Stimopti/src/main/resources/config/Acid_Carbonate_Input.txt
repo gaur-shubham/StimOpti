@@ -1,0 +1,31 @@
+/**** Acid Carbonate Input File ****/
+Project Name=.
+Project Name=.
+Project Name=.
+/*** Well Properties ***/
+WELL TYPE=Horizontal
+WELLBORE RADIUS (FT)=0.0
+DRAINAGE RADIUS (FT)=0.0
+WELL INCLINATION (0-90)=0.0
+LENGTH OF HORIZONTAL REACH OF WELL (FT)=0.0
+DISTANCE OF RESERVOIR BOTTOM TO HORIZONTAL WELL (FT)=0.0
+/*** Well Completion ***/
+perfSTARTFT=3325.0
+perfENDFT=3365.0
+COREFLOOD=NOT AVAILABLE
+INJECTION FLUID SPECIFIC GRAVITY=0.5
+ACID TYPE=N/A EMULSIFIED
+/*** Pumping Methodologies ***/
+/*** Fluid Properties ***/
+/*** Base Diverter ***/
+/*** Formation Damage ***/
+/*** Acid Properties  ***/
+Concentration (%)=5
+Diffusion Co-Efficient (Ft2/Min)=1.94e-04
+Viscosity (cP)=1
+Specific Gravity=1.022
+/*** Injection Plan ***/
+Stages=0
+/*** Reservoir Lithology ***/
+Layers=0
+/*** End of Input File ***/

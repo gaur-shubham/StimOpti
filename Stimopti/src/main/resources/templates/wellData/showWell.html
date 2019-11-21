@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
+$("#edit").click(function(){
+	$.ajax({
+		url : "/wellData/edit",
+		type : "POST",
+		data:{pid:pid},
+		success:function(data){
+			$("#loadtable").html(data);
+			$("#exampleModal").modal("show");
+		}
+	});	
+	
+});
+
+$("#td0").click(function(){
+	 var valv=$("#0").is(':checked');
+	 if(valv==false){
+     $("#0").prop('checked',true); 
+		 var wp=$("#0").val();
+		$.ajax({
+			url : "/wellData/changeWell",
+			type : "POST",
+			data:{pid:pid,wp:wp},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
+	 }
+	$("#td0")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+$("#td1").click(function(){
+	 var valv=$("#1").is(':checked');
+	 if(valv==false){
+	     $("#1").prop('checked',true); 
+			 var wp=$("#1").val();
+			$.ajax({
+				url : "/wellData/changeWell",
+				type : "POST",
+				data:{pid:pid,wp:wp},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td1")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+$("#td2").click(function(){
+	 var valv=$("#2").is(':checked');
+	 if(valv==false){
+	     $("#2").prop('checked',true); 
+			 var wp=$("#2").val();
+			$.ajax({
+				url : "/wellData/changeWell",
+				type : "POST",
+				data:{pid:pid,wp:wp},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td2")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+
+var light=[[${session.wp}]];
+if(light=="Vertical"){
+	 $("#0").prop('checked',true); 	
+	 $("#td0")
+	    .removeClass('btn-default')
+	    .addClass('btn-success');
+		$("#td1")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+		$("#td2")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+}
+if(light=="Horizontal"){
+	 $("#1").prop('checked',true); 	
+	 $("#td1")
+	    .removeClass('btn-default')
+	    .addClass('btn-success');
+		$("#td0")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+		$("#td2")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+}
+if(light=="Slanted"){
+	 $("#2").prop('checked',true); 	
+	 $("#td2")
+	    .removeClass('btn-default')
+	    .addClass('btn-success');
+		$("#td1")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+		$("#td0")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+}
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+	<div>
+		ShowWell PAge
+		<form>
+			<div class="row ">
+				<div class="col-md-12" style="margin-bottom: 20px;">
+
+					<span>
+						<button type="button" id="td0" class="btn" data-color="success">
+							<input name="wv" id="0" type="radio" value="Vertical" />Vertical
+						</button>
+					</span> <span>
+						<button type="button" id="td1" class="btn" data-color="success">
+							Horizontal <input name="wv" id="1" type="radio"
+								value="Horizontal" />
+						</button>
+					</span> <span>
+						<button type="button" id="td2" class="btn" data-color="success">
+							Slanted <input name="wv" id="2" type="radio" value="Slanted" />
+						</button>
+					</span>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<div class="row text-left">
+		<h3 class="text-center">WELL DATA</h3>
+		<table class="table table-striped jambo_table bulk_action">
+
+
+			<tbody>
+				<tr class="even pointer" th:each="well: ${wellDatalist}">
+					<td class=" " th:text="${well.wp}"></td>
+					<td class=" " th:text="${well.wv}"></td>
+			</tbody>
+
+		</table>
+<div class="row text-center"> 
+		<button id="edit" th:style="'width:20%;'" type="button"
+			class="btn btn-primary">Edit</button>
+			</div>
+
+	</div>
+</body>
+</html>

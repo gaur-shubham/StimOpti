@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+	<div class="row text-center">
+	<h3>Formation Damage & Mineralogy</h3>
+	<table class="table table-striped jambo_table bulk_action text-left">
+	
+
+		<tbody>
+			<tr class="even pointer" th:each="fd: ${fdlist}">
+				<td class=" " th:text="${fd.fdname}"></td>
+				<td class=" " th:text="${fd.fdvalue}"></td>
+				
+		</tbody>
+		
+	</table>
+	
+		<button th:style="'width:20%;'" type="button"
+						class="btn btn-primary">   Edit</button>
+		
+	</div>
+</body>
+</html>

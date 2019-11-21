@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/template.html}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="nav-md footer_fixed">
+	<!-- top tiles -->
+	<div class="right_col" role="main" layout:fragment="content">
+	<div class="x_panel">
+                  <div class="x_title">
+                    <h2>Create Project</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <!-- start form for validation -->
+                    <form id="demo-form" data-parsley-validate th:action="@{/projectDetails/save}" th:object="${projectDetails}" method="POST">
+                      <label for="fullname">Project Name * :</label>
+                      <input type="text" id="fullname" class="form-control" th:field="*{projectName}" required />
+
+                      <label for="wellname">Well Name * :</label>
+                      <input type="text" id="wellname" class="form-control" th:field="*{wellName}" data-parsley-trigger="change" required />
+
+					  <label for="company">Company Name * :</label>
+                      <input type="text" id="company" class="form-control" th:field="*{companyName}" data-parsley-trigger="change" required />
+                      
+                          <br/>
+                          <button type="submit" class="btn btn-primary">Create</button>
+                          <button type="reset" class="btn btn-default">Reset</button>
+
+                    </form>
+                    <!-- end form for validations -->
+
+                  </div>
+                </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,1259 @@
+Vertical
+Well Type=Vertical
+Wellbore Radius (Ft)=0.328
+Drainage Radius (Ft)=1000.0
+Well Inclination (0-90)=0.0
+/
+Horizontal
+Well Type=Horizontal
+Wellbore Radius (Ft)=0.0
+Drainage Radius (Ft)=0.0
+Well Inclination (0-90)=0.0
+Length of Horizontal Reach of Well (Ft)=0.0
+Distance of Reservoir Bottom to Horizontal Well (Ft)=0.0
+/
+Slanted
+Well Type=Slanted
+Wellbore Radius (Ft)=0.0
+Drainage Radius (Ft)=0.0
+Well Inclination (0-90)=0.0
+Kh/Kv Ratio=0.0
+/
+Open Hole
+Completion Type=Open Hole
+Production Tubing Length (Ft)=9325.0
+Production Tubing Diameter (Inch)=4.0
+/
+Cased Hole
+Completion Type=Cased Hole
+Production Tubing Length (Ft)=3304.0
+Production Tubing Diameter (Inch)=.12
+Perforation Length (Ft)=0.45
+Perforation Diameter (Inch)=1.26
+Number of Perforations=6.0
+Casing Inner Diameter (Inch)=17.14
+/
+Limited Entry
+Completion Type=Limited Entry
+Production Tubing Length (Ft)=0.0
+Production Tubing Diameter (Inch)=0.0
+Perforation Length (Ft)=0.0
+Perforation Diameter (Inch)=0.0
+Number of Perforations=0.0
+Limited Entry Inner Diameter (Inch)=0.0
+Casing Inner Diameter (Inch)=0.0
+/
+Sliding Sleeve
+Completion Type=Sliding Sleeve
+Production Tubing Length (Ft)=0.0
+Production Tubing Diameter (Inch)=0.0
+Perforation Length (Ft)=0.0
+Perforation Diameter (Inch)=0.0
+Number of Perforations=0.0
+Casing Inner Diameter (Inch)=0.0
+Sliding Sleeve Type=Closed
+Sleeve Inner Diameter (Inch)=0.0
+/
+Slotted Liner
+Completion Type=Slotted Liner
+Production Tubing Length (Ft)=0.0
+Production Tubing Diameter (Inch)=0.0
+Perforation Length (Ft)=0.0
+Perforation Diameter (Inch)=0.0
+Number of Perforations=0.0
+Casing Inner Diameter (Inch)=0.0
+Slot Type=Open
+Width of Single Slot (Inch)=0.0
+Liner Inner Diameter (Inch)=0.0
+Length of Single Slot (Inch)=0.0
+No of Slot Per Slot Unit=2.0
+No of Slot Around the Circumference Of Liner=0.0
+Turbulence Factor=0.0
+Open Area Of Single Slot (%)=0.0
+Well PrOfile=N/A
+/
+Ct
+Injection Type=Ct
+Pipe Roughness=Smooth
+Total Length of Coiled Tubing (Ft)=15000.0
+Coiled Tubing Outer Diameter (Inch)=2.0
+Coiled Tubing Inner Diameter (Inch)=1.810
+Absolute Roughness (Inch)=0.001
+/
+Bullhead
+Injection Type=Bullhead
+Pipe Roughness=Smooth
+Absolute Roughness (Inch)=0.001
+/
+Formation Damage and Mineralogy
+Formation Damage=Inorganic
+Mineral Type=Calcite
+Damage Radius (Ft)=1.5
+Calcite Concentration (%)=89.0
+Fracture Gradient (Psi/Ft)=0.7
+Formation Temperature (F)=184.0
+Flowing Bottom Hole Pressure=2000.0
+Rock Density (G/Cm3)=2.71
+Leak-Off Co-Efficient (Ft/Min^1/2)=0.0025
+Pore Radius (Micro-M)=25.0
+Production Time (In Hours)=24.0
+/
+Available
+Optimum Interstitial Velocity (Cm/Min)=0.0
+Optimum Pore Volume To Breakthrough=0.0
+/
+Not Available
+Core flood=Not Available
+/
+Oil
+Phase1=Oil
+Reservoir Oil Viscosity (Cp)=1.5
+Reservoir Oil Density (Kg/M3)=870.0
+Oil Formation Volume Factor (Bbl/Stb)=1.2
+Oil Total Compressibility (1/Psi)=5.0e-5
+Relative Permeability of Oil=0.3
+Oil Compressibility (Pa^-1)=8e-10
+Residual Oil Saturation (Sor)=0.15
+Corey Exponent for Oil (No)=4.0
+End Point Relative Permeability Oil (Krocw)=0.9
+Flow Type=Radial Pseudo Steady State Flow
+/
+Gas
+Phase2=Gas
+Reservoir Gas Density (Kg/M3)=106.0
+Reservoir Gas Viscosity (Cp)=0.019
+Real Gas Deviation Factor=0.8
+Gas Formation Volume Factor (Bbl/Stb)=0.000695
+Gas Total Compressibility (1/Psi)=500.0e-6
+Gas Specific Gravity=0.71
+Relative Permeability of Gas=0.4
+Gor, Gas Oil Ratio (Scf/Stb)=100.0
+/
+Water
+Phase3=Water
+Reservoir Water Viscosity (Cp)=1.0
+Reservoir Water Density (Kg/M3)=1000.0
+Water Formation Volume Factor (Bbl/Stb)=1.0
+Relative Permeability of Water=0.3
+Water Saturation (Sw)=0.42
+Corey Exponent for Water (Nw)=2.0
+Connate Water Saturation (Swc)=0.15
+End Point Relative Permeability Water (Krwro)=0.9
+/
+Potential Hazard (For Recipe Design)
+H2s Presence=Yes
+Sludge Tendency=Yes
+Emulsion Tendency=Yes
+Slope of Constant Rate Flow Test, M=-0.5
+/
+Wormhole PrOfile
+Interstialvelocity Pvtbt
+0.020 39.38
+0.022 29.49
+0.024 21.39
+0.026 15.76
+0.026 15.76
+0.029 12.58
+0.032 10.21
+0.034 08.15
+0.038 06.01
+0.042 04.87
+0.048 03.77
+0.054 02.96
+0.058 02.44
+0.064 02.01
+0.075 01.71
+0.095 01.63
+0.117 01.69
+0.150 01.74
+0.179 01.83
+0.226 01.98
+0.272 02.11
+0.336 02.18
+0.434 02.40
+/
+Injection Plan
+Injection Type=Bull Head
+Start Time=10:20:20
+/
+Viscosified
+Diverter Type=Viscosified
+Viscosified Viscosity=1.0
+Viscosified Concentration (%)=15
+K (For Diverter)=10000.0
+N (For Diverter)=0.02
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Foamed
+Diverter Type=Foamed
+Foamed Viscosity=1.0
+Foamed Concentration (%)=15
+Foam Quality (%)=0.8
+Connate Water Saturation=0.2
+Gas Saturation=0.1
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Ball Sealer
+Diverter Type=Ball Sealer
+Ball Type=Buoyant
+Ball Diameter (Inch)=0.05
+Ball Density (Gm/Cm3)=0.93
+Diverter Fluid Density (Gm/Cm3)=0.5
+Volume Fraction Of Ball Sealer=0.23
+Shut-In Pressure (Psi)=3000
+Discharge Coefficient=0.8 
+/
+Particulate
+Diverter Type=Particulate
+Particulate Viscosity=1.0
+Particulate Concentration (%)=15
+Diverter Agent=Benzoic Acid
+Diverting Agent Concentration=0.002
+Cake Porosity=0.15
+Particulate Grain Size (Micro-M)=50.0
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Ves
+Diverter Type=Ves
+Ves Viscosity=1.0
+Ves Concentration (%)=15
+Maximum Viscosity (Cp)=300
+Sdva Concentration=6.0
+Ves Ph=2.0
+Calcium Concentration At Max Viscosity (%)=20
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Emulsified
+Acid Type=Emulsified
+Retardation Factor=5.8
+Diffusion Co-Efficient (Ft2/Min)=6.54e-6
+Specific Gravity=0.45
+Concentration (%)=1.2
+Viscosity (Cp)=1.2
+Acid Volume In Emulsion (% Vol)=70
+Diesel Volume In Emulsion (% Vol)=30
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Viscosified
+Diverter Type=Viscosified
+Viscosified Viscosity=1.0
+Viscosified Concentration (%)=15
+K (For Diverter)=10000.0
+N (For Diverter)=0.02
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Foamed
+Diverter Type=Foamed
+Foamed Viscosity=1.0
+Foamed Concentration (%)=15
+Foam Quality (%)=0.8
+Connate Water Saturation=0.2
+Gas Saturation=0.1
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Ball Sealer
+Diverter Type=Ball Sealer
+Ball Type=Buoyant
+Ball Diameter (Inch)=0.05
+Ball Density (Gm/Cm3)=0.93
+Diverter Fluid Density (Gm/Cm3)=0.5
+Volume Fraction Of Ball Sealer=0.23
+Shut-In Pressure (Psi)=3000
+Discharge Coefficient=0.8 
+/
+Particulate
+Diverter Type=Particulate
+Particulate Viscosity=1.0
+Particulate Concentration (%)=15
+Diverter Agent=Benzoic Acid
+Diverting Agent Concentration=0.002
+Cake Porosity=0.15
+Particulate Grain Size (Micro-M)=50.0
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+VES
+Diverter Type= VES
+VES Viscosity=1.0
+VES Concentration (%)=15
+Maximum Viscosity (Cp)=300
+SDVA Concentration=6.0
+VES Ph=2.0
+Calcium Concentration At Max Viscosity (%)=20
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Emulsified
+Retardation Factor=5.8
+Diffusion Co-Efficient (Ft2/Min)=6.54e-6
+Specific Gravity=0.45
+Concentration (%)=1.2
+Viscosity (Cp)=1.2
+Acid Volume In Emulsion (% Vol)=70
+Diesel Volume In Emulsion (% Vol)=30
+Diverter Fluid Density (Gm/Cm3)=0.5
+/
+Hcl 5
+Hcl 5 Concentration Hcl (%)=5
+Hcl 5 Diffusion Co-Efficient (Ft2/Min)=1.94e-04
+Hcl 5 Viscosity (Cp)=1
+Hcl 5 Specific Gravity=1.022
+/
+Hcl 7.5
+Hcl 7.5 Concentration Hcl (%)=7.5
+Hcl 7.5 Diffusion Co-Efficient (Ft2/Min)=2.01e-04
+Hcl 7.5 Viscosity (Cp)=1.05
+Hcl 7.5 Specific Gravity=1.035
+/
+Hcl 10
+Hcl 10 Concentration Hcl (%)=10
+Hcl 10 Diffusion Co-Efficient (Ft2/Min)=2.07e-04
+Hcl 10 Viscosity (Cp)=1.1
+Hcl 10 Specific Gravity=1.046
+/
+Hcl 15
+Hcl 15 Concentration Hf (%)=0
+Hcl 15 Concentration Hcl (%)=15
+Hcl 15 Diffusion Co-Efficient (Ft2/Min)=2.23e-04
+Hcl 15 Viscosity (Cp)=1.2
+Hcl 15 Specific Gravity=1.072
+/
+Hcl 28
+Hcl 28 Concentration Hf (%)=0
+Hcl 28 Concentration Hcl (%)=28
+Hcl 28 Diffusion Co-Efficient (Ft2/Min)=2.71e-04
+Hcl 28 Viscosity (Cp)=1.4
+Hcl 28 Specific Gravity=1.138
+/
+Alcoholic Acid 5
+Alcoholic Acid 5 Concentration Hf (%)=0
+Alcoholic Acid 5 Concentration Hcl (%)=3.5
+Alcoholic Acid 5 Diffusion Co-Efficient (Ft2/Min)=1.90e-04
+Alcoholic Acid 5 Viscosity (Cp)=2.26
+Alcoholic Acid 5 Specific Gravity=0.955
+/
+Alcoholic Acid 7.5
+Alcoholic Acid 7.5 Concentration Hf (%)=0
+Alcoholic Acid 7.5 Concentration Hcl (%)=5.3
+Alcoholic Acid 7.5 Diffusion Co-Efficient (Ft2/Min)=1.94e-04
+Alcoholic Acid 7.5 Viscosity (Cp)=2.26
+Alcoholic Acid 7.5 Specific Gravity=0.964
+/
+Alcoholic Acid 10
+Alcoholic Acid 10 Concentration Hf (%)=0
+Alcoholic Acid 10 Concentration Hcl (%)=7
+Alcoholic Acid 10 Diffusion Co-Efficient (Ft2/Min)=1.98e-04
+Alcoholic Acid 10 Viscosity (Cp)=2.26
+Alcoholic Acid 10 Specific Gravity=0.973
+/
+Alcoholic Acid 15
+Alcoholic Acid 15 Concentration Hf (%)=0
+Alcoholic Acid 15 Concentration Hcl (%)=10.5
+Alcoholic Acid 15 Diffusion Co-Efficient (Ft2/Min)=2.07e-04
+Alcoholic Acid 15 Viscosity (Cp)=2.26
+Alcoholic Acid 15 Specific Gravity=0.99
+/
+Alcoholic Acid 28
+Alcoholic Acid 28 Concentration Hf (%)=0
+Alcoholic Acid 28 Concentration Hcl (%)=19.6
+Alcoholic Acid 28 Diffusion Co-Efficient (Ft2/Min)=2.35e-04
+Alcoholic Acid 28 Viscosity (Cp)=2.26
+Alcoholic Acid 28 Specific Gravity=1.037
+/
+Hcl-Acetic Acid 10/10
+Hcl-Acetic Acid 10/10 Concentration Acetic (%)=10
+Hcl-Acetic Acid 10/10 Concentration Hcl (%)=10
+Hcl-Acetic Acid 10/10 Diffusion Co-Efficient (Ft2/Min)=3.15e-04
+Hcl-Acetic Acid 10/10 Viscosity (Cp)=1
+Hcl-Acetic Acid 10/10 Specific Gravity=1.062
+/
+Hcl-Acetic Acid 10/5
+Hcl-Acetic Acid 10/5 Concentration Acetic (%)=5
+Hcl-Acetic Acid 10/5 Concentration Hcl (%)=10
+Hcl-Acetic Acid 10/5 Diffusion Co-Efficient (Ft2/Min)=2.78e-04
+Hcl-Acetic Acid 10/5 Viscosity (Cp)=1
+Hcl-Acetic Acid 10/5 Specific Gravity=1.055
+/
+Hcl-Acetic Acid 15/5
+Hcl-Acetic Acid 15/5 Concentration Acetic (%)=5
+Hcl-Acetic Acid 15/5 Concentration Hcl (%)=15
+Hcl-Acetic Acid 15/5 Diffusion Co-Efficient (Ft2/Min)=2.69e-04
+Hcl-Acetic Acid 15/5 Viscosity (Cp)=1
+Hcl-Acetic Acid 15/5 Specific Gravity=1.08
+/
+Hcl-Acetic Acid 5/5
+Hcl-Acetic Acid 5/5 Concentration Acetic (%)=5
+Hcl-Acetic Acid 5/5 Concentration Hcl (%)=5
+Hcl-Acetic Acid 5/5 Diffusion Co-Efficient (Ft2/Min)=3.26e-04
+Hcl-Acetic Acid 5/5 Viscosity (Cp)=1
+Hcl-Acetic Acid 5/5 Specific Gravity=1.03
+/
+Hcl-Acetic Acid 7.5/5
+Hcl-Acetic Acid 7.5/5 Concentration Acetic (%)=5
+Hcl-Acetic Acid 7.5/5 Concentration Hcl (%)=7.5
+Hcl-Acetic Acid 7.5/5 Diffusion Co-Efficient (Ft2/Min)=2.93e-04
+Hcl-Acetic Acid 7.5/5 Viscosity (Cp)=1
+Hcl-Acetic Acid 7.5/5 Specific Gravity=1.043
+/
+Mud Acid 4/0.5
+Mud Acid 4/0.5 Concentration Hf (%)=0.5
+Mud Acid 4/0.5 Concentration Hcl (%)=4
+Mud Acid 4/0.5 Diffusion Co-Efficient (Ft2/Min)=1.92e-04
+Mud Acid 4/0.5 Viscosity (Cp)=1.05
+Mud Acid 4/0.5 Specific Gravity=1.021
+/
+Mud Acid 4.5/0.5
+Mud Acid 4.5/0.5 Concentration Hf (%)=0.5
+Mud Acid 4.5/0.5 Concentration Hcl (%)=4.5
+Mud Acid 4.5/0.5 Diffusion Co-Efficient (Ft2/Min)=1.93e-04
+Mud Acid 4.5/0.5 Viscosity (Cp)=1.1
+Mud Acid 4.5/0.5 Specific Gravity=1.023
+/
+Mud Acid 10/1
+Mud Acid 10/1 Concentration Hf (%)=1
+Mud Acid 10/1 Concentration Hcl (%)=10
+Mud Acid 10/1 Diffusion Co-Efficient (Ft2/Min)=2.08e-04
+Mud Acid 10/1 Viscosity (Cp)=1.1
+Mud Acid 10/1 Specific Gravity=1.054
+/
+Mud Acid 10/1.5
+Mud Acid 10/1.5 Concentration Hf (%)=1.5
+Mud Acid 10/1.5 Concentration Hcl (%)=10
+Mud Acid 10/1.5 Diffusion Co-Efficient (Ft2/Min)=2.08e-04
+Mud Acid 10/1.5 Viscosity (Cp)=1.1
+Mud Acid 10/1.5 Specific Gravity=1.054
+/
+Mud Acid 10/2
+Mud Acid 10/2 Concentration Hf (%)=2
+Mud Acid 10/2 Concentration Hcl (%)=10
+Mud Acid 10/2 Diffusion Co-Efficient (Ft2/Min)=2.08e-04
+Mud Acid 10/2 Viscosity (Cp)=1.1
+Mud Acid 10/2 Specific Gravity=1.061
+/
+Mud Acid 12/1.5
+Mud Acid 12/1.5 Concentration Hf (%)=1.5
+Mud Acid 12/1.5 Concentration Hcl (%)=12
+Mud Acid 12/1.5 Diffusion Co-Efficient (Ft2/Min)=2.14e-04
+Mud Acid 12/1.5 Viscosity (Cp)=1.1
+Mud Acid 12/1.5 Specific Gravity=1.066
+/
+Mud Acid 12/2
+Mud Acid 12/2 Concentration Hf (%)=2
+Mud Acid 12/2 Concentration Hcl (%)=12
+Mud Acid 12/2 Diffusion Co-Efficient (Ft2/Min)=2.14e-04
+Mud Acid 12/2 Viscosity (Cp)=1.1
+Mud Acid 12/2 Specific Gravity=1.069
+/
+Mud Acid 12/3
+Mud Acid 12/3 Concentration Hf (%)=3
+Mud Acid 12/3 Concentration Hcl (%)=12
+Mud Acid 12/3 Diffusion Co-Efficient (Ft2/Min)=2.14e-04
+Mud Acid 12/3 Viscosity (Cp)=1.1
+Mud Acid 12/3 Specific Gravity=1.069
+/
+Mud Acid 12/6
+Mud Acid 12/6 Concentration Hf (%)=6
+Mud Acid 12/6 Concentration Hcl (%)=12
+Mud Acid 12/6 Diffusion Co-Efficient (Ft2/Min)=2.14e-04
+Mud Acid 12/6 Viscosity (Cp)=1.15
+Mud Acid 12/6 Specific Gravity=1.069
+/
+Mud Acid 6/0.5
+Mud Acid 6/0.5 Concentration Hf (%)=0.5
+Mud Acid 6/0.5 Concentration Hcl (%)=6
+Mud Acid 6/0.5 Diffusion Co-Efficient (Ft2/Min)=1.97e-04
+Mud Acid 6/0.5 Viscosity (Cp)=1.1
+Mud Acid 6/0.5 Specific Gravity=1.03
+/
+Mud Acid 6/1
+Mud Acid 6/1 Concentration Hf (%)=1
+Mud Acid 6/1 Concentration Hcl (%)=6
+Mud Acid 6/1 Diffusion Co-Efficient (Ft2/Min)=1.97e-04
+Mud Acid 6/1 Viscosity (Cp)=1.1
+Mud Acid 6/1 Specific Gravity=1.033
+/
+Mud Acid 6/1.5
+Mud Acid 6/1.5 Concentration Hf (%)=1.5
+Mud Acid 6/1.5 Concentration Hcl (%)=6
+Mud Acid 6/1.5 Diffusion Co-Efficient (Ft2/Min)=1.97e-04
+Mud Acid 6/1.5 Viscosity (Cp)=1.1
+Mud Acid 6/1.5 Specific Gravity=1.037
+/
+Mud Acid 7.5/1.5
+Mud Acid 7.5/1.5 Concentration Hf (%)=1.5
+Mud Acid 7.5/1.5 Concentration Hcl (%)=7.5
+Mud Acid 7.5/1.5 Diffusion Co-Efficient (Ft2/Min)=2.01e-04
+Mud Acid 7.5/1.5 Viscosity (Cp)=1.1
+Mud Acid 7.5/1.5 Specific Gravity=1.044
+/
+Mud Acid 8/0.5
+Mud Acid 8/0.5 Concentration Hf (%)=0.5
+Mud Acid 8/0.5 Concentration Hcl (%)=8
+Mud Acid 8/0.5 Diffusion Co-Efficient (Ft2/Min)=2.02e-04
+Mud Acid 8/0.5 Viscosity (Cp)=1.1
+Mud Acid 8/0.5 Specific Gravity=1.04
+/
+Mud Acid 8/1
+Mud Acid 8/1 Concentration Hf (%)=1
+Mud Acid 8/1 Concentration Hcl (%)=8
+Mud Acid 8/1 Diffusion Co-Efficient (Ft2/Min)=2.02e-04
+Mud Acid 8/1 Viscosity (Cp)=1.1
+Mud Acid 8/1 Specific Gravity=1.043
+/
+Mud Acid 8/2
+Mud Acid 8/2 Concentration Hf (%)=2
+Mud Acid 8/2 Concentration Hcl (%)=8
+Mud Acid 8/2 Diffusion Co-Efficient (Ft2/Min)=2.02e-04
+Mud Acid 8/2 Viscosity (Cp)=1.1
+Mud Acid 8/2 Specific Gravity=1.049
+/
+Mud Acid 9/1
+Mud Acid 9/1 Concentration Hf (%)=1
+Mud Acid 9/1 Concentration Hcl (%)=9
+Mud Acid 9/1 Diffusion Co-Efficient (Ft2/Min)=2.05e-04
+Mud Acid 9/1 Viscosity (Cp)=1.1
+Mud Acid 9/1 Specific Gravity=1.048
+/
+Mud Acid 9/1.5
+Mud Acid 9/1.5 Concentration Hf (%)=1.5
+Mud Acid 9/1.5 Concentration Hcl (%)=9
+Mud Acid 9/1.5 Diffusion Co-Efficient (Ft2/Min)=2.05e-04
+Mud Acid 9/1.5 Viscosity (Cp)=1.1
+Mud Acid 9/1.5 Specific Gravity=1.051
+/
+Alcoholic Mud Acid 12/2
+Alcoholic Mud Acid 12/2 Concentration Hf (%)=1.4
+Alcoholic Mud Acid 12/2 Concentration Hcl (%)=8.4
+Alcoholic Mud Acid 12/2 Diffusion Co-Efficient (Ft2/Min)=2.02e-04
+Alcoholic Mud Acid 12/2 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 12/2 Specific Gravity=0.986
+/
+Alcoholic Mud Acid 12/3
+Alcoholic Mud Acid 12/3 Concentration Hf (%)=2.1
+Alcoholic Mud Acid 12/3 Concentration Hcl (%)=8.4
+Alcoholic Mud Acid 12/3 Diffusion Co-Efficient (Ft2/Min)=2.02e-04
+Alcoholic Mud Acid12/3 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 12/3 Specific Gravity=0.99
+/
+Alcoholic Mud Acid 13.5/5
+Alcoholic Mud Acid 13.5/5 Concentration Hf (%)=1
+Alcoholic Mud Acid 13.5/5 Concentration Hcl (%)=9.4
+Alcoholic Mud Acid 13.5/5 Diffusion Co-Efficient (Ft2/Min)=2.05e-04
+Alcoholic Mud Acid 13.5/5 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 13.5/5 Specific Gravity=0.989
+/
+Alcoholic Mud Acid 4.5/0.5
+Alcoholic Mud Acid 4.5/0.5 Concentration Hf (%)=0.4
+Alcoholic Mud Acid 4.5/0.5 Concentration Hcl (%)=3.2
+Alcoholic Mud Acid 4.5/0.5 Diffusion Co-Efficient (Ft2/Min)=1.89e-04
+Alcoholic Mud Acid 4.5/0.5 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 4.5/0.5 Specific Gravity=0.953
+/
+Alcoholic Mud Acid 6/1
+Alcoholic Mud Acid 6/1 Concentration Hf (%)=0.7
+Alcoholic Mud Acid 6/1 Concentration Hcl (%)=4.2
+Alcoholic Mud Acid 6/1 Diffusion Co-Efficient (Ft2/Min)=1.92e-04
+Alcoholic Mud Acid 6/1 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 6/1 Specific Gravity=0.961
+/
+Alcoholic Mud Acid 6/1.5
+Alcoholic Mud Acid 6/1.5 Concentration Hf (%)=1
+Alcoholic Mud Acid 6/1.5 Concentration Hcl (%)=4.2
+Alcoholic Mud Acid 6/1.5 Diffusion Co-Efficient (Ft2/Min)=1.92e-04
+Alcoholic Mud Acid 6/1.5 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 6/1.5 Specific Gravity=0.963
+/
+Alcoholic Mud Acid 8/2
+Alcoholic Mud Acid 8/2 Concentration Hf (%)=1.4
+Alcoholic Mud Acid 8/2 Concentration Hcl (%)=5.6
+Alcoholic Mud Acid 8/2 Diffusion Co-Efficient (Ft2/Min)=1.95e-04
+Alcoholic Mud Acid 8/2 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 8/2 Specific Gravity=0.972
+/
+Alcoholic Mud Acid 9/1
+Alcoholic Mud Acid 9/1 Concentration Hf (%)=0.7
+Alcoholic Mud Acid 9/1 Concentration Hcl (%)=6.3
+Alcoholic Mud Acid 9/1 Diffusion Co-Efficient (Ft2/Min)=1.97e-04
+Alcoholic Mud Acid 9/1 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 9/1 Specific Gravity=0.971
+/
+Alcoholic Mud Acid 9.5/1.5
+Alcoholic Mud Acid 9/1.5 Concentration Hf (%)=1
+Alcoholic Mud Acid 9/1.5 Concentration Hcl (%)=6.3
+Alcoholic Mud Acid 9/1.5 Diffusion Co-Efficient (Ft2/Min)=1.97e-04
+Alcoholic Mud Acid 9/1.5 Viscosity (Cp)=2.26
+Alcoholic Mud Acid 9/1.5 Specific Gravity=0.974
+/
+Citric Mud Acid 10/0.5
+Citric Mud Acid 10/0.5 Concentration Hf (%)=0.5
+Citric Mud Acid 10/0.5 Concentration Citric (%)=10
+Citric Mud Acid 10/0.5 Diffusion Co-Efficient (Ft2/Min)=7.37e-04
+Citric Mud Acid 10/0.5 Viscosity (Cp)=1
+Citric Mud Acid 10/0.5 Specific Gravity=1.042
+/
+Citric Mud Acid 10/1
+Citric Mud Acid 10/1 Concentration Hf (%)=1
+Citric Mud Acid 10/1 Concentration Citric (%)=10
+Citric Mud Acid 10/1 Diffusion Co-Efficient (Ft2/Min)=7.37e-04
+Citric Mud Acid 10/1 Viscosity (Cp)=1
+Citric Mud Acid 10/1 Specific Gravity=1.045
+/
+Citric Mud Acid 10/1.5
+Citric Mud Acid 10/1.5 Concentration Hf (%)=1.5
+Citric Mud Acid 10/1.5 Concentration Citric (%)=10
+Citric Mud Acid 10/1.5 Diffusion Co-Efficient (Ft2/Min)=7.37e-04
+Citric Mud Acid 10/1.5 Viscosity (Cp)=1
+Citric Mud Acid 10/1.5 Specific Gravity=1.048
+/
+Citric Mud Acid 10/2
+Citric Mud Acid 10/2 Concentration Hf (%)=2
+Citric Mud Acid 10/2 Concentration Citric (%)=10
+Citric Mud Acid 10/2 Diffusion Co-Efficient (Ft2/Min)=7.37e-04
+Citric Mud Acid 10/2 Viscosity (Cp)=1
+Citric Mud Acid 10/2 Specific Gravity=1.051
+/
+Formic Mud Acid 9/0.5	
+Formic Mud Acid 9/0.5 Concentration Hf (%)=0.5
+Formic Mud Acid 9/0.5 Concentration Formic (%)=9
+Formic Mud Acid 9/0.5 Diffusion Co-Efficient (Ft2/Min)=8.99e-04
+Formic Mud Acid 9/0.5 Viscosity (Cp)=1.04
+Formic Mud Acid 9/0.5 Specific Gravity=1.025
+/
+Formic Mud Acid 9/1
+Formic Mud Acid 9/1 Concentration Hf (%)=1
+Formic Mud Acid 9/1 Concentration Formic (%)=9
+Formic Mud Acid 9/1 Diffusion Co-Efficient (Ft2/Min)=8.98e-04
+Formic Mud Acid 9/1 Viscosity (Cp)=1.04
+Formic Mud Acid 9/1 Specific Gravity=1.028
+/
+Formic Mud Acid 9/1.5	
+Formic Mud Acid 9/1.5 Concentration Hf (%)=1.5
+Formic Mud Acid 9/1.5 Concentration Formic (%)=9
+Formic Mud Acid 9/1.5 Diffusion Co-Efficient (Ft2/Min)=8.98e-04
+Formic Mud Acid 9/1.5 Viscosity (Cp)=1.04
+Formic Mud Acid 9/1.5 Specific Gravity=1.031
+/
+Mud Acid-Acetic 12/2/5
+Mud Acid-Acetic 12/2/5 Concentration Hcl (%)=12
+Mud Acid-Acetic 12/2/5 Concentration Hf (%)=2
+Mud Acid-Acetic 12/2/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 12/2/5 Diffusion Co-Efficient (Ft2/Min)=2.72e-04
+Mud Acid-Acetic 12/2/5 Viscosity (Cp)=1
+Mud Acid-Acetic 12/2/5 Specific Gravity=1.076
+/
+Mud Acid-Acetic 12/3/5
+Mud Acid-Acetic 12/3/5 Concentration Hcl (%)=12
+Mud Acid-Acetic 12/3/5 Concentration Hf (%)=3
+Mud Acid-Acetic 12/3/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 12/3/5 Diffusion Co-Efficient (Ft2/Min)=2.72e-04
+Mud Acid-Acetic 12/3/5 Viscosity (Cp)=1
+Mud Acid-Acetic 12/3/5 Specific Gravity=1.082
+/
+Mud Acid-Acetic 13.5/1.5/5
+Mud Acid-Acetic 13.5/1.5/5 Concentration Hcl (%)=13.5
+Mud Acid-Acetic 13.5/1.5/5 Concentration Hf (%)=1.5
+Mud Acid-Acetic 13.5/1.5/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 13.5/1.5/5 Diffusion Co-Efficient (Ft2/Min)=2.70e-04
+Mud Acid-Acetic 13.5/1.5/5 Viscosity (Cp)=1
+Mud Acid-Acetic 13.5/1.5/5 Specific Gravity=1.081
+/
+Mud Acid-Acetic 4.5/0.5/10
+Mud Acid-Acetic 4.5/0.5/10 Concentration Hcl (%)=4.5
+Mud Acid-Acetic 4.5/0.5/10 Concentration Hf (%)=0.5
+Mud Acid-Acetic 4.5/0.5/10 Concentration Acetic (%)=10
+Mud Acid-Acetic 4.5/0.5/10 Diffusion Co-Efficient (Ft2/Min)=3.91e-04
+Mud Acid-Acetic 4.5/0.5/10 Viscosity (Cp)=1
+Mud Acid-Acetic 4.5/0.5/10 Specific Gravity=1.039
+/
+Mud Acid-Acetic 4.5/0.5/5
+Mud Acid-Acetic 4.5/0.5/5 Concentration Hcl (%)=4.5
+Mud Acid-Acetic 4.5/0.5/5 Concentration Hf (%)=0.5
+Mud Acid-Acetic 4.5/0.5/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 4.5/0.5/5 Diffusion Co-Efficient (Ft2/Min)=3.37e-04
+Mud Acid-Acetic 4.5/0.5/5 Viscosity (Cp)=1
+Mud Acid-Acetic 4.5/0.5/5 Specific Gravity=1.031
+/
+Mud Acid-Acetic 6/1.5/10
+Mud Acid-Acetic 6/1.5/10 Concentration Hcl (%)=6
+Mud Acid-Acetic 6/1.5/10 Concentration Hf (%)=1.5
+Mud Acid-Acetic 6/1.5/10 Concentration Acetic (%)=10
+Mud Acid-Acetic 6/1.5/10 Diffusion Co-Efficient (Ft2/Min)=3.59e-04
+Mud Acid-Acetic 6/1.5/10 Viscosity (Cp)=1
+Mud Acid-Acetic 6/1.5/10 Specific Gravity=1.05
+/
+Mud Acid-Acetic 6/1.5/5
+Mud Acid-Acetic 6/1.5/5 Concentration Hcl (%)=6
+Mud Acid-Acetic 6/1.5/5 Concentration Hf (%)=1.5
+Mud Acid-Acetic 6/1.5/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 6/1.5/5 Diffusion Co-Efficient (Ft2/Min)=3.10e-04
+Mud Acid-Acetic 6/1.5/5 Viscosity (Cp)=1
+Mud Acid-Acetic 6/1.5/5 Specific Gravity=1.044
+/
+Mud Acid-Acetic 6/1/10
+Mud Acid-Acetic 6/1/10 Concentration Hcl (%)=6
+Mud Acid-Acetic 6/1/10 Concentration Hf (%)=1
+Mud Acid-Acetic 6/1/10 Concentration Acetic (%)=10
+Mud Acid-Acetic 6/1/10 Diffusion Co-Efficient (Ft2/Min)=3.60e-04
+Mud Acid-Acetic 6/1/10 Viscosity (Cp)=1
+Mud Acid-Acetic 6/1/10 Specific Gravity=1.048
+/
+Mud Acid-Acetic 6/1/5
+Mud Acid-Acetic 6/1/5 Concentration Hcl (%)=6
+Mud Acid-Acetic 6/1/5 Concentration Hf (%)=1
+Mud Acid-Acetic 6/1/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 6/1/5 Diffusion Co-Efficient (Ft2/Min)=3.10e-04
+Mud Acid-Acetic 6/1/5 Viscosity (Cp)=1
+Mud Acid-Acetic 6/1/5 Specific Gravity=1.041
+/
+Mud Acid-Acetic 8/2/10
+Mud Acid-Acetic 8/2/10 Concentration Hcl (%)=8
+Mud Acid-Acetic 8/2/10 Concentration Hf (%)=2
+Mud Acid-Acetic 8/2/10 Concentration Acetic (%)=10
+Mud Acid-Acetic 8/2/10 Diffusion Co-Efficient (Ft2/Min)=3.32e-04
+Mud Acid-Acetic 8/2/10 Viscosity (Cp)=1
+Mud Acid-Acetic 8/2/10 Specific Gravity=1.062
+/
+Mud Acid-Acetic 8/2/5
+Mud Acid-Acetic 8/2/5 Concentration Hcl (%)=8
+Mud Acid-Acetic 8/2/5 Concentration Hf (%)=2
+Mud Acid-Acetic 8/2/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 8/2/5 Diffusion Co-Efficient (Ft2/Min)=2.90e-04
+Mud Acid-Acetic 8/2/5 Viscosity (Cp)=1
+Mud Acid-Acetic 8/2/5 Specific Gravity=1.056
+/
+Mud Acid-Acetic 9/1.5/10
+Mud Acid-Acetic 9/1.5/10 Concentration Hcl (%)=9
+Mud Acid-Acetic 9/1.5/10 Concentration Hf (%)=1.5
+Mud Acid-Acetic 9/1.5/10 Concentration Acetic (%)=10
+Mud Acid-Acetic 9/1.5/10 Diffusion Co-Efficient (Ft2/Min)=3.22e-04
+Mud Acid-Acetic 9/1.5/10 Viscosity (Cp)=1
+Mud Acid-Acetic 9/1.5/10 Specific Gravity=1.066
+/
+Mud Acid-Acetic 9/1.5/5
+Mud Acid-Acetic 9/1.5/5 Concentration Hcl (%)=9
+Mud Acid-Acetic 9/1.5/5 Concentration Hf (%)=1.5
+Mud Acid-Acetic 9/1.5/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 9/1.5/5 Diffusion Co-Efficient (Ft2/Min)=2.83e-04
+Mud Acid-Acetic 9/1.5/5 Viscosity (Cp)=1
+Mud Acid-Acetic 9/1.5/5 Specific Gravity=1.059
+/
+Mud Acid-Acetic 9/1/10
+Mud Acid-Acetic 9/1/10 Concentration Hcl (%)=9
+Mud Acid-Acetic 9/1/10 Concentration Hf (%)=1
+Mud Acid-Acetic 9/1/10 Concentration Acetic (%)=10
+Mud Acid-Acetic 9/1/10 Diffusion Co-Efficient (Ft2/Min)=3.22e-04
+Mud Acid-Acetic 9/1/10 Viscosity (Cp)=1
+Mud Acid-Acetic 9/1/10 Specific Gravity=1.064
+/
+Mud Acid-Acetic 9/1/5
+Mud Acid-Acetic 9/1/5 Concentration Hcl (%)=9
+Mud Acid-Acetic 9/1/5 Concentration Hf (%)=1
+Mud Acid-Acetic 9/1/5 Concentration Acetic (%)=5
+Mud Acid-Acetic 9/1/5 Diffusion Co-Efficient (Ft2/Min)=2.83e-04
+Mud Acid-Acetic 9/1/5 Viscosity (Cp)=1
+Mud Acid-Acetic 9/1/5 Specific Gravity=1.056
+/
+Organic Mud Acid 9/0.5
+Organic Mud Acid 9/0.5 Concentration Hcl (%)=0
+Organic Mud Acid 9/0.5 Concentration Hf (%)=0.5
+Organic Mud Acid 9/0.5 Concentration Formic (%)=9
+Organic Mud Acid 9/0.5 Diffusion Co-Efficient (Ft2/Min)=8.98e-04
+Organic Mud Acid 9/0.5 Viscosity (Cp)=1.04
+Organic Mud Acid 9/0.5 Specific Gravity=1.021
+/
+Organic Mud Acid 9/3
+Organic Mud Acid 9/3 Concentration Hcl (%)=0
+Organic Mud Acid 9/3 Concentration Hf (%)=3
+Organic Mud Acid 9/3 Concentration Formic (%)=9
+Organic Mud Acid 9/3 Diffusion Co-Efficient (Ft2/Min)=8.99e-04
+Organic Mud Acid 9/3 Viscosity (Cp)=1.1
+Organic Mud Acid 9/3 Specific Gravity=1.021/
+/
+Acetic Acid 10
+Acetic Acid 10 Concentration Formic (%)=0
+Acetic Acid 10 Concentration Acetic  (%)=10
+Acetic Acid 10 Diffusion Co-Efficient (Ft2/Min)=6.67e-04
+Acetic Acid 10 Viscosity (Cp)=1.2
+Acetic Acid 10 Specific Gravity=1.012
+/
+Formic Acid 9	
+Formic Acid 9 Concentration Formic (%)=9
+Formic Acid 9 Concentration Acetic  (%)=0
+Formic Acid 9 Diffusion Co-Efficient (Ft2/Min)=8.99e-04
+Formic Acid 9 Viscosity (Cp)=1.04
+Formic Acid 9 Specific Gravity=1.021
+/
+Alcoholic Formic Acid Concentration Formic 6.3
+Alcoholic Formic Acid Concentration Formic (%)=6.3
+Alcoholic Formic Acid Concentration Acetic  (%)=0
+Alcoholic Formic Acid Diffusion Co-Efficient (Ft2/Min)=9.26e-04
+Alcoholic Formic Acid Viscosity (Cp)=2.26
+Alcoholic Formic Acid Specific Gravity=0.953
+/
+Alcoholic Formic Acid Concentration Acetic 7
+Alcoholic Formic Acid Concentration Formic (%)=0
+Alcoholic Formic Acid Concentration Acetic  (%)=7
+Alcoholic Formic Acid Diffusion Co-Efficient (Ft2/Min)=7.06e-04
+Alcoholic Formic Acid Viscosity (Cp)=2.26
+Alcoholic Formic Acid Specific Gravity=0.947
+/
+1% Egmbe
+Solvent Name=1% Egmbe
+1% Egmbe Concentration=1
+1% Egmbe Surface Tension (Dynes/Cm)=54
+1% Egmbe Specific Gravity=0.902
+1% Egmbe Viscosity (Cp)=6.4
+/
+2% Egmbe
+Solvent Name=2% Egmbe
+2% Egmbe Concentration=2
+2% Egmbe Surface Tension (Dynes/Cm)=50
+2% Egmbe Specific Gravity=0.902
+2% Egmbe Viscosity (Cp)=6.4
+/
+3% Egmbe
+Solvent Name=3% Egmbe
+3% Egmbe Concentration=3
+3% Egmbe Surface Tension (Dynes/Cm)=47
+3% Egmbe Specific Gravity=0.902
+3% Egmbe Viscosity (Cp)=6.4
+/
+4% Egmbe
+Solvent Name=4% Egmbe
+4% Egmbe Concentration=4
+4% Egmbe Surface Tension (Dynes/Cm)=44
+4% Egmbe Specific Gravity=0.902
+4% Egmbe Viscosity (Cp)=6.43%
+/
+5% Egmbe
+Solvent Name=5% Egmbe
+5% Egmbe Concentration=5
+5% Egmbe Surface Tension (Dynes/Cm)=42
+5% Egmbe Specific Gravity=0.902
+5% Egmbe Viscosity (Cp)=6.4
+/
+6% Egmbe
+Solvent Name=6% Egmbe
+6% Egmbe Concentration=6
+6% Egmbe Surface Tension (Dynes/Cm)=41
+6% Egmbe Specific Gravity=0.902
+6% Egmbe Viscosity (Cp)=6.4
+/
+7% Egmbe
+Solvent Name=7% Egmbe
+7% Egmbe Concentration=7
+7% Egmbe Surface Tension (Dynes/Cm)=40
+7% Egmbe Specific Gravity=0.902
+7% Egmbe Viscosity (Cp)=6.4
+/
+8% Egmbe
+Solvent Name=8% Egmbe
+8% Egmbe Concentration=8
+8% Egmbe Surface Tension (Dynes/Cm)=38
+8% Egmbe Specific Gravity=0.902
+8% Egmbe Viscosity (Cp)=6.4
+/
+9% Egmbe
+Solvent Name=9% Egmbe
+9% Egmbe Concentration=9
+9% Egmbe Surface Tension (Dynes/Cm)=36
+9% Egmbe Specific Gravity=0.902
+9% Egmbe Viscosity (Cp)=6.4
+/
+10% Egmbe
+Solvent Name=10% Egmbe
+10% Egmbe Concentration=10
+10% Egmbe Surface Tension (Dynes/Cm)=35
+10% Egmbe Specific Gravity=0.902
+10% Egmbe Viscosity (Cp)=6.4
+/
+1% Isopropyl Alcohol
+Solvent Name=1% Isopropyl Alcohol
+1% Isopropyl Alcohol Concentration=1
+1% Isopropyl Alcohol Surface Tension (Dynes/Cm)=61
+1% Isopropyl Alcohol Specific Gravity=0.785
+1% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+2% Isopropyl Alcohol
+Solvent Name=2% Isopropyl Alcohol
+2% Isopropyl Alcohol Concentration=2
+2% Isopropyl Alcohol Surface Tension (Dynes/Cm)=53
+2% Isopropyl Alcohol Specific Gravity=0.785
+2% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+3% Isopropyl Alcohol
+Solvent Name=3% Isopropyl Alcohol
+3% Isopropyl Alcohol Concentration=3
+3% Isopropyl Alcohol Surface Tension (Dynes/Cm)=52
+3% Isopropyl Alcohol Specific Gravity=0.785
+3% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+4% Isopropyl Alcohol
+Solvent Name=4% Isopropyl Alcohol
+4% Isopropyl Alcohol Concentration=4
+4% Isopropyl Alcohol Surface Tension (Dynes/Cm)=50
+4% Isopropyl Alcohol Specific Gravity=0.785
+4% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+5% Isopropyl Alcohol
+Solvent Name=5% Isopropyl Alcohol
+5% Isopropyl Alcohol Concentration=5
+5% Isopropyl Alcohol Surface Tension (Dynes/Cm)=49
+5% Isopropyl Alcohol Specific Gravity=0.785
+5% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+6% Isopropyl Alcohol
+Solvent Name=6% Isopropyl Alcohol
+6% Isopropyl Alcohol Concentration=6
+6% Isopropyl Alcohol Surface Tension (Dynes/Cm)=48
+6% Isopropyl Alcohol Specific Gravity=0.785
+6% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+7% Isopropyl Alcohol
+Solvent Name=7% Isopropyl Alcohol
+7% Isopropyl Alcohol Concentration=7
+7% Isopropyl Alcohol Surface Tension (Dynes/Cm)=46
+7% Isopropyl Alcohol Specific Gravity=0.785
+7% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+8% Isopropyl Alcohol
+Solvent Name=8% Isopropyl Alcohol
+8% Isopropyl Alcohol Concentration=8
+8% Isopropyl Alcohol Surface Tension (Dynes/Cm)=45
+8% Isopropyl Alcohol Specific Gravity=0.785
+8% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+9% Isopropyl Alcohol
+Solvent Name=9% Isopropyl Alcohol
+9% Isopropyl Alcohol Concentration=9
+9% Isopropyl Alcohol Surface Tension (Dynes/Cm)=44
+9% Isopropyl Alcohol Specific Gravity=0.785
+9% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+10% Isopropyl Alcohol
+Solvent Name=10% Isopropyl Alcohol
+10% Isopropyl Alcohol Concentration=10
+10% Isopropyl Alcohol Surface Tension (Dynes/Cm)=42
+10% Isopropyl Alcohol Specific Gravity=0.785
+10% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+11% Isopropyl Alcohol
+Solvent Name=11% Isopropyl Alcohol
+11% Isopropyl Alcohol Concentration=11
+11% Isopropyl Alcohol Surface Tension (Dynes/Cm)=41
+11% Isopropyl Alcohol Specific Gravity=0.785
+11% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+12% Isopropyl Alcohol
+Solvent Name=12% Isopropyl Alcohol
+12% Isopropyl Alcohol Concentration=12
+12% Isopropyl Alcohol Surface Tension (Dynes/Cm)=40
+12% Isopropyl Alcohol Specific Gravity=0.785
+12% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+13% Isopropyl Alcohol
+Solvent Name=13% Isopropyl Alcohol
+13% Isopropyl Alcohol Concentration=13
+13% Isopropyl Alcohol Surface Tension (Dynes/Cm)=39
+13% Isopropyl Alcohol Specific Gravity=0.785
+13% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+14% Isopropyl Alcohol
+Solvent Name=14% Isopropyl Alcohol
+14% Isopropyl Alcohol Concentration=14
+14% Isopropyl Alcohol Surface Tension (Dynes/Cm)=38
+14% Isopropyl Alcohol Specific Gravity=0.785
+14% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+15% Isopropyl Alcohol
+Solvent Name=15% Isopropyl Alcohol
+15% Isopropyl Alcohol Concentration=15
+15% Isopropyl Alcohol Surface Tension (Dynes/Cm)=37
+15% Isopropyl Alcohol Specific Gravity=0.785
+15% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+16% Isopropyl Alcohol
+Solvent Name=16% Isopropyl Alcohol
+16% Isopropyl Alcohol Concentration=16
+16% Isopropyl Alcohol Surface Tension (Dynes/Cm)=36
+16% Isopropyl Alcohol Specific Gravity=0.785
+16% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+17% Isopropyl Alcohol
+Solvent Name=17% Isopropyl Alcohol
+17% Isopropyl Alcohol Concentration=17
+17% Isopropyl Alcohol Surface Tension (Dynes/Cm)=35
+17% Isopropyl Alcohol Specific Gravity=0.785
+17% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+18% Isopropyl Alcohol
+Solvent Name=18% Isopropyl Alcohol
+18% Isopropyl Alcohol Concentration=18
+18% Isopropyl Alcohol Surface Tension (Dynes/Cm)=34
+18% Isopropyl Alcohol Specific Gravity=0.785
+18% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+19% Isopropyl Alcohol
+Solvent Name=19% Isopropyl Alcohol
+19% Isopropyl Alcohol Concentration=19
+19% Isopropyl Alcohol Surface Tension (Dynes/Cm)=33
+19% Isopropyl Alcohol Specific Gravity=0.785
+19% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+20% Isopropyl Alcohol
+Solvent Name=20% Isopropyl Alcohol
+20% Isopropyl Alcohol Concentration=20
+20% Isopropyl Alcohol Surface Tension (Dynes/Cm)=32.24
+20% Isopropyl Alcohol Specific Gravity=0.785
+20% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+21% Isopropyl Alcohol
+Solvent Name=21% Isopropyl Alcohol
+21% Isopropyl Alcohol Concentration=21
+21% Isopropyl Alcohol Surface Tension (Dynes/Cm)=32.24
+21% Isopropyl Alcohol Specific Gravity=0.785
+21% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+22% Isopropyl Alcohol
+Solvent Name=22% Isopropyl Alcohol
+22% Isopropyl Alcohol Concentration=22
+22% Isopropyl Alcohol Surface Tension (Dynes/Cm)=32
+22% Isopropyl Alcohol Specific Gravity=0.785
+22% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+23% Isopropyl Alcohol
+Solvent Name=23% Isopropyl Alcohol
+23% Isopropyl Alcohol Concentration=23
+23% Isopropyl Alcohol Surface Tension (Dynes/Cm)=32
+23% Isopropyl Alcohol Specific Gravity=0.785
+23% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+24% Isopropyl Alcohol
+Solvent Name=24% Isopropyl Alcohol
+24% Isopropyl Alcohol Concentration=24
+24% Isopropyl Alcohol Surface Tension (Dynes/Cm)=31.8
+24% Isopropyl Alcohol Specific Gravity=0.785
+24% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+25% Isopropyl Alcohol
+Solvent Name=25% Isopropyl Alcohol
+25% Isopropyl Alcohol Concentration=25
+25% Isopropyl Alcohol Surface Tension (Dynes/Cm)=31.5
+25% Isopropyl Alcohol Specific Gravity=0.785
+25% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+26% Isopropyl Alcohol
+Solvent Name=26% Isopropyl Alcohol
+26% Isopropyl Alcohol Concentration=26
+26% Isopropyl Alcohol Surface Tension (Dynes/Cm)=31.3
+26% Isopropyl Alcohol Specific Gravity=0.785
+26% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+27% Isopropyl Alcohol
+Solvent Name=27% Isopropyl Alcohol
+27% Isopropyl Alcohol Concentration=27
+27% Isopropyl Alcohol Surface Tension (Dynes/Cm)=31.1
+27% Isopropyl Alcohol Specific Gravity=0.785
+27% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+28% Isopropyl Alcohol
+Solvent Name=28% Isopropyl Alcohol
+28% Isopropyl Alcohol Concentration=28
+28% Isopropyl Alcohol Surface Tension (Dynes/Cm)=31
+28% Isopropyl Alcohol Specific Gravity=0.785
+28% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+29% Isopropyl Alcohol
+Solvent Name=29% Isopropyl Alcohol
+29% Isopropyl Alcohol Concentration=29
+29% Isopropyl Alcohol Surface Tension (Dynes/Cm)=30.8
+29% Isopropyl Alcohol Specific Gravity=0.785
+29% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+30% Isopropyl Alcohol
+Solvent Name=30% Isopropyl Alcohol
+30% Isopropyl Alcohol Concentration=30
+30% Isopropyl Alcohol Surface Tension (Dynes/Cm)=30.6
+30% Isopropyl Alcohol Specific Gravity=0.785
+30% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+31% Isopropyl Alcohol
+Solvent Name=31% Isopropyl Alcohol
+31% Isopropyl Alcohol Concentration=31
+31% Isopropyl Alcohol Surface Tension (Dynes/Cm)=30.5
+31% Isopropyl Alcohol Specific Gravity=0.785
+31% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+32% Isopropyl Alcohol
+Solvent Name=32% Isopropyl Alcohol
+32% Isopropyl Alcohol Concentration=32
+32% Isopropyl Alcohol Surface Tension (Dynes/Cm)=30.4
+32% Isopropyl Alcohol Specific Gravity=0.785
+32% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+33% Isopropyl Alcohol
+Solvent Name=33% Isopropyl Alcohol
+33% Isopropyl Alcohol Concentration=33
+33% Isopropyl Alcohol Surface Tension (Dynes/Cm)=30.2
+33% Isopropyl Alcohol Specific Gravity=0.785
+33% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+34% Isopropyl Alcohol
+Solvent Name=34% Isopropyl Alcohol
+34% Isopropyl Alcohol Concentration=34
+34% Isopropyl Alcohol Surface Tension (Dynes/Cm)=30.1
+34% Isopropyl Alcohol Specific Gravity=0.785
+34% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+35% Isopropyl Alcohol
+Solvent Name=35% Isopropyl Alcohol
+35% Isopropyl Alcohol Concentration=35
+35% Isopropyl Alcohol Surface Tension (Dynes/Cm)=29.8
+35% Isopropyl Alcohol Specific Gravity=0.785
+35% Isopropyl Alcohol Viscosity (Cp)=2.37
+/
+0.002% Tx-100
+Surfactant Name=0.002% Tx-100
+0.002% Tx-100 Concentration=1
+0.002% Tx-100 Surface Tension (Dynes/Cm)=44.8
+0.002% Tx-100 Specific Gravity=1.061
+0.002% Tx-100 Viscosity (Cp)=2.4
+/
+0.005% Tx-100
+Surfactant Name=0.005% Tx-100
+0.005% Tx-100 Concentration=2
+0.005% Tx-100 Surface Tension (Dynes/Cm)=35.2
+0.005% Tx-100 Specific Gravity=1.061
+0.005% Tx-100 Viscosity (Cp)=2.4
+/
+0.01% Tx-100
+Surfactant Name=0.01% Tx-100
+0.01% Tx-100 Concentration=3
+0.01% Tx-100 Surface Tension (Dynes/Cm)=33
+0.01% Tx-100 Specific Gravity=1.061
+0.01% Tx-100 Viscosity (Cp)=2.4
+/
+0.03% Tx-100
+Surfactant Name=0.03% Tx-100
+0.03% Tx-100 Concentration=4
+0.03% Tx-100 Surface Tension (Dynes/Cm)=33.05
+0.03% Tx-100 Specific Gravity=1.061
+0.03% Tx-100 Viscosity (Cp)=2.4
+/
+0.06% Tx-100
+Surfactant Name=0.06% Tx-100
+0.06% Tx-100 Concentration=5
+0.06% Tx-100 Surface Tension (Dynes/Cm)=33.5
+0.06% Tx-100 Specific Gravity=1.061
+0.06% Tx-100 Viscosity (Cp)=2.4
+/
+0.1% Tx-100
+Surfactant Name=0.1% Tx-100
+0.1% Tx-100 Concentration=6
+0.1% Tx-100 Surface Tension (Dynes/Cm)=33.5
+0.1% Tx-100 Specific Gravity=1.061
+0.1% Tx-100 Viscosity (Cp)=2.4
+/
+0.3% Tx-100
+Surfactant Name=0.3% Tx-100
+0.3% Tx-100 Concentration=7
+0.3% Tx-100 Surface Tension (Dynes/Cm)=33.4
+0.3% Tx-100 Specific Gravity=1.061
+0.3% Tx-100 Viscosity (Cp)=2.4
+/
+0.7% Tx-100
+Surfactant Name=0.7% Tx-100
+0.7% Tx-100 Concentration=8
+0.7% Tx-100 Surface Tension (Dynes/Cm)=33.8
+0.7% Tx-100 Specific Gravity=1.061
+0.7% Tx-100 Viscosity (Cp)=2.4
+/
+2% Tx-100
+Surfactant Name=2% Tx-100
+2% Tx-100 Concentration=9
+2% Tx-100 Surface Tension (Dynes/Cm)=34.3
+2% Tx-100 Specific Gravity=1.061
+2% Tx-100 Viscosity (Cp)=2.4
+/
+4% Tx-100
+Surfactant Name=4% Tx-100
+4% Tx-100 Concentration=10
+4% Tx-100 Surface Tension (Dynes/Cm)=34.4
+4% Tx-100 Specific Gravity=0.902
+4% Tx-100 Viscosity (Cp)=2.4
+/
+8% Tx-100
+Surfactant Name=8% Tx-100
+8% Tx-100 Concentration=11
+8% Tx-100 Surface Tension (Dynes/Cm)=34
+8% Tx-100 Specific Gravity=1.061
+8% Tx-100 Viscosity (Cp)=2.4
+/
+0.002% Sodium Dodecyl Sulfate
+Surfactant Name=0.002% Sodium Dodecyl Sulfate
+0.002% Sodium Dodecyl Sulfate Concentration=1
+0.002% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=27.2
+0.002% Sodium Dodecyl Sulfate Specific Gravity=1.01
+0.002% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+0.005% Sodium Dodecyl Sulfate
+Surfactant Name=0.005% Sodium Dodecyl Sulfate
+0.005% Sodium Dodecyl Sulfate Concentration=2
+0.005% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=26.6
+0.005% Sodium Dodecyl Sulfate Specific Gravity=1.01
+0.005% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+0.01% Sodium Dodecyl Sulfate
+Surfactant Name=0.01% Sodium Dodecyl Sulfate
+0.01% Sodium Dodecyl Sulfate Concentration=3
+0.01% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=26.8
+0.01% Sodium Dodecyl Sulfate Specific Gravity=1.01
+0.01% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+0.03% Sodium Dodecyl Sulfate
+Surfactant Name=0.03% Sodium Dodecyl Sulfate
+0.03% Sodium Dodecyl Sulfate Concentration=4
+0.03% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=26.4
+0.03% Sodium Dodecyl Sulfate Specific Gravity=1.01
+0.03% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+0.06% Sodium Dodecyl Sulfate
+Surfactant Name=0.06% Sodium Dodecyl Sulfate
+0.06% Sodium Dodecyl Sulfate Concentration=5
+0.06% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=26.5
+0.06% Sodium Dodecyl Sulfate Specific Gravity=1.01
+0.06% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+0.1% Sodium Dodecyl Sulfate
+Surfactant Name=0.1% Sodium Dodecyl Sulfate
+0.1% Sodium Dodecyl Sulfate Concentration=6
+0.1% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=26.3
+0.1% Sodium Dodecyl Sulfate Specific Gravity=1.01
+0.1% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+0.3% Sodium Dodecyl Sulfate
+Surfactant Name=0.3% Sodium Dodecyl Sulfate
+0.3% Sodium Dodecyl Sulfate Concentration=7
+0.3% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=26.3
+0.3% Sodium Dodecyl Sulfate Specific Gravity=1.01
+0.3% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+0.7% Sodium Dodecyl Sulfate
+Surfactant Name=0.7% Sodium Dodecyl Sulfate
+0.7% Sodium Dodecyl Sulfate Concentration=8
+0.7% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=26.4
+0.7% Sodium Dodecyl Sulfate Specific Gravity=0.785
+0.7% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+2% Sodium Dodecyl Sulfate
+Surfactant Name=2% Sodium Dodecyl Sulfate
+2% Sodium Dodecyl Sulfate Concentration=9
+2% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=25.5
+2% Sodium Dodecyl Sulfate Specific Gravity=1.01
+2% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/
+4% Sodium Dodecyl Sulfate
+Surfactant Name=4% Sodium Dodecyl Sulfate
+4% Sodium Dodecyl Sulfate Concentration=10
+4% Sodium Dodecyl Sulfate Surface Tension (Dynes/Cm)=25.6
+4% Sodium Dodecyl Sulfate Specific Gravity=1.01
+4% Sodium Dodecyl Sulfate Viscosity (Cp)=0.889
+/

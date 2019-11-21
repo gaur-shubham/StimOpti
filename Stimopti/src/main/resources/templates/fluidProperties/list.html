@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:inline="javascript">
+$("#td0").click(function(){
+	 var valv=$("#0").is(':checked');
+	 if(valv==false){
+    $("#0").prop('checked',true); 
+     var wp=$("#0").val();
+	 var pid=[[${session.details.id}]];
+	$.ajax({
+		url : "/fluidProperties/changefluid",
+		type : "POST",
+		data:{pid:pid,wp:wp},
+		success:function(data){
+			$("#loadtable").html(data);
+			$("#exampleModal").modal("show");
+		}
+	});    
+	 }
+	$("#td0")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+
+});
+
+$("#td1").click(function(){
+	 var valv=$("#1").is(':checked');
+	 if(valv==false){
+	     $("#1").prop('checked',true); 
+			 
+		 }
+	$("#td1")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+
+});
+
+
+
+
+
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+	<div class="row text-center">
+	<h3>Fluid Reservoir Properties </h3>
+	
+	<form>
+			<div class="row ">
+			<div class="col-md-8"></div>
+				<div class="col-md-2" style="margin-bottom: 20px;"><span>
+						<button style="width:75%;" type="button" id="td0" class="btn" data-color="success">
+							<input  name="wv" id="0" type="check" value="Oil" hidden="true"/>Oil
+						</button>
+					</span> 
+					</div>
+					
+					<div class="col-md-2" style="margin-bottom: 20px;">				
+					<span>
+						<button style="width:75%;" type="button" id="td1" class="btn" data-color="success">
+							Gas <input name="wv" id="1" type="check"
+								value="Gas" hidden="true"/>
+						</button>
+					</span>
+				</div>
+			</div>
+
+		</form>
+	
+	
+	
+	
+	
+	
+	<table class="table table-striped jambo_table bulk_action text-left">
+	
+
+		<tbody>
+				
+		</tbody>
+		
+	</table>
+	
+		
+	</div>
+</body>
+</html>

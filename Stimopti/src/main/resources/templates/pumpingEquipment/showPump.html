@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:inline="javascript">
+$("#td0").click(function(){
+	 var valv=$("#0").is(':checked');
+	 if(valv==false){
+     $("#0").prop('checked',true); 
+		 var pv=$("#0").val();
+		 var pid=[[${session.details.id}]];
+		$.ajax({
+			url : "/pumpingEquipment/savePump",
+			type : "POST",
+			data:{pid:pid,pv:pv},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
+	 }
+	$("#td0")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+	
+});
+
+$("#td1").click(function(){
+	 var valv=$("#1").is(':checked');
+	 if(valv==false){
+	     $("#1").prop('checked',true); 
+			 var pv=$("#1").val();
+			 var pid=[[${session.details.id}]];
+			$.ajax({
+				url : "/pumpingEquipment/savePump",
+				type : "POST",
+				data:{pid:pid,pv:pv},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td1")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+	
+});
+
+var light=[[${session.pv}]]
+if(light=="Bullhead"){
+	 $("#0").prop('checked',true); 
+	 $("#td0")
+	    .removeClass('btn-default')
+	    .addClass('btn-success');
+		$("#td1")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+	
+}
+if(light=="Ct"){
+	 $("#1").prop('checked',true); 
+	 $("#td1")
+	    .removeClass('btn-default')
+	    .addClass('btn-success');
+		$("#td0")
+	    .removeClass('btn-success')
+	    .addClass('btn-default');
+	
+}
+
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+	<div>
+		
+		<form>
+			<div class="row ">
+				<div class="col-md-12" style="margin-bottom: 20px;">
+
+					<span>
+						<button type="button" id="td0" class="btn" data-color="success">
+							<input name="pv" id="0" type="radio" value="Bullhead" />BullHead
+						</button>
+					</span> 
+					<span>
+						<button type="button" id="td1" class="btn" data-color="success">
+							CT <input name="pv" id="1" type="radio" value="Ct" />
+								
+						</button>
+					</span>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+	
+	
+	
+	<div class="row text-left">
+	<h3 class="text-center">Pumping Equipment</h3>
+	<table class="table table-striped jambo_table bulk_action">
+	
+
+		<tbody>
+			<tr class="even pointer" th:each="pe: ${pelist}">
+				<td class=" " th:text="${pe.pp}"></td>
+				<td class=" " th:text="${pe.pv}"></td>
+				
+		</tbody>
+		
+	</table>
+	<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 text-center">
+		<button th:style="'width:20%;'" type="button"
+						class="btn btn-primary">   Edit</button>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

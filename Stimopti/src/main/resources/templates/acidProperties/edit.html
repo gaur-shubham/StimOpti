@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+.editinput {
+	border: none;
+}
+</style>
+<!-- top tiles -->
+<script th:inline="javascript">
+$("#aid").change(function(){
+ var aval=$("#aid").val();
+ var id=[[${session.details.id}]];
+ $.ajax({
+	     url : "/acidProperties/changeEditAcid",
+		type : "POST",
+		data : {id:id,aval:aval},
+		success : function(data) {
+			$("#loadtable").html(data);
+			$("#exampleModal").modal("show");
+		}
+	 
+ });
+});
+
+$("#update").click(function(){
+	$.ajax({
+		url:"/acidProperties/updateAcid",
+		type:'POST',
+		data:$("#mainform").serialize(),
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+	<form id="mainform">
+	<div>
+		<h4 style="font-weight: bolder;" class="text-center">Acid
+			Properties</h4>
+		
+			<table class="table table-bordered table-hover text-left">
+
+				<tr>
+					<td>Acid Name</td>
+					<td><select id="aid">
+							<option th:each="aname:${anamelist}" th:value="${aname}">[[${aname}]]</option>
+					</select></td>
+				</tr>
+				<tr th:each="acid :${acidp}">
+					<td><input type="text" th:name="an"
+						class="form-control editinput" th:value="${acid.an}" readonly /></td>
+					<td><input type="number" th:name="av"
+						class="form-control editinput" th:value="${acid.av}" autofocus /></td>
+				</tr>
+			</table>
+			<input type="hidden" th:value="${session.details.id}" th:name="pid" />
+		
+		<div class="row text-center">
+			<button id="update" th:style="'width:20%;'" type="button"
+				class="btn btn-primary">Update</button>
+		</div>
+	</div>
+</form>
+</body>
+</html>

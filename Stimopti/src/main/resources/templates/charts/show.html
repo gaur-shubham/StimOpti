@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/template.html}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script th:inline="javascript">
+	$(document).ready(function() {
+		var pid=[[${session.details.id}]];
+		$("#graph").click(function(e) {
+			e.preventDefault();
+			var value = $('input[name=optradio]:checked', '#graphForm').val()
+			/*Penetration Graph */
+			if(value==1){
+				$.ajax({
+					url : "/charts/penetration",
+					type : "POST",
+					data:{pid:pid},
+					success:function(data){
+						$("#loaddata").html(data);
+						$("#myModal").modal("show");
+
+					}
+				});	
+		     }	
+			/*Placement Graph*/
+			if(value==2){
+				$.ajax({
+					url : "/charts/placement",
+					type : "POST",
+					data:{pid:pid},
+					success:function(data){
+						$("#loaddata").html(data);
+						$("#myModal").modal("show");
+
+					}
+				});	
+		     }	
+             /*Skin*/
+			if(value==3){
+				$.ajax({
+					url : "/charts/skin",
+					type : "POST",
+					data:{pid:pid},
+					success:function(data){
+						$("#loaddata").html(data);
+						$("#myModal").modal("show");
+
+					}
+				});	
+		     }		
+           /*Productivity*/
+			if(value==4){
+				$.ajax({
+					url : "/charts/productivity",
+					type : "POST",
+					data:{pid:pid},
+					success:function(data){
+						$("#loaddata").html(data);
+						$("#myModal").modal("show");
+
+					}
+				});	
+		     }		
+
+	});
+
+});
+</script>
+
+
+
+
+</head>
+
+<body class="nav-md">
+	<!-- top tiles -->
+	<div class="right_col" role="main" layout:fragment="content">
+		<!-- /top tiles -->
+
+		<div class="row">
+
+			<form id="graphForm">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<br> <br> <br> <br>
+				</div>
+
+				<div class="col-md-4 col-sm-4 col-xs-4 "
+					th:style="'  box-shadow: 10px 10px 10px black'">
+					<div class="dashboard_graph">
+						<div class="row x_title">
+							<h3 th:style="'font-weight:bold;font-size:20px;'">Base Case
+							</h3>
+						</div>
+						<div class="clearfix">
+							<label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" value="1" checked>Acid
+								Penetration (Meter)
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" value="2" name="optradio" checked>Acid
+								Placement (% Vol. Over Depth)
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" value="3" name="optradio" checked>Post Job
+								Skin
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" value="4" name="optradio" checked>Post Job
+								Productivity/Injectivity
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" value="5" name="optradio" checked>Real Time
+								Analysis / Treatment Pressure
+
+							</label><br> <br>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-4 col-sm-4 col-xs-4"
+					th:style="'  box-shadow: 10px 10px 10px black'">
+					<div class="dashboard_graph">
+
+						<div class="row x_title">
+							<h3 th:style="'font-weight:bold;font-size:20px;'">Diverter
+								Sensitivity</h3>
+						</div>
+						<div class="clearfix">
+							<label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" checked>Acid Penetration
+								(Meter)
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" checked>Acid Placement (%
+								Vol. Over Depth)
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" checked>Post Job Skin
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" checked>Post Job
+								Productivity/Injectivity
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> </label><br>
+							<br>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-4 col-sm-4 col-xs-4"
+					th:style="'  box-shadow: 10px 10px 10px black'">
+					<div class="dashboard_graph">
+
+						<div class="row x_title">
+							<h3 th:style="'font-weight:bold;font-size:20px;'">
+								H.M. (Calculated <small>vs</small>Recorded)
+							</h3>
+						</div>
+						<div class="clearfix">
+							<label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" checked>Acid Penetration
+								(Meter)
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" checked>Acid Placement (%
+								Vol. Over Depth)
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" checked>Post Job Skin
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> <input
+								type="radio" name="optradio" checked>Post Job
+								Productivity/Injectivity
+							</label><br> <br> <label class="radio-inline"
+								th:style="'font-weight:bold;font-size:15px;'"> </label><br>
+							<br>
+
+						</div>
+
+					</div>
+
+				</div>
+				<div class="text-center clearfix">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<br> <br>
+						<button class="btn btn-primary " id="graph"
+							th:style="'box-shadow: 10px 10px 10px black'">Show Graph</button>
+					</div>
+				</div>
+			</form>
+
+		</div>
+
+
+
+		<!-- Modal -->
+		<div class="modal fade bs-example-modal-lg" tabindex="-1"
+			role="dialog" aria-hidden="true" id="myModal">
+			<div class="modal-dialog modal-lg" style="width: 90%;">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title text-center" id="myModalLabel">
+							Simulation Analysis Graphs</h4>
+					</div>
+					<div class="modal-body" id="loaddata" style="height: 500px;"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<br />
+
+</body>
+</html>

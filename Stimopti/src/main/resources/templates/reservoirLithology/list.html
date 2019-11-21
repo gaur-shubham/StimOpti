@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+
+	                      <script th:inline="javascript">
+		                    $('#rform').submit(function(e) {
+							e.preventDefault();
+							var file = $('#file2').val()
+							var fileExtension = file.substring(file.lastIndexOf('.') + 1);
+							if (fileExtension == "xlsx"|| fileExtension == "txt"|| fileExtension == "las") {
+								var jForm = new FormData();
+								jForm.append("file",$('#file2').get(0).files[0]);
+								var v = document.getElementById('val').value;
+										$.ajax({
+											url : "/reservoirLithology/importwelllog?id="+ v,
+											type : "POST",
+											data : jForm,
+											contentType : false,
+											cache : false,
+											processData : false,
+											success : function(data) {
+												$("#loadtable").html(data);
+												$("#exampleModal").modal("show");
+											}
+										});
+							} else {
+								alert("Please insert correct file type .");
+
+							}
+
+						});
+	                  </script>
+
+	<form enctype="multipart/form-data" id="rform" method="POST"
+		name="demoform">
+		<div class="form-group ">
+			<p style="color: red;">* Select Well Log File (las/txt)/ Import
+				Well Logging Data Excel Only In The Format Provided By
+				PetroleumSoft.</p>
+			<input name="welllog" id="file2" type="file">
+		</div>
+		<div class="form-group ">
+			<input type="submit" value="Import" class="btn btn-primary"
+				id="importData" />
+		</div>
+		<input id="val" type="text" hidden="true" name="id" th:value="${details.id}" />
+	</form>
+
+
+
+<div th:if="${rList!=null}">
+	<h4 style="font-weight: bolder;" class="text-center">GEOPHYSICAL
+			WELL DATA</h4>
+	<table class="table table-striped jambo_table bulk_action">
+		<thead>
+			<tr>
+				<td>From Depth (Ft)</td>
+				<td>To Depth (Ft)</td>
+				<td>Tvd (Ft)</td>
+				<td>Perm (mD)</td>
+				<td>Poro</td>
+				<td>Zonal Pressure</td>
+				<td>Pre-Stim skin</td>
+				<td>Pre-Stim PI</td>
+
+
+			</tr>
+
+		</thead>
+
+		<tbody>
+			<tr th:each="reser: ${rList}">
+				<td th:text="${reser.fromDefthFT}" />
+				<td th:text="${reser.toDefthFT}" />
+				<td th:text="${reser.tVDFT}" />
+				<td th:text="${reser.permMD}" />
+				<td th:text="${reser.poro}" />
+				<td th:text="${reser.zonePressPSI}" />
+				<td th:text="${reser.prestimskin}" />
+				<td th:text="${reser.prestimpi}" />
+				
+				
+				
+
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5" class="text-center"><button type="button"
+						class="btn btn-primary">Edit</button></td>
+			</tr>
+		</tfoot>
+	</table>
+	</div>
+</body>
+</html>

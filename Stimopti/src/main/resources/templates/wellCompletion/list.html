@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:inline="javascript">
+$("#td0").click(function(){
+	 var valv=$("#0").is(':checked');
+	 if(valv==false){
+     $("#0").prop('checked',true); 
+		 var wp=$("#0").val();
+		 var pid=[[${session.details.id}]];
+		$.ajax({
+			url : "/wellCompletion/changeComp",
+			type : "POST",
+			data:{pid:pid,wp:wp},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
+	 }
+	$("#td0")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+$("#td1").click(function(){
+	 var valv=$("#1").is(':checked');
+	 if(valv==false){
+	     $("#1").prop('checked',true); 
+			 var wp=$("#1").val();
+			 var pid=[[${session.details.id}]];
+			$.ajax({
+				url : "/wellCompletion/changeComp",
+				type : "POST",
+				data:{pid:pid,wp:wp},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td1")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+$("#td2").click(function(){
+	 var valv=$("#2").is(':checked');
+	 if(valv==false){
+	     $("#2").prop('checked',true); 
+			 var wp=$("#2").val();
+			 var pid=[[${session.details.id}]];
+			$.ajax({
+				url : "/wellCompletion/changeComp",
+				type : "POST",
+				data:{pid:pid,wp:wp},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td2")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	
+});
+
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+
+	<div>
+		<h4 style="font-weight: bolder;" class="text-center">Well Completion</h4>
+		<form>
+			<div class="row ">
+				<div class="col-md-12" style="margin-bottom: 20px;">
+
+					<span>
+						<button type="button" id="td0" class="btn" data-color="success">
+							<input name="wv" id="0" type="radio" value="Open Hole" />Open Hole
+						</button>
+					</span>
+					 <span>
+						<button type="button" id="td1" class="btn" data-color="success">
+							Cased Hole <input name="wv" id="1" type="radio"
+								value="Cased Hole" />
+						</button>
+					</span> 
+					<span>
+						<button type="button" id="td2" class="btn" data-color="success">
+							Slotted Liner <input name="wv" id="2" type="radio" value="Slotted Liner" />
+						</button>
+					</span>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+
+</body>
+</html>

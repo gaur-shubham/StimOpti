@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<script th:inline="javascript">
+$("#td0").click(function(){
+	 var valv=$("#0").is(':checked');
+	 if(valv==false){
+     $("#0").prop('checked',true); 
+		 var bd=$("#0").val();
+		 var pid=[[${session.details.id}]];
+		$.ajax({
+			url : "/diverters/changebd",
+			type : "POST",
+			data:{bd:bd,pid:pid},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
+	 }
+	$("#td0")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td3")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+});
+
+$("#td1").click(function(){
+	 var valv=$("#1").is(':checked');
+	 if(valv==false){
+	     $("#1").prop('checked',true); 
+			 var bd=$("#1").val();
+			 var pid=[[${session.details.id}]];
+			$.ajax({
+				url : "/diverters/changebd",
+				type : "POST",
+				data:{bd:bd,pid:pid},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td1")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td3")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+});
+
+$("#td2").click(function(){
+	 var valv=$("#2").is(':checked');
+	 if(valv==false){
+	     $("#2").prop('checked',true); 
+			 var bd=$("#2").val();
+			 var pid=[[${session.details.id}]];
+			$.ajax({
+				url : "/diverters/changebd",
+				type : "POST",
+				data:{bd:bd,pid:pid},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td2")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td3")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+});
+
+$("#td3").click(function(){
+	 var valv=$("#3").is(':checked');
+	 if(valv==false){
+	     $("#3").prop('checked',true); 
+			 var bd=$("#3").val();
+			 var pid=[[${session.details.id}]];
+			$.ajax({
+				url : "/diverters/changebd",
+				type : "POST",
+				data:{bd:bd,pid:pid},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+		 }
+	$("#td3")
+    .removeClass('btn-default')
+    .addClass('btn-success');
+	$("#td1")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td2")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+	$("#td0")
+    .removeClass('btn-success')
+    .addClass('btn-default');
+});
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+
+	<div>
+		<h4 style="font-weight: bolder;" class="text-center">Diverter
+			Properties</h4>
+
+		<form>
+			<div class="row ">
+				<div class="col-md-12" style="margin-bottom: 20px;">
+					<p style="font-weight: bold;">Base Case Diverters</p>
+					<span>
+						<button type="button" id="td0" class="btn" data-color="success">
+							<input name="bdname" id="0" type="radio" value="Viscosified" />Viscosified
+						</button>
+					</span> <span>
+						<button type="button" id="td1" class="btn" data-color="success">
+							Foamed <input name="bdname" id="1" type="radio" value="Foamed" />
+						</button>
+					</span> <span>
+						<button type="button" id="td2" class="btn" data-color="success">
+							Particulate <input name="bdname" id="2" type="radio"
+								value="Particulate" />
+						</button>
+					</span> <span>
+						<button type="button" id="td3" class="btn" data-color="success">
+							Ves <input name="bdname" id="3" type="radio" value="Ves" />
+						</button>
+					</span>
+				</div>
+			</div>
+
+		</form>
+
+
+	</div>
+
+</body>
+</html>

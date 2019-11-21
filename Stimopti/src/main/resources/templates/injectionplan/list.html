@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+
+	                      <script th:inline="javascript">
+		                    $('#injform').submit(function(e) {
+							e.preventDefault();
+							var file = $('#file2').val()
+							var fileExtension = file.substring(file.lastIndexOf('.') + 1);
+							if (fileExtension == "xlsx"|| fileExtension == "txt"|| fileExtension == "las") {
+								var jForm = new FormData();
+								jForm.append("file",$('#file2').get(0).files[0]);
+								var v = document.getElementById('val').value;
+										$.ajax({
+											url : "/injectionplan/importInjection?id="+ v,
+											type : "POST",
+											data : jForm,
+											mimeType : "multipart/form-data",
+											contentType : false,
+											cache : false,
+											processData : false,
+											success : function(data) {
+												$("#loadtable").html(data);
+												$("#exampleModal").modal("show");
+											}
+										});
+							} else {
+								alert("Please insert correct file type .");
+
+							}
+
+						});
+	                  </script>
+
+	            <form enctype="multipart/form-data" id="injform" method="POST" name="demoform">
+                <div class="form-group ">
+                    <p style="color: red;font-size: 17px;margin-bottom: 1.5px;">* <small>Import Injection Plan Excel Only In The Format Provided By PetroleumSoft</small></p>
+                    <p style="color: red;font-size: 17px;">* <small>Enter data according to the selected unit (Metric/Field)</small></p>
+                    <input name="welllog" id="file2" type="file">
+
+                </div>
+                <div class="form-group ">
+                    <input type="submit"  value="Import" class="btn btn-primary"  id="importData"/>
+                </div>
+                <input id="val" type="text" hidden="true" name="id" th:value="${session.details.id}" />
+
+            </form>
+
+
+
+
+	
+	
+</body>
+</html>
