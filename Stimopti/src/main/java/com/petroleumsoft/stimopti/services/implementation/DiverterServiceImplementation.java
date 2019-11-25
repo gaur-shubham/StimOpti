@@ -101,4 +101,19 @@ public class DiverterServiceImplementation implements DiverterService {
 		return null;
 	}
 
+	@Override
+	public void saveUpdate(Integer pid, List<String> bdname, List<String> bdvalue) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		List<BaseDiverter> bdlist = baseDiverterRepo.findByProjectDetails(details);
+		List<BaseDiverter> tempbdlist = new ArrayList<BaseDiverter>();
+		
+		for(int i=0;i<bdlist.size();i++) {
+			BaseDiverter baseDiverter=bdlist.get(i);
+			baseDiverter.setBdvalue(bdvalue.get(bdname.indexOf(bdlist.get(i).getBdname())));
+			baseDiverter.setProjectDetails(details);
+			tempbdlist.add(baseDiverter);
+		}
+		baseDiverterRepo.saveAll(tempbdlist);
+	}
+
 }

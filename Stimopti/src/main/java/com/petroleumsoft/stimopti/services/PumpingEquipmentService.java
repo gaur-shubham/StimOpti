@@ -6,6 +6,6 @@ import com.petroleumsoft.stimopti.modal.PumpingEquipment;
 
 public interface PumpingEquipmentService {
 	public List<PumpingEquipment> savePumping(String pv,Integer id);
-
+	public void update(Integer pid,List<String> pp,List<String> pv);
 
 }

@@ -28,11 +28,13 @@ $("#update").click(function(){
 	<form id="updateWell">
 		<div class="row">
 		<h3 class="text-center">WELL DATA</h3>
-			<table class="table table-striped jambo_table bulk_action">
+			<table class="table table-striped jambo_table bulk_action text-left">
 				<tbody>
 					<tr th:each="well: ${wellDatalist}">
-						<td><input class=" editinput" type="text" th:style="'width:100%;'"  th:name="wp" th:value="${well.wp}" readonly/></td>
-						<td><input class="form-control editinput" type="text" th:style="'width:100%;'"  th:name="wv" th:value="${well.wv}" autofocus /></td>
+						<td th:text="${well.wp}"></td>
+						<td>
+						<input class=" editinput" type="text" th:style="'width:100%;'"  th:name="wp" th:value="${well.wp}" hidden/>
+						<input class="form-control editinput" type="text" th:style="'width:100%;'"  th:name="wv" th:value="${well.wv}" autofocus /></td>
 				</tbody>
 			</table>
 			<input type="hidden" th:value="${session.details.id}" th:name="pid" />

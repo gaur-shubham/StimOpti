@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,5 +50,20 @@ public class PumpingEquipmentController {
 		session.setAttribute("pv",pv);
 		return map + "/showPump";
 	}
-
+	
+	@PostMapping("/edit")
+	public String edit(Model model,@RequestParam("pid") Integer pid) {
+		ProjectDetails projectDetails=projectDetailsRepository.findById(pid).orElse(null);
+		model.addAttribute("pelist", pumpingEquipmentRepo.findByProjectDetails(projectDetails));
+		return map + "/edit";
+	}
+	
+	@PostMapping("/saveupdate")
+	public String saveUpdate(Model model,@RequestParam("pid") Integer pid,
+			@RequestParam("pp") List<String> pp,@RequestParam("pv") List<String> pv) {
+		pumpingEquipmentService.update(pid, pp, pv);
+		ProjectDetails projectDetails=projectDetailsRepository.findById(pid).orElse(null);
+		model.addAttribute("pelist", pumpingEquipmentRepo.findByProjectDetails(projectDetails));
+		return map + "/showPump";
+	}
 }

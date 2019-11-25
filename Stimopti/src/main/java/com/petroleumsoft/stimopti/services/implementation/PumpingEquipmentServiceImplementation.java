@@ -63,4 +63,18 @@ public class PumpingEquipmentServiceImplementation implements PumpingEquipmentSe
 		return peList;
 	}
 
+	@Override
+	public void update(Integer pid, List<String> pp, List<String> pv) {
+			ProjectDetails projectDetails=projectDetailsRepo.findById(pid).orElse(null);
+			List<PumpingEquipment> peList =pumpingEquipmentRepo.findByProjectDetails(projectDetails);
+			List<PumpingEquipment> temppeList =new ArrayList<PumpingEquipment>();
+			for(int i=0;i<peList.size();i++) {
+				PumpingEquipment equipment=peList.get(i);
+				equipment.setPv(pv.get(pp.indexOf(peList.get(i).getPp())));
+				temppeList.add(equipment);
+			}
+			pumpingEquipmentRepo.saveAll(temppeList);
+	}
+
+	
 }

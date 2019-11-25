@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Coreflood</title>
+<script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
+$("#update").click(function(){
+	$.ajax({
+  	     url : "/coreflood/saveupdate",
+  		type : "POST",
+  		data : $("#mainform").serialize(),
+  		success : function(data) {
+  			$("#loadtable").html(data);
+  			$("#exampleModal").modal("show");
+  		}
+  	 
+   });
+});
+</script>
+</head>
+
+<body>
+
+<form id="mainform">
+<table class="table table-bordered table-hover text-left">
+	<tbody>
+		<tr th:each="cor :${coreList}">
+			<td th:text="${cor.cn}"></td>
+			<td><input th:value="${cor.cn}"
+				th:name="cn" hidden /> <input class="form-control"
+				th:value="${cor.cv}" th:name="cv" /></td>
+	</tbody>
+</table>
+<input type="hidden" th:value="${session.details.id}" th:name="pid" />
+</form>
+<div class="row text-center">
+	<button th:style="'width:auto;'" type="button" id="update"
+		class="btn btn-primary">Update</button>
+</div>
+
+</body>

@@ -56,5 +56,19 @@ FormationDamageRepo formationDamageRepo;
 		 
 		return fdlist;
 	}
+	@Override
+	public void saveUpdate(Integer pid, List<String> fdname, List<String> fdvalue) {
+		ProjectDetails details=projectDetailsRepository.findById(pid).orElse(null);
+		List<FormationDamage> fdlist=formationDamageRepo.findByprojectDetails(details);
+		List<FormationDamage> tempfdlist=new ArrayList<FormationDamage>();
+		for(int i=0;i<fdlist.size();i++) {
+			FormationDamage damage=fdlist.get(i);
+			damage.setFdvalue(fdvalue.get(fdname.indexOf(fdlist.get(i).getFdname())));
+			damage.setProjectDetails(details);
+			tempfdlist.add(damage);
+		}
+		formationDamageRepo.saveAll(tempfdlist);
+		
+	}
 
 }

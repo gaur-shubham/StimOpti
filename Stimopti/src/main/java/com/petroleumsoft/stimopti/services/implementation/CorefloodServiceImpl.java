@@ -99,4 +99,19 @@ public class CorefloodServiceImpl implements CorefloodService {
 		return coreList;
 	}
 
+	@Override
+	public void saveupdate(Integer pid, List<String> cn, List<String> cv) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		List<Coreflood> coreList =corefloodRepo.findByProjectDetails(details);
+		List<Coreflood> tempcoreList = new ArrayList<Coreflood>();
+		for(int i=0;i<coreList.size();i++) {
+			Coreflood coreflood=coreList.get(i);
+			coreflood.setCv(cv.get(cn.indexOf(coreList.get(i).getCn())));
+			coreflood.setProjectDetails(details);
+			tempcoreList.add(coreflood);
+		
+		}
+		corefloodRepo.saveAll(tempcoreList);
+	}
+
 }

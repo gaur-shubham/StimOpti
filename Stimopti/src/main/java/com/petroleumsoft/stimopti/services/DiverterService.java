@@ -11,4 +11,5 @@ public interface DiverterService {
 	public List<String> showtd(Integer pid);
 	public List<BaseDiverter> changebd(Integer pid,String name);
 	public List<String> changetd(Integer pid,Integer bid,String name);
+	public void saveUpdate(Integer pid,List<String> bdname,List<String> bdvalue);
 }

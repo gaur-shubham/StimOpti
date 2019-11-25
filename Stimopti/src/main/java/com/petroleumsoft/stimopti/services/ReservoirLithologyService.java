@@ -10,6 +10,8 @@ import java.util.List;
  *
  */
 public interface ReservoirLithologyService {
-	public void saveField(Integer pid, List<String> input,String type);
+	public void saveField(Integer pid, List<String> input);
 	public void deleteField(Integer pid,Integer id);
+	public void saveupdate(Integer pid, List<String> Oldinput,List<String> Newinput);
+	
 }

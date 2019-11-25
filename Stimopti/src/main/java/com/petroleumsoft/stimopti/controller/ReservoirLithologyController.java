@@ -1,5 +1,6 @@
 package com.petroleumsoft.stimopti.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,7 +54,7 @@ public class ReservoirLithologyController {
 			model.addAttribute("graph", false);
 		} else {
 			model.addAttribute("graph", true);
-		}
+		} 
 		return map + "/menu";
 	}
 
@@ -63,7 +65,7 @@ public class ReservoirLithologyController {
 		return "redirect:/reservoirLithology/menu";
 	}
 
-	@RequestMapping(value = "/list")
+	@RequestMapping(value = "/list" , method = { RequestMethod.POST, RequestMethod.GET })
 	public String list(@ModelAttribute("reservoirLithology") ReservoirLithology reservoirLithology,
 			@RequestParam("id") Integer id, Model model) {
 		ProjectDetails details = projectDetailsRepository.findById(id).orElse(null);
@@ -86,52 +88,32 @@ public class ReservoirLithologyController {
 
 	@PostMapping("/importwelllog")
 	public String importwelllog(Model model, @RequestParam("file") MultipartFile file, @RequestParam("id") Integer id,
-			HttpSession session) throws Exception {
-		ProjectDetails details = projectDetailsRepository.findById(id).orElse(null);
+			HttpSession session,RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println(" : Reading Lithology : ");
-		List<ReservoirLithology> rList = readExcel.saveExcel(file, id);
-		model.addAttribute("rList", rList);
-		model.addAttribute("details", details);
-		return map + "/showlist";
+		readExcel.saveExcel(file, id);
+		redirectAttributes.addAttribute("id", id);
+		return "redirect:/reservoirLithology/list";
 	}
 	
 	@PostMapping("/savefield")
-	public String savefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("input") List<String> input) {
-		lithologyService.saveField(pid, input,"import");
+	public String savefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("input") List<String> input,
+			RedirectAttributes redirectAttributes) {
 		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		lithologyService.saveField(pid, input);
 		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
-		model.addAttribute("details", details);
-		return map + "/list";
+		return  map + "/list";
 	}
 	
 	@PostMapping("/removefield")
-	public String removefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("id") Integer id) {
+	public String removefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("id") Integer id,
+			RedirectAttributes redirectAttributes) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		lithologyService.deleteField(pid, id);
-		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
-		model.addAttribute("details", details);
-		return map + "/list";
+		return  map + "/list";
 	}
 	
-	@PostMapping("/upsavefield")
-	public String upSavefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("input") List<String> input) {
-		lithologyService.saveField(pid, input,"update");
-		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
-		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
-		model.addAttribute("details", details);
-		return map + "/edit";
-	}
-	
-	@PostMapping("/upremovefield")
-	public String upDemovefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("id") Integer id) {
-		lithologyService.deleteField(pid, id);
-		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
-		model.addAttribute("rList", reservoirLithologyRepo.findByProjectDetails(details));
-		model.addAttribute("details", details); 
-		return map + "/edit";
-	}
-	
-	@PostMapping("/edit")
+	@RequestMapping(value="/edit" , method = { RequestMethod.POST, RequestMethod.GET })
 	public String edit(Model model,@RequestParam("pid") Integer pid) {
 		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		model.addAttribute("details", details);
@@ -139,9 +121,35 @@ public class ReservoirLithologyController {
 		return map + "/edit";
 	}
 	
-	@PostMapping("/upsave")
-	public String upsave(Model model,@RequestParam("pid") Integer pid,@RequestParam("input") List<String> input) {
-		System.out.println(">> "+input);
-		return null;
+	@PostMapping("/upsavefield")
+	public String upSavefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("Newinput") List<String> input,
+			RedirectAttributes redirectAttributes) {
+		lithologyService.saveField(pid, input);
+		redirectAttributes.addAttribute("pid", pid);
+		return "redirect:/reservoirLithology/edit";
+	}
+	
+	@PostMapping("/upremovefield")
+	public String upDemovefield(Model model,@RequestParam("pid") Integer pid,@RequestParam("id") Integer id,
+			RedirectAttributes redirectAttributes) {
+		lithologyService.deleteField(pid, id);
+		redirectAttributes.addAttribute("pid", pid);
+		return "redirect:/reservoirLithology/edit";
+	}
+	
+	@PostMapping("/upsaveall")
+	public String upsaveall(Model model, @RequestParam("pid") Integer pid, @RequestParam("Oldinput") List<String> Oldinput,
+			@RequestParam("Newinput") List<String> Newinput,RedirectAttributes redirectAttributes) {
+		lithologyService.saveupdate(pid, Oldinput, Newinput);
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/reservoirLithology/list";
+	}
+	
+	@PostMapping("/upsavenew")
+	public String upsavenew(Model model, @RequestParam("pid") Integer pid,
+			@RequestParam("Newinput") List<String> Newinput,RedirectAttributes redirectAttributes) {
+		lithologyService.saveupdate(pid, new ArrayList<String>(), Newinput);
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/reservoirLithology/list";
 	}
 }

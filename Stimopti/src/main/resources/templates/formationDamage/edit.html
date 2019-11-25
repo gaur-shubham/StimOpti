@@ -4,38 +4,39 @@
 <script th:inline="javascript">
 var pid=[[${session.details.id}]];
 
-
-$("#edit").click(function(){
+$("#update").click(function(){
 	$.ajax({
-		url : "/formationDamage/edit",
+		url : "/formationDamage/saveupdate",
 		type : "POST",
-		data:{pid:pid},
+		data:$("#mainform").serialize(),
 		success:function(res){
 			$("#loadtable").html(res);
 			$("#exampleModal").modal("show");
 		}
 	});
 });
+
 </script>
 </head>
 <body class="nav-md" th:inline="text">
-	<!-- top tiles -->
 	<div class="row text-center">
 	<h3>Formation Damage & Mineralogy</h3>
+	<form id="mainform">
 	<table class="table table-striped jambo_table bulk_action text-left">
-	
-
 		<tbody>
 			<tr class="even pointer" th:each="fd: ${fdlist}">
 				<td class=" " th:text="${fd.fdname}"></td>
-				<td class=" " th:text="${fd.fdvalue}"></td>
+				<td>
+				<input type="hidden" class="form-control" th:name="fdname" th:value="${fd.fdname}" />
+				<input class="form-control" th:name="fdvalue" th:value="${fd.fdvalue}" />
+				</td>
 				
 		</tbody>
-		
 	</table>
-	
+	<input type="hidden" th:value="${session.details.id}" th:name="pid" />
+	</form>
 		<button th:style="'width:auto;'" type="button"
-						id="edit" class="btn btn-primary">   Edit</button>
+						id="update" class="btn btn-primary">   Update</button>
 		
 	</div>
 </body>

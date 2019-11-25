@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+#Warn {
+	text-weight: normal;
+	color: red;
+}
+</style>
+<script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
+$("#savefield").click(function(){
+	var i=0;
+	$('input[name=Newinput]').each(function(){
+		if($(this).val()==""){
+			$(this).attr("placeholder", "Required");
+			$(this).css({'border':'1px solid #d9534f'});
+			i++;
+		}else{
+			$(this).css({'border':'none'});
+		}
+	});
+	if(i==0){
+	$.ajax({
+		url:"/injectionplan/upsavefield",
+		type : "POST",
+		data : $("#mainform").serialize(),
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+	}
+});	
+$(".removefield").click(function(){
+	var id =$(this).closest('td').find('input[name=hiddenid]').val();
+	$.ajax({
+		url:"/injectionplan/upremovefield",
+		type : "POST",
+		data:{pid:pid,id:id},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+			
+		}
+	});
+});
+
+$("#update").click(function(){
+	var i=0;
+	var old=document.getElementsByName("Oldinput");
+	if(old.length>0){
+		$('input[name=Oldinput]').each(function(){
+			if($(this).val()==""){
+				$(this).attr("placeholder", "Required");
+				$(this).css({'border':'1px solid #d9534f'});
+				i++;
+			}else{
+				$(this).css({'border':'none'});
+			}
+		});
+		if(i==0){
+			$.ajax({
+				url:"/injectionplan/upsaveall",
+				type : "POST",
+				data :$("#mainform").serialize(),
+				success:function(res){
+					$("#loadtable").html(res);
+					$("#exampleModal").modal("show");
+				}
+			});
+		}else{
+			$("#hiddenwarn").show();
+		}
+	}else{
+		$.ajax({
+			url:"/injectionplan/upsavenew",
+			type : "POST",
+			data :$("#mainform").serialize(),
+			success:function(res){
+				$("#loadtable").html(res);
+				$("#exampleModal").modal("show");
+			}
+		});
+	}
+});
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+	<div class="row text-center">
+		<h3>Injection Plan</h3>
+		<form id="mainform">
+		<table class="table table-striped jambo_table bulk_action">
+				<thead>
+					<tr class="headings">
+						<th class="column-title">Duration <br>(Min)
+						</th>
+						<th class="column-title">Stage</th>
+						<th class="column-title">Volume <br>(Bbl)
+						</th>
+						<th class="column-title">Pump Rate <br>(Bpm)
+						</th>
+						<th class="column-title">Whtp <br>(Psi)
+						</th>
+						<th class="column-title">Bhp <br>(Psi)
+						</th>
+						<th class="column-title">Direction</th>
+						<th class="column-title">Inj. Depth <br>(Ft)
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="even pointer" th:each="fluid: ${injlist}">
+						<td><input type="number" class="form-control"
+							th:name="Oldinput" th:value="${fluid.duration}"></td>
+						<td><input type="number" class="form-control"
+							th:name="Oldinput" th:value="${fluid.stage}"></td>
+						<td><input type="number" class="form-control"
+							th:name="Oldinput" th:value="${fluid.stavageVolBbls}"></td>
+						<td><input type="number" class="form-control"
+							th:name="Oldinput" th:value="${fluid.pumpRateBMP}"></td>
+						<td><input type="number" class="form-control"
+							th:name="Oldinput" th:value="${fluid.injPressPSI}"></td>
+						<td><input type="number" class="form-control"
+							th:name="Oldinput" th:value="${fluid.bhppsi}"></td>
+						<td><input type="number" class="form-control"
+							th:name="Oldinput" th:value="${fluid.direction}"></td>
+						<td><input type="number" class="form-control"
+							th:name="Oldinput" th:value="${fluid.injDefthFT}"></td>
+						<td><input  class="removefield btn btn-danger"
+							type="button" value="X">
+						<input type="hidden" th:value="${fluid.id}" th:name="hiddenid">	
+							</td>
+					</tr>
+					<tr>
+						<td><input type="number" class="form-control" th:name="Newinput"></td>
+						<td><input type="number" class="form-control" th:name="Newinput"></td>
+						<td><input type="number" class="form-control" th:name="Newinput"></td>
+						<td><input type="number" class="form-control" th:name="Newinput"></td>
+						<td><input type="number" class="form-control" th:name="Newinput"></td>
+						<td><input type="number" class="form-control" th:name="Newinput"></td>
+						<td><input type="number" class="form-control" th:name="Newinput"></td>
+						<td><input type="number" class="form-control" th:name="Newinput"></td>
+						<td><input id="savefield" class="btn btn-primary"
+							type="button" value="+"></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr id="hiddenwarn" hidden>
+						<td colspan="9" class="text-center"><label id="Warn">Please
+								Fill Empty Fields Or Remove Row.</label></td>
+					</tr>
+					<tr>
+						<td colspan="9" class="text-center"><button type="button"
+								id="update" class="btn btn-primary">Update</button></td>
+					</tr>
+				</tfoot>
+			</table>
+			<input type="hidden" th:value="${session.details.id}" th:name="pid" />
+	</form>
+
+	</div>
+</body>
+</html>

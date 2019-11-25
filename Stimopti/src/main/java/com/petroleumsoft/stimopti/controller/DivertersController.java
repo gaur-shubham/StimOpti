@@ -6,9 +6,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petroleumsoft.stimopti.modal.BaseDiverter;
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
@@ -27,7 +29,7 @@ public class DivertersController {
 	ProjectDetailsRepository projectDetailsRepository;
 	private static final String map = "diverters";
 
-	@RequestMapping(value = "/list")
+	@RequestMapping(value = "/list", method = {RequestMethod.GET,RequestMethod.POST})
 	public String list(@RequestParam("id") Integer pid, Model model) {
 		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
 		if (baseDiverterRepo.findByProjectDetails(projectDetails).isEmpty()) {
@@ -44,5 +46,22 @@ public class DivertersController {
 		session.setAttribute("bd", bd);
 		System.out.println("Base Diverter : " + bdlist);
 		return map + "/showDiverters";
+	}
+	
+	@RequestMapping(value = "/edit", method = {RequestMethod.GET,RequestMethod.POST})
+	public String edit(@RequestParam("pid") Integer pid,Model model) {
+		System.out.println("pid>>"+pid);
+		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
+		List<BaseDiverter> bdlist =baseDiverterRepo.findByProjectDetails(projectDetails);
+		model.addAttribute("bdlist", bdlist);
+		return map + "/edit";
+	}
+	
+	@PostMapping(value = "/saveupdate")
+	public String saveUpdate(@RequestParam("pid") Integer pid,@RequestParam("bdname") List<String> bdname,
+			@RequestParam("bdvalue") List<String> bdvalue,RedirectAttributes redirectAttributes) {
+		diverterService.saveUpdate(pid, bdname, bdvalue);
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/diverters/list";
 	}
 }

@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
 $("#td0").click(function(){
 	 var valv=$("#0").is(':checked');
 	 if(valv==false){
      $("#0").prop('checked',true); 
 		 var bd=$("#0").val();
-		 var pid=[[${session.details.id}]];
+		 
 		$.ajax({
 			url : "/diverters/changebd",
 			type : "POST",
@@ -37,7 +39,7 @@ $("#td1").click(function(){
 	 if(valv==false){
 	     $("#1").prop('checked',true); 
 			 var bd=$("#1").val();
-			 var pid=[[${session.details.id}]];
+			 
 			$.ajax({
 				url : "/diverters/changebd",
 				type : "POST",
@@ -67,7 +69,7 @@ $("#td2").click(function(){
 	 if(valv==false){
 	     $("#2").prop('checked',true); 
 			 var bd=$("#2").val();
-			 var pid=[[${session.details.id}]];
+			 
 			$.ajax({
 				url : "/diverters/changebd",
 				type : "POST",
@@ -97,7 +99,7 @@ $("#td3").click(function(){
 	 if(valv==false){
 	     $("#3").prop('checked',true); 
 			 var bd=$("#3").val();
-			 var pid=[[${session.details.id}]];
+			 
 			$.ajax({
 				url : "/diverters/changebd",
 				type : "POST",
@@ -186,7 +188,17 @@ if(light=="Ves"){
 	    .addClass('btn-default');	
 }
 
-
+$("#edit").click(function(){
+	$.ajax({
+		url : "/diverters/edit",
+		type : "POST",
+		data:{pid:pid},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
 </script>
 </head>
 <body class="nav-md" th:inline="text">
@@ -234,7 +246,7 @@ if(light=="Ves"){
 		</tbody>
 	</table>
 	<div class="row text-center">
-	<button th:style="'width:20%;'" type="button"class="btn btn-primary">   Edit</button>
+	<button th:style="'width:auto'" id="edit" type="button"class="btn btn-primary">   Edit</button>
 	</div>
 	</div>
 </body>

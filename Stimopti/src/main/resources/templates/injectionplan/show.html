@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+<script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
+$("#edit").click(function(){
+	$.ajax({
+		url:"/injectionplan/edit",
+		type : "POST",
+		data : {pid:pid},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});	
+
+</script>
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
 	<div class="row text-center">
-	<h3>Injection Plan</h3>
-	<table class="table table-striped jambo_table bulk_action">
-	
-		<thead>
-			<tr class="headings">
-				<th class="column-title">DURATION (MINs)</th>
-				<th class="column-title">STAGE</th>
-				<th class="column-title">VOLUME (BBLs)</th>
-				<th class="column-title">PUMP RATE (BPM)</th>
-				<th class="column-title">WHTP (PSI)</th>
-				<th class="column-title">BHP (PSI)</th>
-				<th class="column-title">Direction</th>
-				<th class="column-title">INJ. DEPTH (FT)</th>
-			</tr>
-		</thead>
+		<h3>Injection Plan</h3>
+		<table class="table table-striped jambo_table bulk_action">
 
-		<tbody>
-			<tr class="even pointer" th:each="fluid: ${injlist}">
-				<td class=" " th:text="${fluid.duration}"></td>
-				<td class=" " th:text="${fluid.stage}"></td>
-				<td class=" " th:text="${fluid.stavageVolBbls}"></td>
-				<td class=" " th:text="${fluid.pumpRateBMP}"></td>
-				<td class=" " th:text="${fluid.injPressPSI}"></td>
-				<td class=" " th:text="${fluid.bhppsi}"></td>
-				<td class=" " th:text="${fluid.direction}"></td>
-				<td class=" " th:text="${fluid.injDefthFT}"></td>
-				
-		</tbody>
-		
-	</table>
-	
-		<button th:style="'width:20%;'" type="button"
-						class="btn btn-primary">   Edit</button>
-		
+			<thead>
+				<tr class="headings">
+					<th class="column-title">DURATION (MINs)</th>
+					<th class="column-title">STAGE</th>
+					<th class="column-title">VOLUME (BBLs)</th>
+					<th class="column-title">PUMP RATE (BPM)</th>
+					<th class="column-title">WHTP (PSI)</th>
+					<th class="column-title">BHP (PSI)</th>
+					<th class="column-title">Direction</th>
+					<th class="column-title">INJ. DEPTH (FT)</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr class="even pointer" th:each="fluid: ${injlist}">
+					<td class=" " th:text="${fluid.duration}"></td>
+					<td class=" " th:text="${fluid.stage}"></td>
+					<td class=" " th:text="${fluid.stavageVolBbls}"></td>
+					<td class=" " th:text="${fluid.pumpRateBMP}"></td>
+					<td class=" " th:text="${fluid.injPressPSI}"></td>
+					<td class=" " th:text="${fluid.bhppsi}"></td>
+					<td class=" " th:text="${fluid.direction}"></td>
+					<td class=" " th:text="${fluid.injDefthFT}"></td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<button th:style="'width:auto;'" id="edit" type="button" class="btn btn-primary">
+			Edit</button>
+
 	</div>
 </body>
 </html>

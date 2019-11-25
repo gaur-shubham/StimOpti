@@ -1,58 +1,205 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+<script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
+$('#injform').submit(function(e) {
+	e.preventDefault();
+	var file = $('#file2').val()
+	var fileExtension = file.substring(file.lastIndexOf('.') + 1);
+	if (fileExtension == "xlsx"|| fileExtension == "txt"|| fileExtension == "las") {
+		var jForm = new FormData();
+		jForm.append("file",$('#file2').get(0).files[0]);
+		//var v = document.getElementById('val').value;
+		$.ajax({
+			url : "/injectionplan/importInjection?id="+ pid,
+			type : "POST",
+			data : jForm,
+			mimeType : "multipart/form-data",
+			contentType : false,
+			cache : false,
+			processData : false,
+			success : function(data) {
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
+		} else {
+			alert("Please insert correct file type .");
+
+		}
+});
+
+$( "#button" ).click(function() {
+	$( "#fill" ).slideToggle( "slow" );
+	$( "#form" ).slideToggle( "slow" );    
+	var val = document.getElementById('button').value;
+	if(val=="Enter Manually"){
+		$( "#success-alert" ).css("display","block" );
+		document.getElementById('button').value = "Import Well Log";
+	}
+	else{
+		$( "#success-alert" ).css('display','none' );
+	document.getElementById('button').value = "Enter Manually";
+	}
+});
+
+$("#savefield").click(function(){
+	$.ajax({
+		url:"/injectionplan/savefield",
+		type : "POST",
+		data : $("#inputform").serialize(),
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+			$("#fill").show();
+			$("#form").hide();
+		}
+	});
+});	
+
+$(".removefield").click(function(){
+	var id =$(this).closest('td').find('input[name=hiddenid]').val();
+	$.ajax({
+		url:"/injectionplan/removefield",
+		type : "POST",
+		data:{pid:pid,id:id},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+			$("#form").hide();
+			$("#fill").show();
+		}
+	});
+});
+</script>
+<style>
+#loadtable {
+	text-align: left;
+}
+</style>
 </head>
 <body class="nav-md" th:inline="text">
-	<!-- top tiles -->
 
-	                      <script th:inline="javascript">
-		                    $('#injform').submit(function(e) {
-							e.preventDefault();
-							var file = $('#file2').val()
-							var fileExtension = file.substring(file.lastIndexOf('.') + 1);
-							if (fileExtension == "xlsx"|| fileExtension == "txt"|| fileExtension == "las") {
-								var jForm = new FormData();
-								jForm.append("file",$('#file2').get(0).files[0]);
-								var v = document.getElementById('val').value;
-										$.ajax({
-											url : "/injectionplan/importInjection?id="+ v,
-											type : "POST",
-											data : jForm,
-											mimeType : "multipart/form-data",
-											contentType : false,
-											cache : false,
-											processData : false,
-											success : function(data) {
-												$("#loadtable").html(data);
-												$("#exampleModal").modal("show");
-											}
-										});
-							} else {
-								alert("Please insert correct file type .");
+	<!-- XXXXXXX -->
+	<div class="row" id="form">
+		<div class="col-lg-4 col-xs-6">
 
-							}
+			<form enctype="multipart/form-data" id="injform" method="POST"
+				name="demoform">
+				<div class="form-group ">
+					<p style="color: red; font-size: 17px; margin-bottom: 1.5px;">
+						* <small>Import Injection Plan Excel Only In The Format
+							Provided By PetroleumSoft</small>
+					</p>
+					<p style="color: red; font-size: 17px;">
+						* <small>Enter data according to the selected unit
+							(Metric/Field)</small>
+					</p>
+					<input name="welllog" id="file2" type="file">
 
-						});
-	                  </script>
+				</div>
+				<div class="form-group ">
+					<input type="submit" value="Import" class="btn btn-primary"
+						id="importData" />
+				</div>
+				<input id="val" type="hidden" name="id"
+					th:value="${session.details.id}" />
 
-	            <form enctype="multipart/form-data" id="injform" method="POST" name="demoform">
-                <div class="form-group ">
-                    <p style="color: red;font-size: 17px;margin-bottom: 1.5px;">* <small>Import Injection Plan Excel Only In The Format Provided By PetroleumSoft</small></p>
-                    <p style="color: red;font-size: 17px;">* <small>Enter data according to the selected unit (Metric/Field)</small></p>
-                    <input name="welllog" id="file2" type="file">
+			</form>
 
-                </div>
-                <div class="form-group ">
-                    <input type="submit"  value="Import" class="btn btn-primary"  id="importData"/>
-                </div>
-                <input id="val" type="text" hidden="true" name="id" th:value="${session.details.id}" />
+		</div>
+		<div class="col-lg-8 col-xs-6">
+			<h3>Note:</h3>
+			<ul>
+				Users can input Well Logging Data (Perm/Poro over depth (MD), TVD,
+				formation pressure ) in anyone of the three ways :
 
-            </form>
+				<li><b> Import well log ( Porosity log in .las/txt) file</b></li>
+				<li><b> Import excel file (Perm/Poro over depth, excel
+						format provided)</b></li>
+				<li><b> Enter manually (Perm/Poro, TVD and formation
+						pressure)</b></li>
+				<br> Specified unit for Pre-Stim PI of (Oil /Gas) based on unit
+				selection (Metric/Field).
+				<br>
+
+				<li><b> Pre-Stim PI Unit for Oil Producing Well
+						(bbls/day-psi)</b></li>
+				<li><b> Pre-Stim PI Unit for Gas Producing Well
+						(Mscf/day-psi)</b></li>
+
+			</ul>
+		</div>
+	</div>
+
+	<input type="button" class="btn btn-primary" value="Enter Manually"
+		id="button">
 
 
+	<div class="tab-pane active" id="fill" style="display: none;">
+		<h4 style="font-weight: bolder;" class="text-center">INJECTION
+			PLAN</h4>
 
+		<form id="inputform">
+			<table class="table table-striped jambo_table bulk_action">
 
-	
-	
+				<thead>
+					<tr class="headings">
+						<th class="column-title">Duration <br>(Min)
+						</th>
+						<th class="column-title">Stage</th>
+						<th class="column-title">Volume <br>(Bbl)
+						</th>
+						<th class="column-title">Pump Rate <br>(Bpm)
+						</th>
+						<th class="column-title">Whtp <br>(Psi)
+						</th>
+						<th class="column-title">Bhp <br>(Psi)
+						</th>
+						<th class="column-title">Direction</th>
+						<th class="column-title">Inj. Depth <br>(Ft)
+						</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr class="even pointer" th:each="fluid: ${injlist}">
+						<td th:text="${fluid.duration}"></td>
+						<td th:text="${fluid.stage}"></td>
+						<td th:text="${fluid.stavageVolBbls}"></td>
+						<td th:text="${fluid.pumpRateBMP}"></td>
+						<td th:text="${fluid.injPressPSI}"></td>
+						<td th:text="${fluid.bhppsi}"></td>
+						<td th:text="${fluid.direction}"></td>
+						<td th:text="${fluid.injDefthFT}"></td>
+						<td><input  class="removefield btn btn-danger"
+							type="button" value="Remove">
+						<input type="hidden" th:value="${fluid.id}" th:name="hiddenid">	
+							</td>
+					</tr>
+					<tr>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input type="number" class="form-control" th:name="input"></td>
+						<td><input id="savefield" class="btn btn-primary"
+							type="button" value="Save"></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+			<input type="hidden" th:value="${session.details.id}" th:name="pid" />
+		</form>
+	</div>
+	<!-- XXXXXXX -->
+
 </body>
 </html>

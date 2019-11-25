@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
 import com.petroleumsoft.stimopti.services.DefaultDataService;
+import com.petroleumsoft.stimopti.services.FormationDamageService;
 import com.petroleumsoft.stimopti.services.GenerateInputService;
 
 @Controller
@@ -28,7 +29,9 @@ public class ProjectDetailsController {
 	DefaultDataService defaultDataService;
 	@Autowired
 	GenerateInputService generateInputService;
-
+	@Autowired
+	private FormationDamageService formationDamageService;
+	
 	private final static String mapping = "/projectDetails";
 
 	@RequestMapping("/list")
@@ -54,6 +57,7 @@ public class ProjectDetailsController {
 		projectDetails.setModule("CARBONATE ACIDIZING");
 		projectDetailsRepository.save(projectDetails);
 		int pid = projectDetails.getId();
+		formationDamageService.saveFormation(pid);
 		try {
 			defaultDataService.setDefault(pid);
 		} catch (Exception e) {

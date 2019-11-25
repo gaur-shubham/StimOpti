@@ -51,20 +51,32 @@
 
 				});
 		$("#savefield").click(function(){
-			$.ajax({
-				url:"/reservoirLithology/savefield",
-				type : "POST",
-				data :$("#inputform").serialize(),
-				success:function(res){
-					$("#loadtable").html(res);
-					$("#exampleModal").modal("show");
-					$("#form").hide();
-					$("#fill").show();
+			var i=0;
+			$('input[name=input]').each(function(){
+				if($(this).val()==""){
+					$(this).attr("placeholder", "Required");
+					$(this).css({'border':'1px solid #d9534f'});
+					i++;
+				}else{
+					$(this).css({'border':'none'});
 				}
 			});
+			if(i==0){
+				$.ajax({
+					url:"/reservoirLithology/savefield",
+					type : "POST",
+					data :$("#inputform").serialize(),
+					success:function(res){
+						$("#loadtable").html(res);
+						$("#exampleModal").modal("show");
+						$("#form").hide();
+						$("#fill").show();
+					}
+				});
+			}
 		});
 		
-		$(".dfclass").click(function(){
+		$(".removefield").click(function(){
 			var id =$(this).closest('td').find('input[name=hiddenid]').val();
 			$.ajax({
 				url:"/reservoirLithology/removefield",
@@ -137,8 +149,6 @@
 		id="button">
 
 
-
-
 	<div class="tab-pane active" id="fill" style="display: none;">
 		<h4 style="font-weight: bolder;" class="text-center">GEOPHYSICAL
 			WELL DATA</h4>
@@ -146,15 +156,15 @@
 			<table class="table table-striped jambo_table bulk_action">
 				<thead>
 					<tr>
-						<td>From Depth <br>(Ft)	</td>
-						<td>To Depth <br>(Ft)</td>
-						<td>Tvd <br>(Ft)</td>
-						<td>Perm <br>(mD)</td>
-						<td>Poro</td>
-						<td>Zonal Pressure <br>(psi)</td>
-						<td>Pre-Stim skin</td>
-						<td>Pre-Stim PI</td>
-						<td></td>
+						<th>From Depth <br>(Ft)	</th>
+						<th>To Depth <br>(Ft)</th>
+						<th>Tvd <br>(Ft)</th>
+						<th>Perm <br>(mD)</th>
+						<th>Poro</th>
+						<th>Zonal Pressure <br>(psi)</th>
+						<th>Pre-Stim Skin</th>
+						<th>Pre-Stim PI</th>
+						<th></th>
 					</tr>
 
 				</thead>
@@ -168,7 +178,7 @@
 						<td th:text="${fluid.zonePressPSI}"></td>
 						<td th:text="${fluid.prestimskin}"></td>
 						<td th:text="${fluid.prestimpi}"></td>
-						<td><input id="removefield" class="dfclass btn btn-danger" type="button"
+						<td><input  class="removefield btn btn-danger" type="button"
 							value="Remove">
 							<input type="hidden" th:value="${fluid.id}" th:name="hiddenid">
 						</td>
@@ -186,12 +196,7 @@
 							type="button" value="Save"></td>
 					</tr>
 				</tbody>
-				<!-- 	<tfoot>
-				<tr>
-					<td colspan="8" class="text-center"><button type="button"
-							class="btn btn-primary">Edit</button></td>
-				</tr>
-			</tfoot> -->
+				
 			</table>
 			<input type="text" hidden="true" th:value="${details.getId()}"
 				th:name="pid" />

@@ -156,7 +156,7 @@ public class GenerateInputServiceImplementation implements GenerateInputService 
 
 			}
 			writer.write("/*** Injection Plan ***/" + "\n");
-			List<InjectionPlan> injectionPlan = injectionPlanRepo.findByprojectDetails(details);
+			List<InjectionPlan> injectionPlan = injectionPlanRepo.findByProjectDetails(details);
 			int i = 0;
 			for (InjectionPlan ip : injectionPlan) {
 				writer.write("Duration" + i + "=" + ip.getDuration() + "\n");
@@ -173,7 +173,7 @@ public class GenerateInputServiceImplementation implements GenerateInputService 
 
 			i = 0;
 			writer.write("/*** Reservoir Lithology ***/" + "\n");
-			List<ReservoirLithology> reservoirLithology = reservoirLithologyRepo.findByprojectDetails(details);
+			List<ReservoirLithology> reservoirLithology = reservoirLithologyRepo.findByProjectDetails(details);
 			double newto = 0.0;
 			for (ReservoirLithology rl : reservoirLithology) {
 
