@@ -7,8 +7,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.petroleumsoft.stimopti.modal.FluidProperties;
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.repo.FluidPropertiesRepo;
@@ -30,13 +33,12 @@ public class FluidPropertiesController {
 	public String list(@RequestParam("id") Integer id, Model model) {
 		ProjectDetails details = projectDetailsRepository.findById(id).orElse(null);
 		List<FluidProperties> fList = fluidPropertiesRepo.findByProjectDetails(details);
-		if (fList != null) {
-			model.addAttribute("fList", fList);
-			return map + "/showFluid";
-
+		if (fList.isEmpty()) {
+			return map + "/list";
 		}
-
-		return map + "/list";
+		model.addAttribute("fList", fList);
+		return map + "/showFluid";
+		
 	}
 
 	@RequestMapping(value = "/changefluid")
@@ -47,5 +49,21 @@ public class FluidPropertiesController {
 		model.addAttribute("fList", fList);
 		session.setAttribute("ftype", wp);
 		return map + "/showFluid";
+	}
+	
+	@PostMapping(value = "/edit")
+	public String edit(@RequestParam("pid") Integer pid, Model model) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		List<FluidProperties> fList = fluidPropertiesRepo.findByProjectDetails(details);
+		model.addAttribute("fList", fList);
+		return map + "/edit";
+	}
+	
+	@PostMapping(value = "/update")
+	public String update(@RequestParam("pid") Integer pid,@RequestParam("fluidName") List<String> fluidName
+			,@RequestParam("fluidValue") List<String> fluidValue,RedirectAttributes redirectAttributes) {
+		fluidPropertiesService.saveUpdate(pid, fluidName, fluidValue);
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/fluidProperties/list";
 	}
 }

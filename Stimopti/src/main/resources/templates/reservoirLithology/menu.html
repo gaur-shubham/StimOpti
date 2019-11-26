@@ -9,6 +9,50 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+html * {
+	font-family: 'Calibri';
+	user-select: none;
+}
+.onetmenu {
+	margin-bottom: 2%;
+	position: relative;
+	text-align: left;
+	width: 20%;
+	transition: all 0.35s linear;
+	padding-left: 20px;
+	background: none;
+	opacity: 0.85;
+	color: black;
+	height: 45px;
+	border-radius: 50px;
+	border: none;
+	box-shadow: 0.5px 0.5px 17px 0px #04040478;
+}
+
+.onetmenu:hover {
+	letter-spacing: 0.02em;
+	box-shadow: 0.5px 0.5px 17px 0px #D35400;
+}
+
+.onetmenu::after {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-image: linear-gradient(to right, rgba(243, 156, 18, 1),
+		rgba(219, 161, 5, 0.85));
+	border-radius: 50px;
+	transform-origin: left;
+	transition: width 0.35s ease;
+	z-index: -1;
+}
+
+.onetmenu:hover::after {
+	width: 100%;
+	border-radius: 50px;
+}
 .modal-content {
 	overflow-x: auto;
 }
@@ -196,7 +240,18 @@ id =[[${details.id}]];
 			
 		});
 		
-		
+		$("#ph").click(function(){
+			$.ajax({
+				url: "/potentialhazard/list",
+				type: "POST",
+				data: {pid:id},
+				success: function(data) {
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			});
+			
+		});
 		
 		
 		$("#demoform").submit(function(event){  
@@ -275,85 +330,77 @@ id =[[${details.id}]];
 						</div>
 						<div
 							class="box-body tab-content text-center nav-tabs-custom box-solid">
-							<br />
+							<br>
 							<div class="row">
 								<div class="col-md-12 menu-down">
-									<button id="rl" type="button"
-										class="btn btn-round btn-default btn-lg" data-toggle="modal">
+									<button id="rl" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Geophysical
 										Data
 									</button>
-
-									<button id="ip" type="button"
-										class="btn btn-round btn-default btn-lg">
+									<button id="ip" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Injection
 										Plan
 									</button>
-									<button type="button" id="wd"
-										class="btn btn-round btn-default btn-lg">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Well
+									<button id="wd" class="onetmenu"
+										data-toggle="modal">
+										<i class="fa fa-table"></i>&nbsp;&nbsp;&nbsp;&nbsp;Well
 										Data
 									</button>
-									<button id="pe" type="button"
-										class="btn btn-round btn-default btn-lg">
+									<button id="pe" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Pumping
 										Equipment
 									</button>
-
 								</div>
 
 							</div>
 							<div class="row">
 								<div class="col-md-12 menu-down">
-									<button id="ap" type="button"
-										class="btn btn-round btn-default btn-lg">
+									<button id="ap" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Acid
 										Properties
-
 									</button>
-
-									<button id="cf" type="button"
-										class="btn btn-round btn-default btn-lg">
+									<button id="cf" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Core
 										Flood Data
 									</button>
-									<button id="dp" type="button"
-										class="btn btn-round btn-default btn-lg">
+									<button id="dp" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Diverter
 										Properties
 									</button>
-									<button type="button" id="rfp"
-										class="btn btn-round btn-default btn-lg">
+									<button id="rfp" class="onetmenu" 
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Reservoir
 										Fluid Properties
 									</button>
-
 								</div>
 
 							</div>
 							<div class="row">
 								<div class="col-md-12 menu-down">
-									<button type="button" class="btn btn-round btn-default btn-lg">
+									<button id="ph" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Potential
 										Hazard (for Recipe Design)
-
 									</button>
-
-									<button type="button" id="fd"
-										class="btn btn-round btn-default btn-lg">
+									<button id="fd" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Formation
 										Damage & Mineralogy
 									</button>
-
-									<button id="cd" type="button"
-										class="btn btn-round btn-default btn-lg">
+									<button id="cd" class="onetmenu"
+										data-toggle="modal">
 										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Completion
 										Data
 									</button>
-
 								</div>
-
 							</div>
+
 							<div th:if="${graph==false}" class="row" id="showrunsim"
 								style="display: display;">
 								<div class="w3-container">
@@ -393,14 +440,10 @@ id =[[${details.id}]];
 												style="width: 25%; height: 9%; font-size: 12px;" id="sgraph"
 												class="btn btn-primary">Show Graphs</button>
 										</div>
-
 										<div class="col-md-2 col-sm-2 col-xs-2"></div>
-
 									</div>
-
 								</div>
 							</div>
-
 							<div class="modal fade" id="exampleModal" tabindex="-1"
 								role="dialog" data-backdrop="static" data-keyboard="false"
 								aria-labelledby="exampleModalLabel" aria-hidden="true">

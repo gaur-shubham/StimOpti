@@ -108,6 +108,8 @@ public class ProjectDetails {
 	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
 	private Collection<ReservoirLithology> reservoir;
 
+	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
+	private Collection<PotentialHazard> hazard;
 	/* End of the Block */
 
 	/* Getters Setters for deleteByProjectDetails */
@@ -206,6 +208,14 @@ public class ProjectDetails {
 
 	public void setReservoir(Collection<ReservoirLithology> reservoir) {
 		this.reservoir = reservoir;
+	}
+
+	public Collection<PotentialHazard> getHazard() {
+		return hazard;
+	}
+
+	public void setHazard(Collection<PotentialHazard> hazard) {
+		this.hazard = hazard;
 	}
 
 	/* End of the getter and setter block */

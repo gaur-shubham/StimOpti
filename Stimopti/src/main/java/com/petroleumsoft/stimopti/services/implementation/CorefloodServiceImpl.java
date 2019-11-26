@@ -49,8 +49,10 @@ public class CorefloodServiceImpl implements CorefloodService {
 						cf.setProjectDetails(details);
 						coreList.add(cf);
 					}
+					if(cv.equalsIgnoreCase("available")) {
 					corefloodRepo.saveAll(coreList);
 					break;
+					}
 				}
 
 			}

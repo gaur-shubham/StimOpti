@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
 $("#td0").click(function(){
 	 var valv=$("#0").is(':checked');
 	 if(valv==false){
     $("#0").prop('checked',true); 
      var wp=$("#0").val();
-	 var pid=[[${session.details.id}]];
+	 
 	$.ajax({
 		url : "/fluidProperties/changefluid",
 		type : "POST",
@@ -28,7 +30,16 @@ $("#td1").click(function(){
 	 var valv=$("#1").is(':checked');
 	 if(valv==false){
 	     $("#1").prop('checked',true); 
-			 
+	     var wp=$("#1").val();
+		$.ajax({
+			url : "/fluidProperties/changefluid",
+			type : "POST",
+			data:{pid:pid,wp:wp},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		}); 	 
 		 }
 	$("#td1")
    .removeClass('btn-default')
@@ -36,16 +47,12 @@ $("#td1").click(function(){
 
 });
 
-
-
-
-
 </script>
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
 	<div class="row text-center">
-	<h3>Fluid Reservoir Properties </h3>
+	<h3>Fluid Reservoir Properties</h3>
 	
 	<form>
 			<div class="row ">
@@ -68,22 +75,6 @@ $("#td1").click(function(){
 			</div>
 
 		</form>
-	
-	
-	
-	
-	
-	
-	<table class="table table-striped jambo_table bulk_action text-left">
-	
-
-		<tbody>
-				
-		</tbody>
-		
-	</table>
-	
-		
 	</div>
 </body>
 </html>

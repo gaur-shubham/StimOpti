@@ -36,7 +36,6 @@ public class CorefloodController {
 			model.addAttribute("coreList", coreList);
 			return map + "/cshow";
 		} else {
-			coreList = corefloodService.setNotAvailable(pid);
 			model.addAttribute("coreList", coreList);
 			session.setAttribute("core", "Not Available");
 			return map + "/cshow";

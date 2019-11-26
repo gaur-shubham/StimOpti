@@ -2,12 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
 $("#td0").click(function(){
 	 var valv=$("#0").is(':checked');
 	 if(valv==false){
     $("#0").prop('checked',true); 
      var wp=$("#0").val();
-	 var pid=[[${session.details.id}]];
+	 
 	$.ajax({
 		url : "/fluidProperties/changefluid",
 		type : "POST",
@@ -28,30 +30,54 @@ $("#td1").click(function(){
 	 var valv=$("#1").is(':checked');
 	 if(valv==false){
 	     $("#1").prop('checked',true); 
-			 
+	     var wp=$("#1").val();
+		$.ajax({
+			url : "/fluidProperties/changefluid",
+			type : "POST",
+			data:{pid:pid,wp:wp},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		}); 	 
 		 }
 	$("#td1")
-   .removeClass('btn-default')
-   .addClass('btn-success');
+  .removeClass('btn-default')
+  .addClass('btn-success');
 
 });
 
-var ftype=[[${session.ftype}]]
+var ftype=[[${session.ftype}]];
 if(ftype=="Oil"){
     $("#0").prop('checked',true); 
 	$("#td0")
    .removeClass('btn-default')
    .addClass('btn-success');
+}else if(ftype=="Gas"){
+    $("#1").prop('checked',true); 
+	$("#td1")
+   .removeClass('btn-default')
+   .addClass('btn-success');
 }
 
-
+$("#edit").click(function(){
+	$.ajax({
+		url : "/fluidProperties/edit",
+		type : "POST",
+		data:{pid:pid},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+});
+});
 
 </script>
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
 	<div class="row text-center">
-	<h3>Fluid Reservoir Properties </h3>
+	<h3>Fluid Reservoir Properties</h3>
 	
 	<form>
 			<div class="row ">
@@ -77,8 +103,6 @@ if(ftype=="Oil"){
 	</div>	
 	<div th:if="${fList}">
 		<table class="table table-striped jambo_table bulk_action text-left">
-	
-
 		<tbody>
 				<tr th:each="fluid:${fList}">
 				<td th:text="${fluid.fluidName}"></td>
@@ -88,5 +112,11 @@ if(ftype=="Oil"){
 		
 	</table>			
 	</div>
+	<div class="row">
+			<div class="col-md-12 text-center">
+				<button th:style="'width:auto;'" type="button" id="edit"
+					class="btn btn-primary">Edit</button>
+			</div>
+		</div>
 </body>
 </html>

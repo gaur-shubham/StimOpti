@@ -2,12 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <script th:inline="javascript">
+var pid=[[${session.details.id}]];
+var light=[[${session.cp}]];
+
 $("#td0").click(function(){
 	 var valv=$("#0").is(':checked');
 	 if(valv==false){
      $("#0").prop('checked',true); 
 		 var wp=$("#0").val();
-		 var pid=[[${session.details.id}]];
+		 
 		$.ajax({
 			url : "/wellCompletion/changeComp",
 			type : "POST",
@@ -35,7 +38,6 @@ $("#td1").click(function(){
 	 if(valv==false){
 	     $("#1").prop('checked',true); 
 			 var wp=$("#1").val();
-			 var pid=[[${session.details.id}]];
 			$.ajax({
 				url : "/wellCompletion/changeComp",
 				type : "POST",
@@ -63,7 +65,6 @@ $("#td2").click(function(){
 	 if(valv==false){
 	     $("#2").prop('checked',true); 
 			 var wp=$("#2").val();
-			 var pid=[[${session.details.id}]];
 			$.ajax({
 				url : "/wellCompletion/changeComp",
 				type : "POST",
@@ -87,7 +88,8 @@ $("#td2").click(function(){
 });
 
 
-var light=[[${session.cp}]];
+
+
 if(light=="Open Hole"){
 	 $("#0").prop('checked',true); 	
 	 $("#td0")
@@ -124,30 +126,42 @@ if(light=="Slotted Liner"){
 	    .removeClass('btn-success')
 	    .addClass('btn-default');
 }
+
+$("#edit").click(function(){
+	$.ajax({
+		url : "/wellCompletion/edit",
+		type : "POST",
+		data:{pid:pid},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
 </script>
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
 	<div>
-		
+		<h3>Fluid Reservoir Properties</h3>
 		<form>
 			<div class="row ">
 				<div class="col-md-12" style="margin-bottom: 20px;">
 
 					<span>
 						<button type="button" id="td0" class="btn" data-color="success">
-							<input name="wv" id="0" type="radio" value="Open Hole" />Open Hole
+							Open
+							Hole&nbsp;<input name="wv" id="0" type="radio" value="Open Hole" />
 						</button>
-					</span>
-					 <span>
+					</span> <span>
 						<button type="button" id="td1" class="btn" data-color="success">
-							Cased Hole <input name="wv" id="1" type="radio"
+							Cased Hole &nbsp;<input name="wv" id="1" type="radio"
 								value="Cased Hole" />
 						</button>
-					</span> 
-					<span>
+					</span> <span>
 						<button type="button" id="td2" class="btn" data-color="success">
-							Slotted Liner <input name="wv" id="2" type="radio" value="Slotted Liner" />
+							Slotted Liner &nbsp;<input name="wv" id="2" type="radio"
+								value="Slotted Liner" />
 						</button>
 					</span>
 				</div>
@@ -157,7 +171,7 @@ if(light=="Slotted Liner"){
 	</div>
 
 	<div class="row text-left">
-		<h3 class="text-center">Well Completion dfgfg</h3>
+		<h3 class="text-center">Well Completion(2nd)</h3>
 		<table class="table table-striped jambo_table bulk_action">
 			<tbody>
 				<tr class="even pointer" th:each="comp: ${compList}">
@@ -166,10 +180,10 @@ if(light=="Slotted Liner"){
 			</tbody>
 
 		</table>
-<div class="row text-center"> 
-		<button th:style="'width:20%;'" type="button"
-			class="btn btn-primary">Edit</button>
-			</div>
+		<div class="row text-center">
+			<button th:style="'width:auto;'" type="button" id="edit"
+				class="btn btn-primary">Edit</button>
+		</div>
 
 	</div>
 </body>

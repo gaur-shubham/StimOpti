@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
+</script>
+</head>
+<body class="nav-md" th:inline="text">
+	<!-- top tiles -->
+	<div>
+		<h3>Fluid Reservoir Properties</h3>
+	</div>
+
+	<div class="row text-left">
+		<h3 class="text-center">Well Completion(3nd)</h3>
+		<table class="table table-striped jambo_table bulk_action">
+			<tbody>
+				<tr class="even pointer" th:each="comp: ${compList}">
+					<td th:text="${comp.cp}"></td>
+					<td>
+					<input type="hidden" th:value="${comp.cp}" th:name="cp" />
+					<input type="text" class="form-control" th:value="${comp.cv}" th:name="cv" />
+					</td>
+			</tbody>
+
+		</table>
+<div class="row text-center"> 
+		<button th:style="'width:auto;'" type="button"
+			id="update" class="btn btn-primary">Update</button>
+			</div>
+
+	</div>
+</body>
+</html>

@@ -13,7 +13,6 @@ import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.repo.AcidPropertiesRepo;
 import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
 import com.petroleumsoft.stimopti.services.AcidPropertiesService;
-import com.petroleumsoft.stimopti.services.implementation.AcidPropertiesServiceImplementation;
 
 @Controller
 @RequestMapping(value = "/acidProperties")

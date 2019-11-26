@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 import com.petroleumsoft.stimopti.modal.FluidProperties;
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
@@ -15,6 +16,7 @@ import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
 import com.petroleumsoft.stimopti.services.FluidPropertiesService;
 
 @Service("fluidPropertiesService")
+@Transactional
 public class FluidPropertiesServiceImplementation implements FluidPropertiesService {
 	@Autowired
 	ProjectDetailsRepository projectDetailsRepository;
@@ -59,5 +61,24 @@ public class FluidPropertiesServiceImplementation implements FluidPropertiesServ
 
 		return fList;
 	}
+
+	@Override
+	public void saveUpdate(Integer pid, List<String> fluidName, List<String> fluidValue) {
+		System.out.println(">>" +pid);
+		System.out.println(">>" +fluidName);
+		System.out.println(">>" +fluidValue);
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		List<FluidProperties> fList=fluidPropertiesRepo.findByProjectDetails(details);
+		List<FluidProperties> tempfList=new ArrayList<>();
+		for(int i=0;i<fList.size();i++) {
+			FluidProperties fluidProperties=fList.get(i);
+			fluidProperties.setFluidValue(fluidValue.get(fluidName.indexOf(fList.get(i).getFluidName())));
+			fluidProperties.setProjectDetails(details);
+			tempfList.add(fluidProperties);
+		}
+		fluidPropertiesRepo.saveAll(tempfList);
+	}
+	
+	
 
 }

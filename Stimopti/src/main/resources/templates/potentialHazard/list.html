@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script th:inline="javascript">
+
+var pid=[[${session.details.id}]];
+var phlist=[[${phlist}]];
+
+$(document).ready(function(){
+	var i;
+	for(i=0;i<phlist.length;i++){
+		var temp=phlist[i];
+		$("#"+temp+"").prop("checked",true);
+	}
+	if(phlist.length>0){
+		$(".outputbody").show();
+	}
+});
+
+$('.button-checkbox').each(function () {
+    var $widget = $(this),
+    $button = $widget.find('button'),
+    $checkbox = $widget.find('input:checkbox'),
+    color = $button.data('color'),
+    settings = {
+    on: {
+    icon: 'glyphicon glyphicon-check'
+    },
+    off: {
+    icon: 'glyphicon glyphicon-unchecked'
+    }
+    };
+	
+    $button.on('click', function () {
+    $checkbox.prop('checked', !$checkbox.is(':checked'));
+    $checkbox.triggerHandler('change');
+    updateDisplay();
+    });
+    $checkbox.on('change', function () {
+    updateDisplay();
+    });
+
+    function updateDisplay() {
+    var isChecked = $checkbox.is(':checked');
+
+    $button.data('state', (isChecked) ? "on" : "off");
+
+    $button.find('.state-icon')
+    .removeClass()
+    .addClass('state-icon ' + settings[$button.data('state')].icon);
+    if (isChecked) {
+    $button
+    .removeClass('btn-default')
+    .addClass('btn-' + color + ' active');
+    }
+    else {
+    $button
+    .removeClass('btn-' + color + ' active')
+    .addClass('btn-default');
+    }
+    }
+    function init() {
+    updateDisplay();
+    if ($button.find('.state-icon').length == 0) {
+                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+    }
+    }
+    init();
+    });
+    
+    
+$("#1000").click(function(){
+$("#1001").slideToggle();
+   $('#ar1').toggleClass('fa-caret-down fa-caret-right');
+   });
+   $("#1003").click(function(){
+   $("#1004").slideToggle();
+   $('#ar2').toggleClass('fa-caret-down fa-caret-right');
+   });
+   $("#1005").click(function(){
+   $("#1006").slideToggle();
+   $('#ar3').toggleClass('fa-caret-down fa-caret-right');
+   });
+
+   $("#1007").click(function(){
+   $("#1008").slideToggle();
+   $('#ar4').toggleClass('fa-caret-down fa-caret-right');
+   });
+
+ $("#mid").click(function(){
+	 var phv=[];
+		 $("input:checkbox[name=resfluid]:checked").each(function () {
+	            phv.push($(this).val());
+	        });
+	$.ajax({
+		url:"",
+		url:"/potentialhazard/updatehazard",
+		type : "POST",
+		data:{pid:pid,phv:JSON.stringify(phv)},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+ });
+</script>
+<style>
+.output {
+	background-color: white;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	box-shadow: 0px 0px 10px -1px black;
+}
+
+.outputhead {
+	letter-spacing: 0.01em;
+	position: relative;
+	text-align: center;
+	background: none;
+	color: white;
+	opacity: 0.95;
+	background: #1c5682e6;
+	padding: 2px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border: none;
+	transition: all 0.35s linear;
+	outline: none;
+}
+
+.outputhead:hover {
+	letter-spacing: 0.02em;
+	color: white;
+}
+
+.outputhead::after {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-image: linear-gradient(to right, #262727e6, #000000e6);
+	border-radius: 50px;
+	transform-origin: left;
+	transition: width 0.35s ease;
+	z-index: -1;
+}
+
+.outputhead:hover::after {
+	width: 100%;
+	border-radius: 50px;
+}
+
+.outputhead h4 {
+	font-size: 16px;
+}
+
+.outputbody {
+	height: 230px;
+	font-size: 15px;
+	padding: 20px;
+}
+
+.navinbutton {
+	margin-top: 20px;
+	background: #3c8dbc;
+	color: white;
+	padding: 10px;
+	border-radius: 20px;
+	border: none;
+	outline: none;
+	transition: all 1s linear;
+}
+
+.navinbutton:hover {
+	background-color: #193f54;
+}
+
+.btn {
+	margin-bottom: 5px;
+}
+</style>
+</head>
+<body>
+	<!-- LOLOLOLOL -->
+	<form id="subForm">
+		<!-- Main content -->
+		<section class="content">
+			<!-- Fee Info Li -->
+
+			<div class="tab-pane active" id="tab_1">
+				<li class="list-group-item">
+					<div class="row">
+						<strong><h4 class="text-center"
+								style="font-weight: bold;">POTENTIAL HAZARDS</h4></strong><br>
+						<div class="col-md-6" style="margin-bottom: 20px;">
+							<!-- iCheck -->
+							<div class="output">
+								<div class="outputhead" id="1000" style="cursor: pointer;">
+									<h4>
+										<i id="ar1" style="position: absolute; left: 20px;"
+											class="fa fa-caret-down"></i>Matrix Wettability<i
+											style="position: absolute; right: 20px;" class="fa fa-flask"
+											aria-hidden="true"></i>
+									</h4>
+								</div>
+								<div class="outputbody" id="1001" style="display: none;">
+
+									<span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Oil
+											wet matrix
+										</button>
+										<input type="checkbox" name="resfluid" value="Oilwetmatrix"
+										id="Oilwetmatrix" class="hidden">
+									</span> <span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Water
+											wet matrix
+										</button>
+										<input type="checkbox" name="resfluid" value="Waterwetmatrix"
+										id="Waterwetmatrix" class="hidden">
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6" style="margin-bottom: 20px;">
+							<!-- iCheck -->
+							<div class="output">
+								<div class="outputhead" id="1003" style="cursor: pointer;">
+									<h4>
+										<i id="ar2" style="position: absolute; left: 20px;"
+											class="fa fa-caret-down"></i>Mineralogy<i
+											style="position: absolute; right: 20px;" class="fa fa-flask"
+											aria-hidden="true"></i>
+									</h4>
+								</div>
+								<div class="outputbody" id="1004" style="display: none;">
+									<div>
+										<span class="button-checkbox">
+											<button type="button" class="btn btn-default"
+												data-color="success">
+												<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;H<sub>2</sub>S
+											</button>
+											<input type="checkbox" name="resfluid" value="H2S" id="H2S"
+											class="hidden">
+										</span> <span class="button-checkbox">
+											<button type="button" class="btn btn-default"
+												data-color="success">
+												<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;VES
+											</button>
+											<input type="checkbox" name="resfluid" value="VES" id="VES"
+											class="hidden">
+										</span> <span class="button-checkbox">
+											<button type="button" class="btn btn-default"
+												data-color="success">
+												<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Xanthan
+												Gum
+											</button>
+											<input type="checkbox" name="resfluid" value="XanthamGum"
+											id="XanthamGum" class="hidden">
+										</span> <span class="button-checkbox">
+											<button type="button" class="btn btn-default"
+												data-color="success">
+												<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Starch
+											</button>
+											<input type="checkbox" name="resfluid" value="Starch"
+											id="Starch" class="hidden">
+										</span> <span class="button-checkbox">
+											<button type="button" class="btn btn-default"
+												data-color="success">
+												<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Fe<sub>2</sub>O<sub>3</sub>
+											</button>
+											<input type="checkbox" name="resfluid" value="Fe2O3"
+											id="Fe2O3" class="hidden">
+										</span> <span class="button-checkbox">
+											<button type="button" class="btn btn-default"
+												data-color="success">
+												<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Asphaltic
+												Crude
+											</button>
+											<input type="checkbox" name="resfluid" value="AsphalticCrude"
+											id="AsphalticCrude" class="hidden">
+										</span> <span class="button-checkbox">
+											<button type="button" class="btn btn-default"
+												data-color="success">
+												<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Emulsion
+												Tendency
+											</button>
+											<input type="checkbox" name="resfluid"
+											value="EmulsionTendency" id="EmulsionTendency" class="hidden">
+										</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6" style="margin-bottom: 20px;">
+							<div class="output">
+								<div class="outputhead" id="1005" style="cursor: pointer;">
+									<h4>
+										<i id="ar3" style="position: absolute; left: 20px;"
+											class="fa fa-caret-down"></i>Tubulars and Orientation<i
+											style="position: absolute; right: 20px;" class="fa fa-flask"
+											aria-hidden="true"></i>
+									</h4>
+								</div>
+								<div class="outputbody" id="1006" style="display: none;">
+									<span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Low
+											C-steel
+										</button>
+										<input type="checkbox" name="resfluid" value="LowCsteel"
+										id="LowCsteel" class="hidden">
+									</span> <span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Iron
+											Scale
+										</button>
+										<input type="checkbox" name="resfluid" value="ironScale"
+										id="ironScale" class="hidden">
+									</span>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-6" style="margin-bottom: 20px;">
+							<!-- iCheck -->
+							<div class="output">
+								<div class="outputhead" id="1007" style="cursor: pointer;">
+									<h4>
+										<i id="ar4" style="position: absolute; left: 20px;"
+											class="fa fa-caret-down"></i>Existing Damage<i
+											style="position: absolute; right: 20px;" class="fa fa-flask"
+											aria-hidden="true"></i>
+									</h4>
+								</div>
+								<div class="outputbody" id="1008" style="display: none;">
+									<span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Organic
+										</button>
+										<input type="checkbox" name="resfluid" value="Organic"
+										id="Organic" class="hidden">
+									</span> <span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Inorganic
+										</button>
+										<input type="checkbox" name="resfluid" value="Inorganic"
+										id="Inorganic" class="hidden">
+									</span> <span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Sludge
+										</button>
+										<input type="checkbox" name="resfluid" value="sludge"
+										id="sludge" class="hidden">
+									</span> <span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;Fines
+										</button>
+										<input type="checkbox" name="resfluid" value="Fines"
+										id="Fines" class="hidden">
+									</span> <span class="button-checkbox">
+										<button type="button" class="btn btn-default"
+											data-color="success">
+											<i class="state-icon glyphicon glyphicon-unchecked"></i>&nbsp;SRB's
+										</button>
+										<input type="checkbox" name="resfluid" value="SRBS" id="SRBS"
+										class="hidden">
+									</span>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<center>
+						<input type="hidden" name="id" th:value="${session.details.id}"
+							id="id"> <input type="hidden" name="list" value=""
+							id="list"> <input type="button" name="_action_SAVE "
+							value="SAVE " id="mid" class="edit btn btn-md btn-primary">
+					</center>
+				</li>
+			</div>
+			<div class="cart">
+				<i class="fa fa-info-circle" id="hv"
+					style="font-size: 38px; color: #176ac2;"></i>
+				<div id="sidebar" class="btn btn-primary"
+					style="color: white; text-align: left;">
+					<li>Users can choose minerals between Matrix
+						Wettability/Mineralogy/Tubulars and Orientation/Existing Damage.</li>
+					<li>Mineral selection will determine the Recipe.</li>
+				</div>
+			</div>
+		</section>
+	</form>
+
+	<!-- LOLOLOLOL -->
+</body>
+</html>
