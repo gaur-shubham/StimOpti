@@ -32,7 +32,7 @@ public class ProjectDetailsController {
 	@Autowired
 	private FormationDamageService formationDamageService;
 	
-	private final static String mapping = "/projectDetails";
+	private final String mapping = "/projectDetails";
 
 	@RequestMapping("/list")
 	public String list(Model model) {
@@ -73,6 +73,5 @@ public class ProjectDetailsController {
 		generateInputService.generateInput(id);
 		attributes.addFlashAttribute("project.id",id);
 		return "redirect:/reservoirLithology/redirectmenu";
-
 	}
 }

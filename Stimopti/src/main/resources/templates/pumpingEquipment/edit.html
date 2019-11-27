@@ -29,9 +29,11 @@
 		<table class="table table-striped jambo_table bulk_action">
 			<tbody>
 				<tr class="even pointer text-left" th:each="pe: ${pelist}">
-					<td><input class="editinput form-control" type="text"
-						th:value="${pe.pp}" th:style="'width:100%;'" th:name="pp" readonly /></td>
-					<td><input class="editinput form-control" type="text"
+					<td th:text="${pe.pp}"></td>
+					<td>
+					<input class="editinput form-control" type="hidden"
+						th:value="${pe.pp}" th:style="'width:100%;'" th:name="pp" />
+					<input class="editinput form-control" type="text"
 						th:style="'width:100%;'" th:value="${pe.pv}" th:name="pv" /></td>
 			</tbody>
 		</table>

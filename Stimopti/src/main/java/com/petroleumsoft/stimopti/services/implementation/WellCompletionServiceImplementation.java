@@ -62,4 +62,18 @@ public class WellCompletionServiceImplementation implements WellCompletionServic
 		return compList;
 	}
 
+	@Override
+	public String getCompletionType(Integer pid) {
+		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
+		List<WellCompletion> compList = wellCompletionRepo.findByProjectDetails(projectDetails);
+		if(compList.get(0).getCv().equalsIgnoreCase("Open Hole")) {
+			return "Open Hole";
+		}else if(compList.get(0).getCv().equalsIgnoreCase("Cased Hole")) {
+			return "Cased Hole";
+		}else if(compList.get(0).getCv().equalsIgnoreCase("Slotted Liner")) {
+			return "Slotted Liner";
+		}
+		return null;
+	}
+
 }

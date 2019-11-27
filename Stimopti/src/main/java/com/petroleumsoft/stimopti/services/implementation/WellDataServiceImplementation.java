@@ -78,4 +78,18 @@ public class WellDataServiceImplementation implements WellDataService {
 		wellDataRepo.saveAll(tempwellDatalist);
 	}
 
+	@Override
+	public String getWellType(Integer pid) {
+		ProjectDetails projectDetails = projectDetailsRepo.findById(pid).orElse(null);
+		List<WellData> wellDatalist = wellDataRepo.findByProjectDetails(projectDetails);
+		if(wellDatalist.get(0).getWv().equalsIgnoreCase("Vertical")) {
+			return "Vertical";
+		}else if(wellDatalist.get(0).getWv().equalsIgnoreCase("Horizontal")) {
+			return "Horizontal";
+		}else if(wellDatalist.get(0).getWv().equalsIgnoreCase("Slanted")) {
+			return "Slanted";
+		}
+		return null;
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.petroleumsoft.stimopti.modal.WellData;
 
 public interface WellDataService {
+	public String getWellType(Integer pid);
 	public List<WellData> saveWell(String wp,Integer pid);
 	public void saveUpdate(Integer pid,List<String> wp,List<String> wv);
 

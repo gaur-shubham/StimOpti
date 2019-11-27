@@ -7,6 +7,17 @@
 <script th:inline="javascript">
 var pid=[[${session.details.id}]];
 
+$("#update").click(function(){
+	$.ajax({
+		url : "/wellCompletion/saveupdate",
+		type : "POST",
+		data:{pid:pid},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
 </script>
 </head>
 <body class="nav-md" th:inline="text">

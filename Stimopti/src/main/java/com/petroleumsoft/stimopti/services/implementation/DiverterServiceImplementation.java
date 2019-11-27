@@ -116,4 +116,20 @@ public class DiverterServiceImplementation implements DiverterService {
 		baseDiverterRepo.saveAll(tempbdlist);
 	}
 
+	@Override
+	public String getDiverterType(Integer pid) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		List<BaseDiverter> bdlist = baseDiverterRepo.findByProjectDetails(details);
+		if(bdlist.get(0).getBdvalue().equalsIgnoreCase("Viscosified")) {
+			return "Viscosified";
+		}else if(bdlist.get(0).getBdvalue().equalsIgnoreCase("Foamed")) {
+			return "Foamed";
+		}else if(bdlist.get(0).getBdvalue().equalsIgnoreCase("Particulate")) {
+			return "Particulate";
+		}else if(bdlist.get(0).getBdvalue().equalsIgnoreCase("Ves")) {
+			return "Ves";
+		}
+		return null;
+	}
+
 }

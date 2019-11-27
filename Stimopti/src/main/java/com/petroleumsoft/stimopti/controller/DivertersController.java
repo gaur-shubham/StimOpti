@@ -30,11 +30,12 @@ public class DivertersController {
 	private static final String map = "diverters";
 
 	@RequestMapping(value = "/list", method = {RequestMethod.GET,RequestMethod.POST})
-	public String list(@RequestParam("id") Integer pid, Model model) {
+	public String list(@RequestParam("id") Integer pid, Model model,HttpSession session) {
 		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
 		if (baseDiverterRepo.findByProjectDetails(projectDetails).isEmpty()) {
 			return map + "/list";
 		}
+		session.setAttribute("bd", diverterService.getDiverterType(pid));
 		model.addAttribute("bdlist",baseDiverterRepo.findByProjectDetails(projectDetails));
 		return map + "/showDiverters";
 	}

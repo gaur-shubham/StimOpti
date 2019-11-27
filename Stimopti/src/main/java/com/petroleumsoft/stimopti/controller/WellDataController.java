@@ -30,12 +30,13 @@ public class WellDataController {
 	private static final String map = "wellData";
 
 	@RequestMapping(value = "/list")
-	public String list(Model model, @RequestParam("id") Integer pid) {
+	public String list(Model model, @RequestParam("id") Integer pid,HttpSession session) {
 		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
 		if (wellDataRepo.findByProjectDetails(projectDetails).isEmpty()) {
 			model.addAttribute("wellData", new WellData());
 			return map + "/list";
 		}
+		session.setAttribute("wp", wellDataService.getWellType(pid));
 		model.addAttribute("wellDatalist", wellDataRepo.findByProjectDetails(projectDetails));
 		return map + "/showWell";
 	}

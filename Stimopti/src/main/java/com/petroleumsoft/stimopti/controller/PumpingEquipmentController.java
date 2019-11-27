@@ -30,13 +30,14 @@ public class PumpingEquipmentController {
 	PumpingEquipmentService pumpingEquipmentService;
 
 	@RequestMapping(value = "/list")
-	public String list(Model model,@RequestParam("id") Integer pid) {
+	public String list(Model model,@RequestParam("id") Integer pid,HttpSession session) {
 		ProjectDetails projectDetails=projectDetailsRepository.findById(pid).orElse(null);
 		if(pumpingEquipmentRepo.findByProjectDetails(projectDetails).isEmpty()) {
 			model.addAttribute("pumpingEquipment", new PumpingEquipment());
 			return map+"/list";
 		}
 		System.out.println("I am here");
+		session.setAttribute("pv",pumpingEquipmentService.getInjectionType(pid));
 		model.addAttribute("pelist", pumpingEquipmentRepo.findByProjectDetails(projectDetails));
 		return map + "/showPump";
 	}

@@ -11,8 +11,7 @@ var phlist=[[${phlist}]];
 $(document).ready(function(){
 	var i;
 	for(i=0;i<phlist.length;i++){
-		var temp=phlist[i];
-		$("#"+temp+"").prop("checked",true);
+		$("#"+phlist[i]+"").prop("checked",true);
 	}
 	if(phlist.length>0){
 		$(".outputbody").show();

@@ -64,9 +64,6 @@ public class FluidPropertiesServiceImplementation implements FluidPropertiesServ
 
 	@Override
 	public void saveUpdate(Integer pid, List<String> fluidName, List<String> fluidValue) {
-		System.out.println(">>" +pid);
-		System.out.println(">>" +fluidName);
-		System.out.println(">>" +fluidValue);
 		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		List<FluidProperties> fList=fluidPropertiesRepo.findByProjectDetails(details);
 		List<FluidProperties> tempfList=new ArrayList<>();
@@ -77,6 +74,18 @@ public class FluidPropertiesServiceImplementation implements FluidPropertiesServ
 			tempfList.add(fluidProperties);
 		}
 		fluidPropertiesRepo.saveAll(tempfList);
+	}
+
+	@Override
+	public String getFType(Integer pid) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		List<FluidProperties> fList=fluidPropertiesRepo.findByProjectDetails(details);
+		if(fList.get(0).getFluidValue().equalsIgnoreCase("gas")) {
+			return "Gas";
+		}else if(fList.get(0).getFluidValue().equalsIgnoreCase("oil")) {
+			return "Oil";
+		}
+		return null;
 	}
 	
 	

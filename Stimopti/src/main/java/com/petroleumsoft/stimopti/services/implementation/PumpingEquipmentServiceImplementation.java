@@ -76,5 +76,17 @@ public class PumpingEquipmentServiceImplementation implements PumpingEquipmentSe
 			pumpingEquipmentRepo.saveAll(temppeList);
 	}
 
+	@Override
+	public String getInjectionType(Integer pid) {
+		ProjectDetails projectDetails=projectDetailsRepo.findById(pid).orElse(null);
+		List<PumpingEquipment> peList =pumpingEquipmentRepo.findByProjectDetails(projectDetails);
+		if(peList.get(0).getPv().equalsIgnoreCase("bullhead")) {
+			return "Bullhead";
+		}else if(peList.get(0).getPv().equalsIgnoreCase("ct")) {
+			return "Ct";
+		}
+		return null;
+	}
+
 	
 }

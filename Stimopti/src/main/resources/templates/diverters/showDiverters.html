@@ -3,6 +3,7 @@
 <head>
 <script th:inline="javascript">
 var pid=[[${session.details.id}]];
+var light=[[${session.bd}]];
 
 $("#td0").click(function(){
 	 var valv=$("#0").is(':checked');
@@ -123,7 +124,7 @@ $("#td3").click(function(){
     .removeClass('btn-success')
     .addClass('btn-default');
 });
-var light=[[${session.bd}]]
+
 if(light=="Viscosified"){
 	  $("#0").prop('checked',true); 
 	 $("#td0")

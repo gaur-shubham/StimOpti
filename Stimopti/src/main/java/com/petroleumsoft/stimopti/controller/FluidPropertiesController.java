@@ -30,12 +30,13 @@ public class FluidPropertiesController {
 	private static final String map = "fluidProperties";
 
 	@RequestMapping(value = "/list")
-	public String list(@RequestParam("id") Integer id, Model model) {
-		ProjectDetails details = projectDetailsRepository.findById(id).orElse(null);
+	public String list(@RequestParam("id") Integer pid, Model model,HttpSession session) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		List<FluidProperties> fList = fluidPropertiesRepo.findByProjectDetails(details);
 		if (fList.isEmpty()) {
 			return map + "/list";
 		}
+		session.setAttribute("ftype", fluidPropertiesService.getFType(pid));
 		model.addAttribute("fList", fList);
 		return map + "/showFluid";
 		

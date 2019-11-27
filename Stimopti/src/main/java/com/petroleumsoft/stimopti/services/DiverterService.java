@@ -5,6 +5,7 @@ import java.util.List;
 import com.petroleumsoft.stimopti.modal.BaseDiverter;
 
 public interface DiverterService {
+	public String getDiverterType(Integer pid);
 	public int bId(Integer id);
 	public int dId(Integer id);
 	public List<String> showbd(Integer pid);

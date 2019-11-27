@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.modal.WellCompletion;
@@ -29,15 +30,14 @@ public class WellCompletionController {
 	public static final String map = "wellCompletion";
 
 	@RequestMapping("/list")
-	public String list(@RequestParam("id") Integer id, Model model) {
-		ProjectDetails details = projectDetailsRepository.findById(id).orElse(null);
+	public String list(@RequestParam("id") Integer pid, Model model,HttpSession session) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		List<WellCompletion> compList = wellCompletionRepo.findByProjectDetails(details);
 		if (!compList.isEmpty()) {
 			model.addAttribute("compList", compList);
+			session.setAttribute("cp", WellCompletionService.getCompletionType(pid));
 			return map + "/showComp";
-
 		}
-
 		return map + "/list";
 	}
 
@@ -56,6 +56,12 @@ public class WellCompletionController {
 		List<WellCompletion> compList = wellCompletionRepo.findByProjectDetails(details);
 		model.addAttribute("compList", compList);
 		return map + "/edit";
+	}
+	
+	@PostMapping(value = "/saveupdate")
+	public String saveUpdate(Model model,RedirectAttributes redirectAttributes,@RequestParam("pid") Integer pid) {
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/wellCompletion/list";
 	}
 
 }
