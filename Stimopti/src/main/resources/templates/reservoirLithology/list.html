@@ -31,9 +31,9 @@
 							|| fileExtension == "las") {
 						var jForm = new FormData();
 						jForm.append("file", $('#file2').get(0).files[0]);
-						var v = document.getElementById('val').value;
+						//var v = document.getElementById('val').value;
 						$.ajax({
-							url : "/reservoirLithology/importwelllog?id=" + v,
+							url : "/reservoirLithology/importwelllog?id=" + pid,
 							type : "POST",
 							data : jForm,
 							contentType : false,
@@ -65,7 +65,7 @@
 				$.ajax({
 					url:"/reservoirLithology/savefield",
 					type : "POST",
-					data :$("#inputform").serialize(),
+					data :$("#inputform").serialize()+"&pid="+pid,
 					success:function(res){
 						$("#loadtable").html(res);
 						$("#exampleModal").modal("show");
@@ -198,8 +198,6 @@
 				</tbody>
 				
 			</table>
-			<input type="text" hidden="true" th:value="${details.getId()}"
-				th:name="pid" />
 		</form>
 	</div>
 </body>

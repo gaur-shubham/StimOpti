@@ -29,7 +29,7 @@ $("#savefield").click(function(){
 		$.ajax({
 			url:"/reservoirLithology/upsavefield",
 			type : "POST",
-			data :$("#mainform").serialize(),
+			data :$("#mainform").serialize()+"&pid="+pid,,
 			success:function(res){
 				$("#loadtable").html(res);
 				$("#exampleModal").modal("show");
@@ -68,7 +68,7 @@ $("#update").click(function(){
 			$.ajax({
 				url:"/reservoirLithology/upsaveall",
 				type : "POST",
-				data :$("#mainform").serialize(),
+				data :$("#mainform").serialize()+"&pid="+pid,,
 				success:function(res){
 					$("#loadtable").html(res);
 					$("#exampleModal").modal("show");
@@ -82,7 +82,7 @@ $("#update").click(function(){
 		$.ajax({
 			url:"/reservoirLithology/upsavenew",
 			type : "POST",
-			data :$("#mainform").serialize(),
+			data :$("#mainform").serialize()+"&pid="+pid,,
 			success:function(res){
 				$("#loadtable").html(res);
 				$("#exampleModal").modal("show");
@@ -175,8 +175,6 @@ $("#update").click(function(){
 					</tr>
 				</tfoot>
 			</table>
-			<input type="text" hidden="true" th:value="${details.getId()}"
-				th:name="pid" />
 		</form>
 	</div>
 </body>

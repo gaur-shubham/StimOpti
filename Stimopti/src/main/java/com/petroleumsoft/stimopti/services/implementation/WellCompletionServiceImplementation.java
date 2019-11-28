@@ -66,14 +66,27 @@ public class WellCompletionServiceImplementation implements WellCompletionServic
 	public String getCompletionType(Integer pid) {
 		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
 		List<WellCompletion> compList = wellCompletionRepo.findByProjectDetails(projectDetails);
-		if(compList.get(0).getCv().equalsIgnoreCase("Open Hole")) {
+		if (compList.get(0).getCv().equalsIgnoreCase("Open Hole")) {
 			return "Open Hole";
-		}else if(compList.get(0).getCv().equalsIgnoreCase("Cased Hole")) {
+		} else if (compList.get(0).getCv().equalsIgnoreCase("Cased Hole")) {
 			return "Cased Hole";
-		}else if(compList.get(0).getCv().equalsIgnoreCase("Slotted Liner")) {
+		} else if (compList.get(0).getCv().equalsIgnoreCase("Slotted Liner")) {
 			return "Slotted Liner";
 		}
 		return null;
+	}
+
+	@Override
+	public void saveUpdate(Integer pid, List<String> cp, List<String> cv) {
+		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
+		List<WellCompletion> compList = wellCompletionRepo.findByProjectDetails(projectDetails);
+		List<WellCompletion> tempcompList = new ArrayList<>();
+		for (int i = 0; i < compList.size(); i++) {
+			WellCompletion completion = compList.get(i);
+			completion.setCv(cv.get(cp.indexOf(compList.get(i).getCp())));
+			tempcompList.add(completion);
+		}
+		wellCompletionRepo.saveAll(tempcompList);
 	}
 
 }

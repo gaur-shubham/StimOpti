@@ -25,7 +25,7 @@ $("#savefield").click(function(){
 	$.ajax({
 		url:"/injectionplan/upsavefield",
 		type : "POST",
-		data : $("#mainform").serialize(),
+		data : $("#mainform").serialize()+"&pid="+pid,
 		success:function(res){
 			$("#loadtable").html(res);
 			$("#exampleModal").modal("show");
@@ -35,16 +35,18 @@ $("#savefield").click(function(){
 });	
 $(".removefield").click(function(){
 	var id =$(this).closest('td').find('input[name=hiddenid]').val();
-	$.ajax({
-		url:"/injectionplan/upremovefield",
-		type : "POST",
-		data:{pid:pid,id:id},
-		success:function(res){
-			$("#loadtable").html(res);
-			$("#exampleModal").modal("show");
-			
-		}
-	});
+	if(confirm("Are you sure?")){
+		$.ajax({
+			url:"/injectionplan/upremovefield",
+			type : "POST",
+			data:{pid:pid,id:id},
+			success:function(res){
+				$("#loadtable").html(res);
+				$("#exampleModal").modal("show");
+			}
+		});
+	}
+	
 });
 
 $("#update").click(function(){
@@ -64,7 +66,7 @@ $("#update").click(function(){
 			$.ajax({
 				url:"/injectionplan/upsaveall",
 				type : "POST",
-				data :$("#mainform").serialize(),
+				data :$("#mainform").serialize()+"&pid="+pid,
 				success:function(res){
 					$("#loadtable").html(res);
 					$("#exampleModal").modal("show");
@@ -77,7 +79,7 @@ $("#update").click(function(){
 		$.ajax({
 			url:"/injectionplan/upsavenew",
 			type : "POST",
-			data :$("#mainform").serialize(),
+			data :$("#mainform").serialize()+"&pid="+pid,
 			success:function(res){
 				$("#loadtable").html(res);
 				$("#exampleModal").modal("show");
@@ -159,7 +161,6 @@ $("#update").click(function(){
 					</tr>
 				</tfoot>
 			</table>
-			<input type="hidden" th:value="${session.details.id}" th:name="pid" />
 	</form>
 
 	</div>

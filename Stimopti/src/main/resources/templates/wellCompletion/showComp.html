@@ -10,7 +10,6 @@ $("#td0").click(function(){
 	 if(valv==false){
      $("#0").prop('checked',true); 
 		 var wp=$("#0").val();
-		 
 		$.ajax({
 			url : "/wellCompletion/changeComp",
 			type : "POST",
@@ -57,7 +56,6 @@ $("#td1").click(function(){
 	$("#td2")
     .removeClass('btn-success')
     .addClass('btn-default');
-	
 });
 
 $("#td2").click(function(){
@@ -84,10 +82,7 @@ $("#td2").click(function(){
 	$("#td0")
     .removeClass('btn-success')
     .addClass('btn-default');
-	
 });
-
-
 
 
 if(light=="Open Hole"){
@@ -147,11 +142,10 @@ $("#edit").click(function(){
 		<form>
 			<div class="row ">
 				<div class="col-md-12" style="margin-bottom: 20px;">
-
 					<span>
 						<button type="button" id="td0" class="btn" data-color="success">
-							Open
-							Hole&nbsp;<input name="wv" id="0" type="radio" value="Open Hole" />
+							Open Hole&nbsp;<input name="wv" id="0" type="radio"
+								value="Open Hole" />
 						</button>
 					</span> <span>
 						<button type="button" id="td1" class="btn" data-color="success">
@@ -166,7 +160,6 @@ $("#edit").click(function(){
 					</span>
 				</div>
 			</div>
-
 		</form>
 	</div>
 
@@ -178,13 +171,28 @@ $("#edit").click(function(){
 					<td class=" " th:text="${comp.cp}"></td>
 					<td class=" " th:text="${comp.cv}"></td>
 			</tbody>
-
 		</table>
-		<div class="row text-center">
-			<button th:style="'width:auto;'" type="button" id="edit"
-				class="btn btn-primary">Edit</button>
-		</div>
+	</div>
+	<div th:if="${session.cp!='Open Hole' && !perflist.isEmpty()}">
+		<table class="table table-striped jambo_table bulk_action text-left">
+			<thead>
+				<tr class="headings">
+					<th class="column-title">START</th>
+					<th class="column-title">END</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="even pointer" th:each="perf:${perflist}">
+					<td class=" " th:text="${perf.start}"></td>
+					<td class=" " th:text="${perf.end}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
+	<div class="row text-center">
+		<button th:style="'width:auto;'" type="button" id="edit"
+			class="btn btn-primary">Edit</button>
 	</div>
 </body>
 </html>

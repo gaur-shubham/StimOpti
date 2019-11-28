@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
 $("#td0").click(function(){
 	 var valv=$("#0").is(':checked');
 	 if(valv==false){
      $("#0").prop('checked',true); 
 		 var wp=$("#0").val();
-		 var pid=[[${session.details.id}]];
 		$.ajax({
 			url : "/wellData/changeWell",
 			type : "POST",
@@ -35,7 +36,6 @@ $("#td1").click(function(){
 	 if(valv==false){
 	     $("#1").prop('checked',true); 
 			 var wp=$("#1").val();
-			 var pid=[[${session.details.id}]];
 			$.ajax({
 				url : "/wellData/changeWell",
 				type : "POST",
@@ -63,7 +63,6 @@ $("#td2").click(function(){
 	 if(valv==false){
 	     $("#2").prop('checked',true); 
 			 var wp=$("#2").val();
-			 var pid=[[${session.details.id}]];
 			$.ajax({
 				url : "/wellData/changeWell",
 				type : "POST",

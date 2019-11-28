@@ -8,12 +8,14 @@
 	border: none;
 }
 </style>
-<script>
+<script th:inline="javascript">
+var pid=[[${session.details.id}]];
+
 	$("#update").click(function() {
 		$.ajax({
 			url : "/pumpingEquipment/saveupdate",
 			type : "POST",
-			data : $("#mainform").serialize(),
+			data : $("#mainform").serialize()+"&pid="+pid,,
 			success : function(res) {
 				$("#loadtable").html(res);
 				$("#exampleModal").modal("show");
@@ -37,7 +39,6 @@
 						th:style="'width:100%;'" th:value="${pe.pv}" th:name="pv" /></td>
 			</tbody>
 		</table>
-		<input type="hidden" th:value="${session.details.id}" th:name="pid" />
 	</form>
 	<div class="row">
 		<div class="col-md-12 text-center">

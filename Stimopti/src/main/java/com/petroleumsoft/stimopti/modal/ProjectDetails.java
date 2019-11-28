@@ -79,6 +79,9 @@ public class ProjectDetails {
 	private Collection<WellCompletion> wellCompletion;
 
 	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
+	private Collection<WellCompletionPerf> wellCompletionperf;
+	
+	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
 	private Collection<Penetration> penetration;
 
 	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
