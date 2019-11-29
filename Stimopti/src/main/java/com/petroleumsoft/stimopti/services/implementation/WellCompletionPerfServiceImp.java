@@ -35,7 +35,7 @@ public class WellCompletionPerfServiceImp implements WellCompletionPerfService {
 		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
 		List<WellCompletionPerf> compList = perfrepo.findByProjectDetails(projectDetails);
 		List<WellCompletionPerf> tempcompList = new ArrayList<>();
-		if (compList.size() > 0) {
+		if (!compList.isEmpty()) {
 			perfrepo.deleteByProjectDetails(projectDetails);
 		}
 		for (int i = 0; i < startinput.size(); i++) {

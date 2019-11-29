@@ -39,7 +39,6 @@ public class FluidPropertiesController {
 		session.setAttribute("ftype", fluidPropertiesService.getFType(pid));
 		model.addAttribute("fList", fList);
 		return map + "/showFluid";
-		
 	}
 
 	@RequestMapping(value = "/changefluid")

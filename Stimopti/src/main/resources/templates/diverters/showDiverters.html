@@ -100,7 +100,6 @@ $("#td3").click(function(){
 	 if(valv==false){
 	     $("#3").prop('checked',true); 
 			 var bd=$("#3").val();
-			 
 			$.ajax({
 				url : "/diverters/changebd",
 				type : "POST",
@@ -154,7 +153,6 @@ if(light=="Foamed"){
 		$("#td3")
 	    .removeClass('btn-success')
 	    .addClass('btn-default');	
-	
 }
 if(light=="Particulate"){
 	  $("#2").prop('checked',true); 
@@ -173,7 +171,6 @@ if(light=="Particulate"){
 	
 }
 if(light=="Ves"){
-	
 	  $("#3").prop('checked',true); 
 	 $("#td3")
 	    .removeClass('btn-default')
@@ -206,20 +203,19 @@ $("#edit").click(function(){
 	<!-- top tiles -->
 	<div class="row ">
 	<form>
-			
 				<div class="col-md-12" style="margin-bottom: 20px;">
 					<p style="font-weight: bold;">Base Case Diverters</p>
 					<span>
 						<button type="button" id="td0" class="btn" data-color="success">
-							<input name="bdname" id="0" type="radio" value="Viscosified" />Viscosified
+						Viscosified	 &nbsp;<input name="bdname" id="0" type="radio" value="Viscosified" />
 						</button>
 					</span> <span>
 						<button type="button" id="td1" class="btn" data-color="success">
-							Foamed <input name="bdname" id="1" type="radio" value="Foamed" />
+							Foamed &nbsp; <input name="bdname" id="1" type="radio" value="Foamed" />
 						</button>
 					</span> <span>
 						<button type="button" id="td2" class="btn" data-color="success">
-							Particulate <input name="bdname" id="2" type="radio"
+							Particulate &nbsp; <input name="bdname" id="2" type="radio"
 								value="Particulate" />
 						</button>
 					</span> <span>
@@ -228,8 +224,6 @@ $("#edit").click(function(){
 						</button>
 					</span>
 				</div>
-			
-
 		</form>
 	</div>
 	
@@ -243,11 +237,10 @@ $("#edit").click(function(){
 				<td class=" " th:text="${bd.bdname}"></td>
 				<td class=" " th:text="${bd.bdvalue}"></td>
 				</tr>
-				
 		</tbody>
 	</table>
 	<div class="row text-center">
-	<button th:style="'width:auto'" id="edit" type="button"class="btn btn-primary">   Edit</button>
+	<button th:style="'width:auto'" id="edit" type="button"class="btn btn-primary">Edit</button>
 	</div>
 	</div>
 </body>

@@ -13,6 +13,7 @@ import org.springframework.util.ResourceUtils;
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.modal.WellCompletion;
 import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
+import com.petroleumsoft.stimopti.repo.WellCompletionPerfRepo;
 import com.petroleumsoft.stimopti.repo.WellCompletionRepo;
 import com.petroleumsoft.stimopti.services.WellCompletionService;
 
@@ -20,9 +21,11 @@ import com.petroleumsoft.stimopti.services.WellCompletionService;
 @Transactional
 public class WellCompletionServiceImplementation implements WellCompletionService {
 	@Autowired
-	ProjectDetailsRepository projectDetailsRepository;
+	private ProjectDetailsRepository projectDetailsRepository;
 	@Autowired
-	WellCompletionRepo wellCompletionRepo;
+	private WellCompletionRepo wellCompletionRepo;
+	@Autowired
+	private WellCompletionPerfRepo perfrepo;
 
 	@Override
 	public List<WellCompletion> changeComp(Integer pid, String cp) {
@@ -30,6 +33,9 @@ public class WellCompletionServiceImplementation implements WellCompletionServic
 		List<WellCompletion> compList = new ArrayList<WellCompletion>();
 		if (!wellCompletionRepo.findByProjectDetails(projectDetails).isEmpty()) {
 			wellCompletionRepo.deleteByProjectDetails(projectDetails);
+		}
+		if (!perfrepo.findByProjectDetails(projectDetails).isEmpty()) {
+			perfrepo.deleteByProjectDetails(projectDetails);
 		}
 		try {
 			File file = ResourceUtils.getFile("classpath:config/CarbonateDefaultData.txt");

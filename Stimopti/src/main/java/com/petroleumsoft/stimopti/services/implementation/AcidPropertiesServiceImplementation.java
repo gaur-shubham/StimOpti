@@ -53,7 +53,6 @@ public class AcidPropertiesServiceImplementation implements AcidPropertiesServic
 					acidPropertiesRepo.saveAll(acidlist);
 					break;
 				}
-
 			}
 			br.close();
 		} catch (Exception fne) {

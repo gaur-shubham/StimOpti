@@ -281,7 +281,7 @@ VES Ph=2.0
 Calcium Concentration At Max Viscosity (%)=20
 Diverter Fluid Density (Gm/Cm3)=0.5
 /
-Emulsified
+Emulsified Acid
 Retardation Factor=5.8
 Diffusion Co-Efficient (Ft2/Min)=6.54e-6
 Specific Gravity=0.45
