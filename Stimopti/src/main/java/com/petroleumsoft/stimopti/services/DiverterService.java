@@ -13,4 +13,7 @@ public interface DiverterService {
 	public List<BaseDiverter> changebd(Integer pid,String name);
 	public List<String> changetd(Integer pid,Integer bid,String name);
 	public void saveUpdate(Integer pid,List<String> bdname,List<String> bdvalue);
+	public void saveTestDiverter(Integer pid,String td);
+	public void removeTestDiverter(Integer pid,String td);
+	public List<String> getTestDirverterType(Integer pid);
 }

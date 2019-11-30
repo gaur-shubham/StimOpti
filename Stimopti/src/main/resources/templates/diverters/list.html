@@ -4,7 +4,7 @@
 <script th:inline="javascript">
 var pid=[[${session.details.id}]];
 
-$("#td0").click(function(){
+$("#bd0").click(function(){
 	 var valv=$("#0").is(':checked');
 	 if(valv==false){
      $("#0").prop('checked',true); 
@@ -19,21 +19,21 @@ $("#td0").click(function(){
 			}
 		});
 	 }
-	$("#td0")
+	$("#bd0")
     .removeClass('btn-default')
     .addClass('btn-success');
-	$("#td1")
+	$("#bd1")
     .removeClass('btn-success')
     .addClass('btn-default');
-	$("#td2")
+	$("#bd2")
     .removeClass('btn-success')
     .addClass('btn-default');
-	$("#td3")
+	$("#bd3")
     .removeClass('btn-success')
     .addClass('btn-default');
 });
 
-$("#td1").click(function(){
+$("#bd1").click(function(){
 	 var valv=$("#1").is(':checked');
 	 if(valv==false){
 	     $("#1").prop('checked',true); 
@@ -48,21 +48,21 @@ $("#td1").click(function(){
 				}
 			});
 		 }
-	$("#td1")
+	$("#bd1")
     .removeClass('btn-default')
     .addClass('btn-success');
-	$("#td0")
+	$("#bd0")
     .removeClass('btn-success')
     .addClass('btn-default');
-	$("#td2")
+	$("#bd2")
     .removeClass('btn-success')
     .addClass('btn-default');
-	$("#td3")
+	$("#bd3")
     .removeClass('btn-success')
     .addClass('btn-default');
 });
 
-$("#td2").click(function(){
+$("#bd2").click(function(){
 	 var valv=$("#2").is(':checked');
 	 if(valv==false){
 	     $("#2").prop('checked',true); 
@@ -77,21 +77,21 @@ $("#td2").click(function(){
 				}
 			});
 		 }
-	$("#td2")
+	$("#bd2")
     .removeClass('btn-default')
     .addClass('btn-success');
-	$("#td1")
+	$("#bd1")
     .removeClass('btn-success')
     .addClass('btn-default');
-	$("#td0")
+	$("#bd0")
     .removeClass('btn-success')
     .addClass('btn-default');
-	$("#td3")
+	$("#bd3")
     .removeClass('btn-success')
     .addClass('btn-default');
 });
 
-$("#td3").click(function(){
+$("#bd3").click(function(){
 	 var valv=$("#3").is(':checked');
 	 if(valv==false){
 	     $("#3").prop('checked',true); 
@@ -107,16 +107,16 @@ $("#td3").click(function(){
 				}
 			});
 		 }
-	$("#td3")
+	$("#bd3")
     .removeClass('btn-default')
     .addClass('btn-success');
-	$("#td1")
+	$("#bd1")
     .removeClass('btn-success')
     .addClass('btn-default');
-	$("#td2")
+	$("#bd2")
     .removeClass('btn-success')
     .addClass('btn-default');
-	$("#td0")
+	$("#bd0")
     .removeClass('btn-success')
     .addClass('btn-default');
 });
@@ -125,36 +125,33 @@ $("#td3").click(function(){
 <body class="nav-md" th:inline="text">
 
 	<div>
-		<h4 style="font-weight: bolder;" class="text-center">Diverter
-			Properties</h4>
+		<h4 style="font-weight: bolder;" class="text-center">DIVERTER
+			PROPERTIES</h4>
 
 		<form>
 			<div class="row ">
 				<div class="col-md-12" style="margin-bottom: 20px;">
 					<span>
-						<button type="button" id="td0" class="btn" data-color="success">
-						Viscosified	 &nbsp;<input name="bdname" id="0" type="radio" value="Viscosified" />
+						<button type="button" id="bd0" class="btn" data-color="success">
+						Viscosified	 &nbsp;<input name="bdname" id="0" type="radio" value="Viscosified" hidden />
 						</button>
 					</span> <span>
-						<button type="button" id="td1" class="btn" data-color="success">
-							Foamed &nbsp; <input name="bdname" id="1" type="radio" value="Foamed" />
+						<button type="button" id="bd1" class="btn" data-color="success">
+							Foamed &nbsp; <input name="bdname" id="1" type="radio" value="Foamed" hidden />
 						</button>
 					</span> <span>
-						<button type="button" id="td2" class="btn" data-color="success">
+						<button type="button" id="bd2" class="btn" data-color="success">
 							Particulate &nbsp; <input name="bdname" id="2" type="radio"
-								value="Particulate" />
+								value="Particulate" hidden />
 						</button>
 					</span> <span>
-						<button type="button" id="td3" class="btn" data-color="success">
-							Ves <input name="bdname" id="3" type="radio" value="Ves" />
+						<button type="button" id="bd3" class="btn" data-color="success">
+							Ves <input name="bdname" id="3" type="radio" value="Ves" hidden />
 						</button>
 					</span>
 				</div>
 			</div>
-
 		</form>
-
-
 	</div>
 
 </body>

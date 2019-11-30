@@ -29,7 +29,7 @@ $("#update").click(function(){
 	<form id="updateWell">
 		<div class="row">
 		<h3 class="text-center">WELL DATA</h3>
-			<table class="table table-striped jambo_table bulk_action text-left">
+			<table class="table table-bordered table-striped jambo_table bulk_action text-left">
 				<tbody>
 					<tr th:each="well: ${wellDatalist}">
 						<td th:text="${well.wp}"></td>

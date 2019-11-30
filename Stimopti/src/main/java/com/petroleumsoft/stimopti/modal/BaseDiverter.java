@@ -17,6 +17,10 @@ public class BaseDiverter {
 	private Integer id;
 	private String bdname;
 	private String bdvalue;
+	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinColumn(name="projectDetails")
+	ProjectDetails projectDetails;
+	
 	public String getBdname() {
 		return bdname;
 	}
@@ -38,10 +42,6 @@ public class BaseDiverter {
 	public Integer getId() {
 		return id;
 	}
-	
-	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-	@JoinColumn(name="projectDetails")
-	ProjectDetails projectDetails;
 	public BaseDiverter(String bdname, String bdvalue, ProjectDetails projectDetails) {
 		super();
 		this.bdname = bdname;

@@ -17,6 +17,7 @@ public class TestDiverter {
 	private Integer id;
 	private String dname;
 	private String dvalue;
+	private String dtype;
 	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name="projectDetails")
 	ProjectDetails projectDetails;
@@ -29,6 +30,19 @@ public class TestDiverter {
 	public String getDvalue() {
 		return dvalue;
 	}
+	public TestDiverter(String dname, String dvalue, String dtype, ProjectDetails projectDetails) {
+		super();
+		this.dname = dname;
+		this.dvalue = dvalue;
+		this.dtype = dtype;
+		this.projectDetails = projectDetails;
+	}
+	public String getDtype() {
+		return dtype;
+	}
+	public void setDtype(String dtype) {
+		this.dtype = dtype;
+	}
 	public void setDvalue(String dvalue) {
 		this.dvalue = dvalue;
 	}
@@ -40,12 +54,6 @@ public class TestDiverter {
 	}
 	public Integer getId() {
 		return id;
-	}
-	public TestDiverter(String dname, String dvalue, ProjectDetails projectDetails) {
-		super();
-		this.dname = dname;
-		this.dvalue = dvalue;
-		this.projectDetails = projectDetails;
 	}
 	public TestDiverter() {
 		super();

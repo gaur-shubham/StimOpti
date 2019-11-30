@@ -16,17 +16,21 @@ import com.petroleumsoft.stimopti.modal.BaseDiverter;
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.repo.BaseDiverterRepo;
 import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
+import com.petroleumsoft.stimopti.repo.TestDiverterRepo;
 import com.petroleumsoft.stimopti.services.DiverterService;
 
 @Controller
 @RequestMapping(value = "/diverters")
 public class DivertersController {
 	@Autowired
-	DiverterService diverterService;
+	private DiverterService diverterService;
 	@Autowired
-	BaseDiverterRepo baseDiverterRepo;
+	private BaseDiverterRepo baseDiverterRepo;
 	@Autowired
-	ProjectDetailsRepository projectDetailsRepository;
+	private TestDiverterRepo testDiverterRepo;
+	@Autowired
+	private ProjectDetailsRepository projectDetailsRepository;
+	
 	private static final String map = "diverters";
 
 	@RequestMapping(value = "/list", method = {RequestMethod.GET,RequestMethod.POST})
@@ -36,6 +40,8 @@ public class DivertersController {
 			return map + "/list";
 		}
 		session.setAttribute("bd", diverterService.getDiverterType(pid));
+		session.setAttribute("dtype", diverterService.getTestDirverterType(pid));
+		model.addAttribute("viscolist", testDiverterRepo.findByProjectDetailsAndDtype(projectDetails, "VISCOSIFIED"));
 		model.addAttribute("bdlist",baseDiverterRepo.findByProjectDetails(projectDetails));
 		return map + "/showDiverters";
 	}
@@ -51,7 +57,6 @@ public class DivertersController {
 	
 	@RequestMapping(value = "/edit", method = {RequestMethod.GET,RequestMethod.POST})
 	public String edit(@RequestParam("pid") Integer pid,Model model) {
-		System.out.println("pid>>"+pid);
 		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
 		List<BaseDiverter> bdlist =baseDiverterRepo.findByProjectDetails(projectDetails);
 		model.addAttribute("bdlist", bdlist);
@@ -65,4 +70,20 @@ public class DivertersController {
 		redirectAttributes.addAttribute("id", pid);
 		return "redirect:/diverters/list";
 	}
+	
+	@PostMapping(value = "/addTestDiverter")
+	public String addTestDiverter(@RequestParam("pid") Integer pid, @RequestParam("td") String td,
+			RedirectAttributes redirectAttributes) {
+		diverterService.saveTestDiverter(pid, td);
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/diverters/list";
+	}
+	@PostMapping(value = "/delTestDiverter")
+	public String delTestDiverter(@RequestParam("pid") Integer pid, @RequestParam("td") String td,
+			Model model,HttpSession session) {
+		diverterService.removeTestDiverter(pid, td);
+		return null;
+	}
+	
+	
 }

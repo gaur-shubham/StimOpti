@@ -94,7 +94,7 @@ function Remove(button) {
 	<div class="row text-left">
 		<h3 class="text-center">Well Completion</h3>
 		<form id="mainform">
-			<table class="table table-striped jambo_table bulk_action">
+			<table class="table table-bordered table-striped jambo_table bulk_action">
 				<tbody>
 					<tr class="even pointer" th:each="comp: ${compList}">
 						<td th:text="${comp.cp}"></td>
@@ -106,12 +106,13 @@ function Remove(button) {
 			</table>
 			<div th:if="${session.cp!='Open Hole'} ">
 				<table id="example3"
-					class="table table-striped jambo_table bulk_action">
+					class="table table-bordered table-striped jambo_table bulk_action">
 
 					<thead>
 						<tr class="headings">
 							<th class="column-title">START</th>
 							<th class="column-title">END</th>
+							<th></th>
 						</tr>
 					</thead>
 
@@ -119,8 +120,8 @@ function Remove(button) {
 						<tr class="even pointer">
 							<td><input type="text" class="form-control" id="paramaa" /></td>
 							<td><input type="text" class="form-control" id="valueaa" /></td>
-							<td><input id="savefield" class="btn btn-primary"
-								type="button" value="Save" style="width: 100%;"></td>
+							<td  style="width:5%"><input id="savefield" class="btn btn-primary"
+								type="button" value="+"></td>
 						</tr>
 						<tr class="even pointer" th:each="perf:${perflist}">
 							<td><input type="text" name="startinput"

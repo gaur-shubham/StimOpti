@@ -29,7 +29,7 @@ $("#savefield").click(function(){
 		$.ajax({
 			url:"/reservoirLithology/upsavefield",
 			type : "POST",
-			data :$("#mainform").serialize()+"&pid="+pid,,
+			data :$("#mainform").serialize()+"&pid="+pid,
 			success:function(res){
 				$("#loadtable").html(res);
 				$("#exampleModal").modal("show");
@@ -68,7 +68,7 @@ $("#update").click(function(){
 			$.ajax({
 				url:"/reservoirLithology/upsaveall",
 				type : "POST",
-				data :$("#mainform").serialize()+"&pid="+pid,,
+				data :$("#mainform").serialize()+"&pid="+pid,
 				success:function(res){
 					$("#loadtable").html(res);
 					$("#exampleModal").modal("show");
@@ -82,7 +82,7 @@ $("#update").click(function(){
 		$.ajax({
 			url:"/reservoirLithology/upsavenew",
 			type : "POST",
-			data :$("#mainform").serialize()+"&pid="+pid,,
+			data :$("#mainform").serialize()+"&pid="+pid,
 			success:function(res){
 				$("#loadtable").html(res);
 				$("#exampleModal").modal("show");
@@ -99,7 +99,7 @@ $("#update").click(function(){
 	<div class="row text-center">
 		<h3>GEOPHYSICAL WELL DATA</h3>
 		<form id="mainform">
-			<table class="table table-striped jambo_table bulk_action">
+			<table class="table table-bordered table-striped jambo_table bulk_action">
 				<thead>
 					<tr>
 						<td>From Depth <br>(Ft)
