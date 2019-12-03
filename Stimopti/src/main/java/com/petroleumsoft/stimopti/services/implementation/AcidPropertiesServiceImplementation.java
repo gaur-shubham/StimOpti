@@ -58,7 +58,6 @@ public class AcidPropertiesServiceImplementation implements AcidPropertiesServic
 		} catch (Exception fne) {
 			fne.printStackTrace();
 		}
-
 		return acidlist;
 	}
 
