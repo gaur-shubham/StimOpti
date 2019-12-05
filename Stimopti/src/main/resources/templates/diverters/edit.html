@@ -3,12 +3,25 @@
 <head>
 <script th:inline="javascript">
 var pid=[[${session.details.id}]];
+var td=[[${td}]];
 
-$("#update").click(function(){
+$("#bdupdate").click(function(){
 	$.ajax({
-		url : "/diverters/saveupdate",
+		url : "/diverters/updatebd",
 		type : "POST",
-		data:$("#mainform").serialize(),
+		data:$("#bdform").serialize()+"&pid="+pid,
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
+
+$("#tdupdate").click(function(){
+	$.ajax({
+		url : "/diverters/updatetd",
+		type : "POST",
+		data:$("#tdform").serialize()+"&pid="+pid+"&td="+td,
 		success:function(res){
 			$("#loadtable").html(res);
 			$("#exampleModal").modal("show");
@@ -24,24 +37,51 @@ $("#update").click(function(){
 		<div class="row text-center">
 			<h3>Diverter Properties</h3>
 		</div>
-		<form id="mainform">
-		<table class="table table-striped jambo_table bulk_action text-left">
-			<tbody>
-				<tr class="even pointer" th:each="bd: ${bdlist}">
-					<td class=" " th:text="${bd.bdname}"></td>
-					<td class=" " >
-					<input type="hidden" class="form-control" th:value="${bd.bdname}" th:name="bdname"/>
-					<input class="form-control" th:value="${bd.bdvalue}" th:name="bdvalue"/>
-					</td>
-				</tr>
+		<form id="bdform" th:if="${!bdlist?.isEmpty()}">
+			<table class="table table-striped jambo_table bulk_action text-left">
+				<tbody>
+					<tr class="even pointer" th:each="bd: ${bdlist}">
+						<td class=" " th:text="${bd.bdname}"></td>
+						<td class=" "><input type="hidden" class="form-control"
+							th:value="${bd.bdname}" th:name="bdname" /> <input
+							class="form-control" th:value="${bd.bdvalue}" th:name="bdvalue" />
+						</td>
+					</tr>
 
-			</tbody>
-		</table>
-		<input type="hidden" th:value="${session.details.id}" th:name="pid" />
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" class="text-center"><button
+								th:style="'width:auto'" id="bdupdate" type="button"
+								class="btn btn-primary">update</button></td>
+					</tr>
+			</table>
 		</form>
-		<div class="row text-center">
-			<button th:style="'width:auto'" id="update" type="button"
-				class="btn btn-primary">update</button>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12" th:if="${!tdlist?.isEmpty()}">
+			<form id="tdform">
+				<table
+					class="table table-bordered jambo_table bulk_action text-left">
+					<tbody>
+						<tr class="even pointer" th:each="tdvisco: ${tdlist}">
+							<th th:text="${tdvisco.dname}"></th>
+							<td><input type="hidden" class="form-control"
+								th:value="${tdvisco.dname}" th:name="tdname" /> <input
+								class="form-control" th:value="${tdvisco.dvalue}"
+								th:name="tdvalue" /></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="2" class="text-center"><button
+									th:style="'width:auto'" id="tdupdate" type="button"
+									class="btn btn-primary">Update</button></td>
+						</tr>
+					</tfoot>
+				</table>
+			</form>
 		</div>
 	</div>
 </body>

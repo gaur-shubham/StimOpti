@@ -8,16 +8,14 @@ var dtype=[[${session.dtype}]];
 
 
 $(document).ready(function(){
-	console.log("inside ready");
 	var i;
 	for(i=0;i<dtype.length;i++){
-		console.log("inside for");
-		console.log(dtype[i]);
-		//$("#"+dtype[i]+"").prop("checked",true);
+		$("input[value="+dtype[i]+"]").prop('checked', true);
+		$("input[value="+dtype[i]+"]").parent().removeClass('btn-default').addClass('btn-success');
 	}
 });
 
-										/**************** BASE DIVERTER ************/
+										/**************** BASE DIVERTERs ************/
 $("#bd0").click(function(){
 	 var valv=$("#0").is(':checked');
 	 if(valv==false){
@@ -80,7 +78,6 @@ $("#bd1").click(function(){
 
 $("#bd2").click(function(){
 	 var valv=$("#2").is(':checked');
-	 console.log(">>>>>>>>>>> "+valv);
 	 if(valv==false){
 	     $("#2").prop('checked',true); 
 			 var bd=$("#2").val();
@@ -139,11 +136,10 @@ $("#bd3").click(function(){
 });
 
 
-                                      /**************** TEST DIVERTER ************/
+                                      /**************** TEST DIVERTERs ************/
 $("#td0").click(function(){
 	var td=$("#4").val();
 	if(!$("#4").is(':checked')){
-		console.log("inside if");
 		$.ajax({
 			url : "/diverters/addTestDiverter",
 			type : "POST",
@@ -157,8 +153,7 @@ $("#td0").click(function(){
 	    .removeClass('btn-default')
 	    .addClass('btn-success');
 		$("#4").prop('checked',true); 
-	} else{
-		console.log("inside else");
+	}else{
 		$.ajax({
 			url : "/diverters/delTestDiverter",
 			type : "POST",
@@ -176,15 +171,31 @@ $("#td0").click(function(){
 });
                                       
 $("#td1").click(function(){
-	
-	
-	
+	var td=$("#5").val();
 	if(!$("#5").is(':checked')){
+		$.ajax({
+			url : "/diverters/addTestDiverter",
+			type : "POST",
+			data:{td:td,pid:pid},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
 		$("#td1")
 	    .removeClass('btn-default')
 	    .addClass('btn-success');
 		$("#5").prop('checked',true); 
-	} else{
+	}else{
+		$.ajax({
+			url : "/diverters/delTestDiverter",
+			type : "POST",
+			data:{td:td,pid:pid},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
 		$("#td1")
 	    .removeClass('btn-success')
 	    .addClass('btn-default');
@@ -193,15 +204,31 @@ $("#td1").click(function(){
 });
 
 $("#td2").click(function(){
-	
-	
-	
+	var td=$("#6").val();
 	if(!$("#6").is(':checked')){
+		$.ajax({
+			url : "/diverters/addTestDiverter",
+			type : "POST",
+			data:{td:td,pid:pid},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
 		$("#td2")
 	    .removeClass('btn-default')
 	    .addClass('btn-success');
 		$("#6").prop('checked',true); 
 	} else{
+		$.ajax({
+			url : "/diverters/delTestDiverter",
+			type : "POST",
+			data:{td:td,pid:pid},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
 		$("#td2")
 	    .removeClass('btn-success')
 	    .addClass('btn-default');
@@ -210,15 +237,31 @@ $("#td2").click(function(){
 });
 
 $("#td3").click(function(){
-	
-	
-	
+	var td=$("#7").val();
 	if(!$("#7").is(':checked')){
+		$.ajax({
+			url : "/diverters/addTestDiverter",
+			type : "POST",
+			data:{td:td,pid:pid},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
 		$("#td3")
 	    .removeClass('btn-default')
 	    .addClass('btn-success');
 		$("#7").prop('checked',true); 
 	} else{
+		$.ajax({
+			url : "/diverters/delTestDiverter",
+			type : "POST",
+			data:{td:td,pid:pid},
+			success:function(data){
+				$("#loadtable").html(data);
+				$("#exampleModal").modal("show");
+			}
+		});
 		$("#td3")
 	    .removeClass('btn-success')
 	    .addClass('btn-default');
@@ -241,7 +284,7 @@ if(light=="Viscosified"){
 		$("#bd3")
 	    .removeClass('btn-success')
 	    .addClass('btn-default');
-	$("#td0").hide();
+	$("#td0").remove();
 }
 if(light=="Foamed"){
 	  $("#1").prop('checked',true); 
@@ -257,7 +300,7 @@ if(light=="Foamed"){
 		$("#bd3")
 	    .removeClass('btn-success')
 	    .addClass('btn-default');	
-	$("#td1").hide();
+	$("#td1").remove();
 }
 if(light=="Particulate"){
 	  $("#2").prop('checked',true); 
@@ -273,7 +316,7 @@ if(light=="Particulate"){
 		$("#bd3")
 	    .removeClass('btn-success')
 	    .addClass('btn-default');	
-	$("#td2").hide();
+	$("#td2").remove();
 }
 if(light=="Ves"){
 	  $("#3").prop('checked',true); 
@@ -289,13 +332,13 @@ if(light=="Ves"){
 		$("#bd0")
 	    .removeClass('btn-success')
 	    .addClass('btn-default');	
-	$("#td3").hide();
+	$("#td3").remove();
 }
 
 
-$("#edit").click(function(){
+$("#bdedit").click(function(){
 	$.ajax({
-		url : "/diverters/edit",
+		url : "/diverters/bdedit",
 		type : "POST",
 		data:{pid:pid},
 		success:function(res){
@@ -305,103 +348,183 @@ $("#edit").click(function(){
 	});
 });
 
+$(".tdedit").click(function(){
+	var td=$(this).val();
+	$.ajax({
+		url : "/diverters/tdedit",
+		type : "POST",
+		data:{pid:pid,td:td},
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
 
 </script>
+<style>
+</style>
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
-	<div class="row ">
-	<form>
-				<div class="col-md-6" style="margin-bottom: 20px;text-align: left; ">
-					<div class="BaseDiverter">
-					<label>Select Diverter Type Based On Injection Plan</label><br>
-					<span>
-						<button type="button" id="bd0" class="btn" data-color="success">
-						Viscosified	<input name="bdname" id="0" type="radio" value="Viscosified" hidden />
-						</button>
-					</span> <span>
-						<button type="button" id="bd1" class="btn" data-color="success">
-							Foamed<input name="bdname" id="1" type="radio" value="Foamed" hidden />
-						</button>
-					</span> <span>
-						<button type="button" id="bd2" class="btn" data-color="success">
-							Particulate <input name="bdname" id="2" type="radio"
-								value="Particulate" hidden />
-						</button>
-					</span> <span>
-						<button type="button" id="bd3" class="btn" data-color="success">
-							Ves<input name="bdname" id="3" type="radio" value="Ves" hidden />
-						</button>
-					</span>
-					</div>
-					
-					<div class="TestDiverter">
-					<label >Select Diverters For Sensitivity</label><br>
-					<span>
-						<button type="button" id="td0" class="btn btn-default">
-						Viscosified	 &nbsp;<input name="tdname" id="4" type="checkbox" value="VISCOSIFIED" hidden />
-						</button>
-					</span> <span>
-						<button type="button" id=td1 class="btn btn-default">
-							Foamed &nbsp; <input name="tdname" id="5" type="checkbox" value="FOAMED" hidden/>
-						</button>
-					</span> <span>
-						<button type="button" id="td2" class="btn btn-default">
-							Particulate &nbsp; <input name="tdname" id="6" type="checkbox"
-								value="PARTICULATE" hidden/>
-						</button>
-					</span> <span>
-						<button type="button" id="td3" class="btn btn-default">
-							Ves &nbsp;<input name="tdname" id="7" type="checkbox" value="VES" hidden/>
-						</button>
-					</span>
-					</div>
-				</div>
-		</form>
-	</div>
-	
-						<!-- Base Diverter ROW -->
-	<div class="row ">
-	<div class="row text-center">
-	<h3>Diverter Properties</h3>	
-	</div>
-	<div class="col-md-6 text-left">
-	<label>Base Diverter Properties:</label>	
-	</div>
-	<table class="table table-bordered table-striped jambo_table bulk_action text-left">
-		<tbody>
-			<tr class="even pointer" th:each="bd: ${bdlist}">
-				<td class=" " th:text="${bd.bdname}"></td>
-				<td class=" " th:text="${bd.bdvalue}"></td>
-				</tr>
-		</tbody>
-	</table>
-	<div class="row text-center">
-	<button th:style="'width:auto'" id="edit" type="button"class="btn btn-primary">Edit</button>
-	</div>
-	</div>
-	
-							<!-- Test DIVERTER ROW -->
-	>>>>  [[${session.dtype}]]
-	<div class="row text-center">
-	<div class="col-md-6 text-left">
-	<label>Test Diverter Properties:</label>	
-	</div>
-	</div>
 	<div class="row">
-	<div class="col-md-6">
-	<table class="table table-bordered jambo_table bulk_action text-left" th:if="${!viscolist.isEmpty()}" >
-		<tbody>
-			<tr class="even pointer" th:each="td1: ${viscolist}" >
-				<td th:text="${td1.dname}"></td>
-				<td th:text="${td1.dvalue}"></td>
-				</tr>
-		</tbody>
-	</table>
+		<div class="col-md-6" style="text-align: left;">
+			<label>Select Diverter Type Based On Injection Plan</label><br>
+			<span>
+				<button type="button" id="bd0" class="btn" data-color="success">
+					Viscosified <input name="bdname" id="0" type="radio"
+						value="Viscosified" hidden />
+				</button>
+			</span> <span>
+				<button type="button" id="bd1" class="btn" data-color="success">
+					Foamed<input name="bdname" id="1" type="radio" value="Foamed"
+						hidden />
+				</button>
+			</span> <span>
+				<button type="button" id="bd2" class="btn" data-color="success">
+					Particulate <input name="bdname" id="2" type="radio"
+						value="Particulate" hidden />
+				</button>
+			</span> <span>
+				<button type="button" id="bd3" class="btn" data-color="success">
+					Ves<input name="bdname" id="3" type="radio" value="Ves" hidden />
+				</button>
+			</span>
+		</div>
 	</div>
-	<div class="row text-center">
-	<button th:style="'width:auto'" id="edit" type="button"class="btn btn-primary">Edit</button>
+	<div lcass="row">
+		<div class="col-md-6" style="text-align: left;">
+			<label>Select Diverters For Sensitivity</label><br> <span>
+				<button type="button" id="td0" class="btn btn-default">
+					Viscosified &nbsp;<input name="tdname" id="4" type="checkbox"
+						value="VISCOSIFIED" hidden/>
+				</button>
+			</span> <span>
+				<button type="button" id=td1 class="btn btn-default">
+					Foamed &nbsp; <input name="tdname" id="5" type="checkbox"
+						value="FOAMED" hidden/>
+				</button>
+			</span> <span>
+				<button type="button" id="td2" class="btn btn-default">
+					Particulate &nbsp; <input name="tdname" id="6" type="checkbox"
+						value="PARTICULATE" hidden/>
+				</button>
+			</span> <span>
+				<button type="button" id="td3" class="btn btn-default">
+					Ves &nbsp;<input name="tdname" id="7" type="checkbox" value="VES" hidden/>
+				</button>
+			</span>
+		</div>
 	</div>
+
+	<!-- Base Diverter ROW -->
+	<div class="row ">
+		<div class="col-md-12 text-left">
+			<h4 style="text-decoration: underline; font-weight: bold;">Base
+				Diverter Properties:</h4>
+		</div>
+	</div>
+	<div class="row ">
+		<div class="col-md-6 text-left">
+			<table
+				class="table table-bordered table-striped jambo_table bulk_action text-left">
+				<tbody>
+					<tr class="even pointer" th:each="bd: ${bdlist}">
+						<th class=" " th:text="${bd.bdname}"></th>
+						<td class=" " th:text="${bd.bdvalue}"></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" class="text-center"><button
+								th:style="'width:auto'" id="bdedit" type="button"
+								class="btn btn-primary">Edit</button></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+
+	<!-- Test DIVERTER ROW -->
+	<div class="row">
+		<div class="col-md-6 text-left">
+			<h4 style="text-decoration: underline; font-weight: bold;">Test
+				Diverter Properties:</h4>
+			<label
+				th:if="${viscolist?.isEmpty() && foamlist?.isEmpty() && partlist?.isEmpty() && veslist?.isEmpty() }">No
+				Test Diverter Selected</label>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6" th:if="${!viscolist?.isEmpty()}">
+			<table class="table table-bordered jambo_table bulk_action text-left">
+				<tbody>
+					<tr class="even pointer" th:each="tdvisco: ${viscolist}">
+						<th th:text="${tdvisco.dname}"></th>
+						<td th:text="${tdvisco.dvalue}"></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" class="text-center"><button
+								th:style="'width:auto'" type="button"
+								class="tdedit btn btn-primary" value="VISCOSIFIED">Edit</button></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class="col-md-6" th:if="${!foamlist?.isEmpty()}">
+			<table class="table table-bordered jambo_table bulk_action text-left">
+				<tbody>
+					<tr class="even pointer" th:each="tdfoamed: ${foamlist}">
+						<th th:text="${tdfoamed.dname}"></th>
+						<td th:text="${tdfoamed.dvalue}"></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" class="text-center"><button
+								th:style="'width:auto'" type="button"
+								class="tdedit btn btn-primary" value="FOAMED">Edit</button></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class="col-md-6" th:if="${!partlist?.isEmpty()}">
+			<table class="table table-bordered jambo_table bulk_action text-left">
+				<tbody>
+					<tr class="even pointer" th:each="tdparticulate: ${partlist}">
+						<th th:text="${tdparticulate.dname}"></th>
+						<td th:text="${tdparticulate.dvalue}"></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" class="text-center"><button
+								th:style="'width:auto'" type="button"
+								class="tdedit btn btn-primary" value="PARTICULATE">Edit</button></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class="col-md-6" th:if="${!veslist?.isEmpty()}">
+			<table class="table table-bordered jambo_table bulk_action text-left">
+				<tbody>
+					<tr class="even pointer" th:each="tdves: ${veslist}">
+						<th th:text="${tdves.dname}"></th>
+						<td th:text="${tdves.dvalue}"></td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="2" class="text-center"><button
+								th:style="'width:auto'" type="button"
+								class="tdedit btn btn-primary" value="VES">Edit</button></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

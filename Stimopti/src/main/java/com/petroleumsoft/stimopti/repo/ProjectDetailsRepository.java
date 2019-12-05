@@ -10,4 +10,5 @@ import com.petroleumsoft.stimopti.modal.ReservoirLithology;
 @Repository
 public interface ProjectDetailsRepository extends JpaRepository<ProjectDetails, Integer> {
 	
+	public void deleteById(Integer pid);
 }

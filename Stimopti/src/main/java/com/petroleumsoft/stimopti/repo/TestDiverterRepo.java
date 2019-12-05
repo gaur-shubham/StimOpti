@@ -11,8 +11,11 @@ import com.petroleumsoft.stimopti.modal.TestDiverter;
 public interface TestDiverterRepo extends JpaRepository<TestDiverter, Integer> {
 	@Query("SELECT t FROM TestDiverter t where t.projectDetails = :projectDetails order by t.id")
 	public List<TestDiverter> findByProjectDetails(ProjectDetails projectDetails);
+
 	public void deleteByProjectDetails(ProjectDetails projectDetails);
-	public void deleteByProjectDetailsAndDtype(ProjectDetails projectDetails,String dtype);
+
+	public void deleteByProjectDetailsAndDtype(ProjectDetails projectDetails, String dtype);
+
 	@Query("SELECT t FROM TestDiverter t where t.projectDetails = :projectDetails and t.dtype=:dtype order by t.id")
-	public List<TestDiverter> findByProjectDetailsAndDtype(ProjectDetails projectDetails,String dtype);
+	public List<TestDiverter> findByProjectDetailsAndDtype(ProjectDetails projectDetails, String dtype);
 }

@@ -104,7 +104,7 @@ public class DiverterServiceImplementation implements DiverterService {
 	}
 
 	@Override
-	public void saveUpdate(Integer pid, List<String> bdname, List<String> bdvalue) {
+	public void updateDB(Integer pid, List<String> bdname, List<String> bdvalue) {
 		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		List<BaseDiverter> bdlist = baseDiverterRepo.findByProjectDetails(details);
 		List<BaseDiverter> tempbdlist = new ArrayList<BaseDiverter>();
@@ -183,13 +183,26 @@ public class DiverterServiceImplementation implements DiverterService {
 	public List<String> getTestDirverterType(Integer pid) {
 		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		List<TestDiverter> bdlist = testDiverterRepo.findByProjectDetails(details);
-		List<String> dtype=new ArrayList<String>();
-		for(int i=0;i<bdlist.size();i++) {
-			if(!dtype.contains(bdlist.get(0).getDtype())) {
-				dtype.add(bdlist.get(0).getDtype());
+		List<String> dtype = new ArrayList<String>();
+		for (int i = 0; i < bdlist.size(); i++) {
+			if (!dtype.contains(bdlist.get(i).getDtype())) {
+				dtype.add(bdlist.get(i).getDtype());
 			}
 		}
 		return dtype;
+	}
+
+	@Override
+	public void updateTD(Integer pid, List<String> tdname, List<String> tdvalue, String td) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		List<TestDiverter> tdlist = testDiverterRepo.findByProjectDetailsAndDtype(details, td);
+		List<TestDiverter> temp = new ArrayList<>();
+		for (int i = 0; i < tdlist.size(); i++) {
+			TestDiverter testDiverter = tdlist.get(i);
+			testDiverter.setDvalue(tdvalue.get(tdname.indexOf(tdlist.get(i).getDname())));
+			temp.add(testDiverter);
+		}
+		testDiverterRepo.saveAll(temp);
 	}
 
 }

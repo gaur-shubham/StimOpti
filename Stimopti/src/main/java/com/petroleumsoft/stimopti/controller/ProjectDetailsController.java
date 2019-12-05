@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -74,4 +75,14 @@ public class ProjectDetailsController {
 		attributes.addFlashAttribute("project.id",id);
 		return "redirect:/reservoirLithology/redirectmenu";
 	}
+	
+	@RequestMapping(value = "/delete/{pid}")
+	public String deleteProject(@PathVariable("pid") Integer pid, Model model) {
+		projectDetailsRepository.deleteById(pid);
+		Direction direction = Direction.DESC;
+		List<ProjectDetails> projectList = projectDetailsRepository.findAll(Sort.by(direction, "DateCreated"));
+		model.addAttribute("projectListInstance", projectList);
+		return mapping + "/list";
+	}
+
 }
