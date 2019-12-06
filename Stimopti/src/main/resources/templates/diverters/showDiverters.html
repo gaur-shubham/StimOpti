@@ -361,19 +361,102 @@ $(".tdedit").click(function(){
 	});
 });
 
+
+$("#1015").click(function(){
+    $("#1016").slideToggle();
+    $('#ar8').toggleClass('fa-caret-down fa-caret-right');
+    });
+$("#1005").click(function(){
+    $("#1006").slideToggle();
+    $('#ar3').toggleClass('fa-caret-down fa-caret-right');
+    });
+$("#1011").click(function(){
+    $("#1012").slideToggle();
+    $('#ar6').toggleClass('fa-caret-down fa-caret-right');
+    });
+$("#1019").click(function(){
+    $("#1020").slideToggle();
+    $('#ar10').toggleClass('fa-caret-down fa-caret-right');
+    });
+$("#1017").click(function(){
+    $("#1018").slideToggle();
+    $('#ar9').toggleClass('fa-caret-down fa-caret-right');
+    });
 </script>
 <style>
+.output {
+	background-color: white;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+.outputhead {
+	letter-spacing: 0.01em;
+	position: relative;
+	text-align: center;
+	background: none;
+	color: white;
+	opacity: 0.95;
+	background: #3c8dbc;
+	padding: 2px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border: none;
+	transition: all 0.35s linear;
+	outline: none;
+	width: 420px;
+}
+
+.outputhead:hover {
+	letter-spacing: 0.02em;
+	color: black;
+}
+
+.outputhead::after {
+	position: absolute;
+	content: '';
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-image: linear-gradient(to right, #3c8dbc, #4cafe8);
+	border-radius: 50px;
+	transform-origin: left;
+	transition: width 0.35s ease;
+	z-index: -1;
+}
+
+.outputhead:hover::after {
+	width: 100%;
+	border-radius: 21px;
+}
+
+.outputhead h4 {
+	font-size: 16px;
+}
+
+.outputbody {
+	height: 355px;
+	font-size: 15px;
+	padding: 20px;
+	width: 420px;
+}
 </style>
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
+	<li class="list-group-item">
 	<div class="row">
 		<div class="col-md-6" style="text-align: left;">
 			<label>Select Diverter Type Based On Injection Plan</label><br>
 			<span>
 				<button type="button" id="bd0" class="btn" data-color="success">
 					Viscosified <input name="bdname" id="0" type="radio"
-						value="Viscosified" hidden />
+						value="Viscosified"  hidden/>
 				</button>
 			</span> <span>
 				<button type="button" id="bd1" class="btn" data-color="success">
@@ -383,7 +466,7 @@ $(".tdedit").click(function(){
 			</span> <span>
 				<button type="button" id="bd2" class="btn" data-color="success">
 					Particulate <input name="bdname" id="2" type="radio"
-						value="Particulate" hidden />
+						value="Particulate"  hidden/>
 				</button>
 			</span> <span>
 				<button type="button" id="bd3" class="btn" data-color="success">
@@ -391,140 +474,198 @@ $(".tdedit").click(function(){
 				</button>
 			</span>
 		</div>
-	</div>
-	<div lcass="row">
+
+
 		<div class="col-md-6" style="text-align: left;">
 			<label>Select Diverters For Sensitivity</label><br> <span>
 				<button type="button" id="td0" class="btn btn-default">
 					Viscosified &nbsp;<input name="tdname" id="4" type="checkbox"
-						value="VISCOSIFIED" hidden/>
+						value="VISCOSIFIED" hidden />
 				</button>
 			</span> <span>
 				<button type="button" id=td1 class="btn btn-default">
 					Foamed &nbsp; <input name="tdname" id="5" type="checkbox"
-						value="FOAMED" hidden/>
+						value="FOAMED" hidden />
 				</button>
 			</span> <span>
 				<button type="button" id="td2" class="btn btn-default">
 					Particulate &nbsp; <input name="tdname" id="6" type="checkbox"
-						value="PARTICULATE" hidden/>
+						value="PARTICULATE" hidden />
 				</button>
 			</span> <span>
 				<button type="button" id="td3" class="btn btn-default">
-					Ves &nbsp;<input name="tdname" id="7" type="checkbox" value="VES" hidden/>
+					Ves &nbsp;<input name="tdname" id="7" type="checkbox" value="VES"
+						hidden />
 				</button>
 			</span>
 		</div>
 	</div>
-
-	<!-- Base Diverter ROW -->
+</li><br>
+<li class="list-group-item">
 	<div class="row ">
-		<div class="col-md-12 text-left">
-			<h4 style="text-decoration: underline; font-weight: bold;">Base
-				Diverter Properties:</h4>
-		</div>
-	</div>
-	<div class="row ">
-		<div class="col-md-6 text-left">
-			<table
-				class="table table-bordered table-striped jambo_table bulk_action text-left">
-				<tbody>
-					<tr class="even pointer" th:each="bd: ${bdlist}">
-						<th class=" " th:text="${bd.bdname}"></th>
-						<td class=" " th:text="${bd.bdvalue}"></td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="2" class="text-center"><button
-								th:style="'width:auto'" id="bdedit" type="button"
-								class="btn btn-primary">Edit</button></td>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-	</div>
 
-	<!-- Test DIVERTER ROW -->
-	<div class="row">
-		<div class="col-md-6 text-left">
-			<h4 style="text-decoration: underline; font-weight: bold;">Test
-				Diverter Properties:</h4>
-			<label
-				th:if="${viscolist?.isEmpty() && foamlist?.isEmpty() && partlist?.isEmpty() && veslist?.isEmpty() }">No
-				Test Diverter Selected</label>
-		</div>
-	</div>
+		<div class="col-md-6" style="margin-bottom: 20px;margin-top: 20px;">
+			<div class="output">
+				<div class="outputhead" id="1015"
+					style="cursor: pointer; text-transform: uppercase;">
+					<h4>
+						<i id="ar8" style="position: absolute; left: 20px;"
+							class="fa fa-caret-down"></i>[[${session.bd}]]  BASE<i
+							style="position: absolute; right: 20px;" aria-hidden="true"></i>
+					</h4>
+				</div>
+				<div class="outputbody" id="1016" style="display: none;">
+					<div style="overflow: hidden;">
+					
 
-	<div class="row">
-		<div class="col-md-6" th:if="${!viscolist?.isEmpty()}">
-			<table class="table table-bordered jambo_table bulk_action text-left">
-				<tbody>
-					<tr class="even pointer" th:each="tdvisco: ${viscolist}">
-						<th th:text="${tdvisco.dname}"></th>
-						<td th:text="${tdvisco.dvalue}"></td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="2" class="text-center"><button
-								th:style="'width:auto'" type="button"
-								class="tdedit btn btn-primary" value="VISCOSIFIED">Edit</button></td>
-					</tr>
-				</tfoot>
-			</table>
+						<table
+							class="table table-bordered table-striped jambo_table bulk_action text-left">
+							<tbody>
+								<tr class="even pointer" th:each="bd: ${bdlist}">
+									<th class=" " th:text="${bd.bdname}"></th>
+									<td class=" " th:text="${bd.bdvalue}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<center>
+						<button th:style="'width:auto'" id="bdedit" type="button"
+							class="btn btn-primary">Edit</button>
+					</center>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6" th:if="${!foamlist?.isEmpty()}">
-			<table class="table table-bordered jambo_table bulk_action text-left">
-				<tbody>
-					<tr class="even pointer" th:each="tdfoamed: ${foamlist}">
-						<th th:text="${tdfoamed.dname}"></th>
-						<td th:text="${tdfoamed.dvalue}"></td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="2" class="text-center"><button
-								th:style="'width:auto'" type="button"
-								class="tdedit btn btn-primary" value="FOAMED">Edit</button></td>
-					</tr>
-				</tfoot>
-			</table>
+
+		<div class="col-md-6" style="margin-bottom: 20px;margin-top: 20px;"
+			th:if="${!viscolist?.isEmpty()}">
+			<div class="output">
+				<div class="outputhead" id="1005" style="cursor: pointer;">
+					<h4>
+						<i id="ar3" style="position: absolute; left: 20px;"
+							class="fa fa-caret-down"></i>VISCOSIFIED <i
+							style="position: absolute; right: 20px;" aria-hidden="true"></i>
+					</h4>
+				</div>
+				<div class="outputbody" id="1006" style="display: none;">
+					<div style="overflow: hidden;">
+
+						
+						<table
+							class="table table-bordered jambo_table bulk_action text-left">
+							<tbody>
+								<tr class="even pointer" th:each="tdvisco: ${viscolist}">
+									<th th:text="${tdvisco.dname}"></th>
+									<td th:text="${tdvisco.dvalue}"></td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+					<center>
+						<button th:style="'width:auto'" type="button"
+							class="tdedit btn btn-primary" value="VISCOSIFIED">Edit</button>
+					</center>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6" th:if="${!partlist?.isEmpty()}">
-			<table class="table table-bordered jambo_table bulk_action text-left">
-				<tbody>
-					<tr class="even pointer" th:each="tdparticulate: ${partlist}">
-						<th th:text="${tdparticulate.dname}"></th>
-						<td th:text="${tdparticulate.dvalue}"></td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="2" class="text-center"><button
-								th:style="'width:auto'" type="button"
-								class="tdedit btn btn-primary" value="PARTICULATE">Edit</button></td>
-					</tr>
-				</tfoot>
-			</table>
+
+		<div class="col-md-6" style="margin-bottom: 20px;margin-top: 20px;"
+			th:if="${!foamlist?.isEmpty()}">
+			<div class="output">
+				<div class="outputhead" id="1011" style="cursor: pointer;">
+					<h4>
+						<i id="ar6" style="position: absolute; left: 20px;"
+							class="fa fa-caret-down"></i>FOAMED<i
+							style="position: absolute; right: 20px;" aria-hidden="true"></i>
+					</h4>
+				</div>
+				<div class="outputbody" id="1012" style="display: none;">
+					<div style="overflow: hidden;">
+
+						<table
+							class="table table-bordered jambo_table bulk_action text-left">
+							<tbody>
+								<tr class="even pointer" th:each="tdfoamed: ${foamlist}">
+									<th th:text="${tdfoamed.dname}"></th>
+									<td th:text="${tdfoamed.dvalue}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<center>
+						<button th:style="'width:auto'" type="button"
+							class="tdedit btn btn-primary" value="FOAMED">Edit</button>
+					</center>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6" th:if="${!veslist?.isEmpty()}">
-			<table class="table table-bordered jambo_table bulk_action text-left">
-				<tbody>
-					<tr class="even pointer" th:each="tdves: ${veslist}">
-						<th th:text="${tdves.dname}"></th>
-						<td th:text="${tdves.dvalue}"></td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="2" class="text-center"><button
-								th:style="'width:auto'" type="button"
-								class="tdedit btn btn-primary" value="VES">Edit</button></td>
-					</tr>
-				</tfoot>
-			</table>
+
+		<div class="col-md-6" style="margin-bottom: 20px;margin-top: 20px;"
+			th:if="${!partlist?.isEmpty()}">
+			<div class="output">
+				<div class="outputhead" id="1019" style="cursor: pointer;">
+					<h4>
+						<i id="ar10" style="position: absolute; left: 20px;"
+							class="fa fa-caret-down"></i>PARTICULATE <i
+							style="position: absolute; right: 20px;" aria-hidden="true"></i>
+					</h4>
+				</div>
+				<div class="outputbody" id="1020" style="display: none;">
+					<div style="overflow: hidden;">
+
+						
+						<table
+							class="table table-bordered jambo_table bulk_action text-left">
+							<tbody>
+								<tr class="even pointer" th:each="tdparticulate: ${partlist}">
+									<th th:text="${tdparticulate.dname}"></th>
+									<td th:text="${tdparticulate.dvalue}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<center>
+						<button th:style="'width:auto'" type="button"
+							class="tdedit btn btn-primary" value="PARTICULATE">Edit</button>
+					</center>
+				</div>
+			</div>
 		</div>
-	</div>
+
+		<div class="col-md-6" style="margin-bottom: 20px;margin-top: 20px;"
+			th:if="${!veslist?.isEmpty()}">
+			<div class="output">
+				<div class="outputhead" id="1017" style="cursor: pointer;">
+					<h4>
+						<i id="ar9" style="position: absolute; left: 20px;"
+							class="fa fa-caret-down"></i>VES <i
+							style="position: absolute; right: 20px;" aria-hidden="true"></i>
+					</h4>
+				</div>
+				<div class="outputbody" id="1018" style="display: none;">
+					<div style="overflow: hidden;">
+
+						
+						<table
+							class="table table-bordered jambo_table bulk_action text-left">
+							<tbody>
+								<tr class="even pointer" th:each="tdves: ${veslist}">
+									<th th:text="${tdves.dname}"></th>
+									<td th:text="${tdves.dvalue}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<center>
+						<button th:style="'width:auto'" type="button"
+							class="tdedit btn btn-primary" value="VES">Edit</button>
+					</center>
+				</div>
+			</div>
+		</div>
+</div>
+</li>
 </body>
 </html>

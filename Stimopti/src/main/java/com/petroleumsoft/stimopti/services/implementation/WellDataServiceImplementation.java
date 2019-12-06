@@ -13,7 +13,9 @@ import org.springframework.util.ResourceUtils;
 
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.modal.WellData;
+import com.petroleumsoft.stimopti.modal.WellDataCompletionType;
 import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
+import com.petroleumsoft.stimopti.repo.WellDataCompletionTypeRepo;
 import com.petroleumsoft.stimopti.repo.WellDataRepo;
 import com.petroleumsoft.stimopti.services.WellDataService;
 
@@ -24,9 +26,11 @@ public class WellDataServiceImplementation implements WellDataService {
 	WellDataRepo wellDataRepo;
 	@Autowired
 	ProjectDetailsRepository projectDetailsRepo;
+	@Autowired
+	WellDataCompletionTypeRepo completionTypeRepo;
 
 	@Override
-	public List<WellData> saveWell(String wp, Integer pid) {
+	public List<WellData> saveWellProfile(String wp, Integer pid) {
 		ProjectDetails projectDetails = projectDetailsRepo.findById(pid).orElse(null);
 		List<WellData> wellDatalist = new ArrayList<WellData>();
 		if (wellDataRepo.findByProjectDetails(projectDetails) != null) {
@@ -90,6 +94,70 @@ public class WellDataServiceImplementation implements WellDataService {
 			return "Slanted";
 		}
 		return null;
+	}
+
+	@Override
+	public void saveCompletionType(String ct, Integer pid) {
+		ProjectDetails projectDetails = projectDetailsRepo.findById(pid).orElse(null);
+		List<WellDataCompletionType> types = new ArrayList<>();
+		if(!completionTypeRepo.findByProjectDetails(projectDetails).isEmpty()) {
+			completionTypeRepo.deleteByProjectDetails(projectDetails);
+		}
+		try {
+			File file = ResourceUtils.getFile("classpath:config/CarbonateDefaultData.txt");
+			BufferedReader br = null;
+			String line = "";
+			br = new BufferedReader(new FileReader(file));
+			while ((line = br.readLine()) != null) {
+				if (line.startsWith(ct)) {
+					while ((line = br.readLine()) != null) {
+						if (line.startsWith("/")) {
+							break;
+						}
+						WellDataCompletionType ctype = new WellDataCompletionType();
+						String[] data = line.split("=");
+						ctype.setCn(data[0]);
+						ctype.setCv(data[1]);
+						ctype.setProjectDetails(projectDetails);
+						types.add(ctype);
+					}
+					completionTypeRepo.saveAll(types);
+					break;
+				}
+			}
+			br.close();
+		} catch (Exception fne) {
+			fne.printStackTrace();
+		}
+	}
+
+	@Override
+	public String getWellCompletionType(Integer pid) {
+		ProjectDetails projectDetails = projectDetailsRepo.findById(pid).orElse(null);
+		List<WellDataCompletionType> completiontypes =completionTypeRepo.findByProjectDetails(projectDetails);
+		String type="";
+		for(int i=0;i<completiontypes.size();i++) {
+			if(completiontypes.get(i).getCn().equalsIgnoreCase("Completion Type")) {
+				type=completiontypes.get(i).getCv();
+			}
+		}
+		return type;
+	}
+
+	@Override
+	public void updateCompletionType(Integer pid, List<String> cn, List<String> cv) {
+		System.out.println(">>> "+pid);
+		System.out.println(">>> "+cn);
+		System.out.println(">>> "+cv);
+		ProjectDetails projectDetails = projectDetailsRepo.findById(pid).orElse(null);
+		List<WellDataCompletionType> completiontypes =completionTypeRepo.findByProjectDetails(projectDetails);
+		List<WellDataCompletionType> types = new ArrayList<>();
+		for(int i=0;i<completiontypes.size();i++) {
+			WellDataCompletionType data=completiontypes.get(i);
+			data.setCv(cv.get(cn.indexOf(completiontypes.get(i).getCn())));
+			types.add(data);
+		}
+		completionTypeRepo.saveAll(types);
 	}
 
 }

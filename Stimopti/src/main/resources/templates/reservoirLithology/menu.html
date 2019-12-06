@@ -29,13 +29,21 @@ html * {
 	border-radius: 50px;
 	border: none;
 	box-shadow: 0.5px 0.5px 17px 0px #04040478;
+	
 }
-
+.bnm{
+font-weight: normal !important;
+}
+.bnm::first-letter {
+    text-transform: uppercase;
+    font-size:1em;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .onetmenu:hover {
 	letter-spacing: 0.02em;
 	box-shadow: 0.5px 0.5px 17px 0px #04040478;
 }
-
 .onetmenu::after {
 	position: absolute;
 	content: '';
@@ -95,6 +103,7 @@ to {
 	line-height: 30px;
 	color: white;
 }
+
 </style>
 <script th:inline="javascript">
 var id ;
@@ -337,23 +346,23 @@ id =[[${details.id}]];
 								<div class="col-md-12 menu-down">
 									<button id="rl" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Geophysical
-										Data
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Geophysical 
+										Data</label>
 									</button>
 									<button id="ip" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Injection
-										Plan
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Injection
+										Plan</label>
 									</button>
 									<button id="wd" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table"></i>&nbsp;&nbsp;Well
-										Data
+										<i class="fa fa-table"></i>&nbsp;&nbsp;<label class="bnm">Well
+										Data</label>
 									</button>
 									<button id="pe" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Pumping
-										Equipment
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Pumping
+										Equipment</label>
 									</button>
 								</div>
 
@@ -362,23 +371,23 @@ id =[[${details.id}]];
 								<div class="col-md-12 menu-down">
 									<button id="ap" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Acid
-										Properties
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Acid
+										Properties</label>
 									</button>
 									<button id="cf" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Core
-										Flood Data
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Core
+										Flood Data</label>
 									</button>
 									<button id="dp" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Diverter
-										Properties
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Diverter
+										Properties</label>
 									</button>
 									<button id="rfp" class="onetmenu" 
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Reservoir
-										Fluid Properties
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Reservoir
+										Fluid Properties</label>
 									</button>
 								</div>
 
@@ -387,18 +396,18 @@ id =[[${details.id}]];
 								<div class="col-md-12 menu-down">
 									<button id="ph" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Potential
-										Hazard (for Recipe Design)
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Potential
+										Hazard (for Recipe Design)</label>
 									</button>
 									<button id="fd" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Formation
-										Damage & Mineralogy
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Formation
+										Damage & Mineralogy</label>
 									</button>
 									<button id="cd" class="onetmenu"
 										data-toggle="modal">
-										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Completion
-										Data
+										<i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;<label class="bnm">Completion
+										Data</label>
 									</button>
 								</div>
 							</div>

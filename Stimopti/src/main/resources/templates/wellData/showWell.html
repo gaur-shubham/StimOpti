@@ -3,10 +3,13 @@
 <head>
 <script th:inline="javascript">
 var pid=[[${session.details.id}]];
+var light=[[${session.wp}]];
+var ctype=[[${session.ct}]];
 
-$("#edit").click(function(){
+
+$("#editwp").click(function(){
 	$.ajax({
-		url : "/wellData/edit",
+		url : "/wellData/editwp",
 		type : "POST",
 		data:{pid:pid},
 		success:function(data){
@@ -14,7 +17,17 @@ $("#edit").click(function(){
 			$("#exampleModal").modal("show");
 		}
 	});	
-	
+});
+$("#editct").click(function(){
+	$.ajax({
+		url : "/wellData/editct",
+		type : "POST",
+		data:{pid:pid},
+		success:function(data){
+			$("#loadtable").html(data);
+			$("#exampleModal").modal("show");
+		}
+	});	
 });
 
 $("#td0").click(function(){
@@ -23,7 +36,7 @@ $("#td0").click(function(){
      $("#0").prop('checked',true); 
 		 var wp=$("#0").val();
 		$.ajax({
-			url : "/wellData/changeWell",
+			url : "/wellData/changewellprofile",
 			type : "POST",
 			data:{pid:pid,wp:wp},
 			success:function(data){
@@ -50,7 +63,7 @@ $("#td1").click(function(){
 	     $("#1").prop('checked',true); 
 			 var wp=$("#1").val();
 			$.ajax({
-				url : "/wellData/changeWell",
+				url : "/wellData/changewellprofile",
 				type : "POST",
 				data:{pid:pid,wp:wp},
 				success:function(data){
@@ -77,7 +90,7 @@ $("#td2").click(function(){
 	     $("#2").prop('checked',true); 
 			 var wp=$("#2").val();
 			$.ajax({
-				url : "/wellData/changeWell",
+				url : "/wellData/changewellprofile",
 				type : "POST",
 				data:{pid:pid,wp:wp},
 				success:function(data){
@@ -97,91 +110,429 @@ $("#td2").click(function(){
     .addClass('btn-default');
 	
 });
+$("#td3").click(function(){
+	if(!$("#3").is(':checked')){
+		 $("#3").prop('checked',true); 
+	} 
+	$("#td3")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+	$("#td4")
+   .removeClass('btn-success')
+   .addClass('btn-default');
+});
+$("#td4").click(function(){
+	if(!$("#4").is(':checked')){
+		 $("#4").prop('checked',true); 
+	} 
+	$("#td4")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+	$("#td3")
+   .removeClass('btn-success')
+   .addClass('btn-default');
+});
 
+$("#td5").click(function(){
+	if(!$("#5").is(':checked')){
+		 $("#5").prop('checked',true);
+		 var ct=$("#5").val();
+			$.ajax({
+				url : "/wellData/changecomptype",
+				type : "POST",
+				data:{pid:pid,ct:ct},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			}); 
+	} 
+	$("#td5")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+	$("#td6")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td7")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td8")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td9")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	
+});
+$("#td6").click(function(){
+	if(!$("#6").is(':checked')){
+		 $("#6").prop('checked',true); 
+		 var ct=$("#6").val();
+			$.ajax({
+				url : "/wellData/changecomptype",
+				type : "POST",
+				data:{pid:pid,ct:ct},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			}); 
+	} 
+	$("#td6")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+	$("#td5")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td7")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td8")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td9")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	
+});
+$("#td7").click(function(){
+	if(!$("#7").is(':checked')){
+		 $("#7").prop('checked',true); 
+		 var ct=$("#7").val();
+			$.ajax({
+				url : "/wellData/changecomptype",
+				type : "POST",
+				data:{pid:pid,ct:ct},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			}); 
+	} 
+	$("#td7")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+	$("#td6")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td5")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td8")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td9")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	
+});
+$("#td8").click(function(){
+	if(!$("#8").is(':checked')){
+		 $("#8").prop('checked',true); 
+		 var ct=$("#8").val();
+			$.ajax({
+				url : "/wellData/changecomptype",
+				type : "POST",
+				data:{pid:pid,ct:ct},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			}); 
+	} 
+	$("#td8")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+	$("#td6")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td7")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td5")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td9")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
 
-var light=[[${session.wp}]];
+});
+$("#td9").click(function(){
+	if(!$("#9").is(':checked')){
+		 $("#9").prop('checked',true); 
+		 var ct=$("#9").val();
+			$.ajax({
+				url : "/wellData/changecomptype",
+				type : "POST",
+				data:{pid:pid,ct:ct},
+				success:function(data){
+					$("#loadtable").html(data);
+					$("#exampleModal").modal("show");
+				}
+			}); 
+	} 
+	$("#td9")
+   .removeClass('btn-default')
+   .addClass('btn-success');
+	$("#td6")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td7")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td8")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+	$("#td5")
+	   .removeClass('btn-success')
+	   .addClass('btn-default');
+});
+
 if(light=="Vertical"){
 	 $("#0").prop('checked',true); 	
 	 $("#td0")
 	    .removeClass('btn-default')
 	    .addClass('btn-success');
-		$("#td1")
-	    .removeClass('btn-success')
-	    .addClass('btn-default');
-		$("#td2")
-	    .removeClass('btn-success')
-	    .addClass('btn-default');
 }
 if(light=="Horizontal"){
 	 $("#1").prop('checked',true); 	
 	 $("#td1")
 	    .removeClass('btn-default')
 	    .addClass('btn-success');
-		$("#td0")
-	    .removeClass('btn-success')
-	    .addClass('btn-default');
-		$("#td2")
-	    .removeClass('btn-success')
-	    .addClass('btn-default');
 }
 if(light=="Slanted"){
 	 $("#2").prop('checked',true); 	
 	 $("#td2")
 	    .removeClass('btn-default')
 	    .addClass('btn-success');
-		$("#td1")
-	    .removeClass('btn-success')
-	    .addClass('btn-default');
-		$("#td0")
-	    .removeClass('btn-success')
-	    .addClass('btn-default');
 }
+if(ctype=="Open Hole"){
+	$("#5").prop('checked',true); 	
+	$("#td5")
+	   .removeClass('btn-default')
+	   .addClass('btn-success');
+}
+if(ctype=="Cased Hole"){
+	$("#6").prop('checked',true); 	
+	$("#td6")
+	   .removeClass('btn-default')
+	   .addClass('btn-success');
+}
+if(ctype=="Slotted Liner"){
+	$("#7").prop('checked',true); 	
+	$("#td7")
+	   .removeClass('btn-default')
+	   .addClass('btn-success');
+}
+if(ctype=="Limited Entry"){
+	$("#8").prop('checked',true); 	
+	$("#td8")
+	   .removeClass('btn-default')
+	   .addClass('btn-success');
+}
+if(ctype=="Sliding Sleeve"){
+	$("#9").prop('checked',true); 	
+	$("#td9")
+	   .removeClass('btn-default')
+	   .addClass('btn-success');
+}
+
+$("#1013").click(function(){
+	$("#1014").slideToggle();
+	$('#ar7').toggleClass('fa-caret-down fa-caret-right');
+	});
+$("#1005").click(function(){
+	$("#1006").slideToggle();
+	$('#ar3').toggleClass('fa-caret-down fa-caret-right');
+	});
 </script>
+<style>
+.output{
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+    }
+    .outputhead{
+    letter-spacing: 0.01em;
+    position: relative;
+    text-align: center;
+    background: none;
+    color: white;
+    opacity: 0.95;
+    background: #3c8dbc;
+    padding: 2px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: none;
+    transition: all 0.35s linear;
+    outline: none;
+    width:420px;
+    }
+    .outputhead:hover {
+    letter-spacing: 0.02em;
+    color: black;
+    }
+
+    .outputhead::after {
+    position: absolute;
+    content: '';
+    top:0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-image: linear-gradient(to right, #3c8dbc,#4cafe8);
+    border-radius: 50px;
+    transform-origin:left;
+    transition:width 0.35s ease;
+    z-index:-1;
+    }
+
+    .outputhead:hover::after {
+    width: 100%;
+    border-radius: 50px;
+    }
+    .outputhead h4{
+    font-size: 16px;
+    }
+
+    .outputbody{
+    height: 400px;
+    font-size: 15px;
+    padding: 20px;
+    width:420px;
+    }
+</style>
 </head>
 <body class="nav-md" th:inline="text">
 	<!-- top tiles -->
-	<div>
-		<form>
+			<li class="list-group-item">
 			<div class="row ">
-				<div class="col-md-12" style="margin-bottom: 20px;">
-
+				<div class="col-md-4 text-left" style="margin-bottom: 20px;">
+				<label>Select Well Type</label><br>
+				<span>
+						<button type="button" id="td3" class="btn btn-default">
+							Producer &nbsp;<input name="wt" id="3" type="radio" value="Producer" hidden/>
+						</button>
+					</span> <span>
+						<button type="button" id="td4" class="btn btn-default">
+							Injector &nbsp;<input name="wt" id="4" type="radio"
+								value="Injector" hidden/>
+						</button>
+					</span>
+				</div>
+				<div class="col-md-6 text-left" style="margin-bottom: 20px;">
+				<label>Select Well Profile</label><br>
 						<span>
-						<button type="button" id="td0" class="btn" data-color="success">
-							Vertical &nbsp;<input name="wv" id="0" type="radio" value="Vertical" />
+						<button type="button" id="td0" class="btn btn-default">
+							Vertical &nbsp;<input name="wp" id="0" type="radio" value="Vertical" hidden/>
 						</button>
 					</span> <span>
-						<button type="button" id="td1" class="btn" data-color="success">
-							Horizontal &nbsp;<input name="wv" id="1" type="radio"
-								value="Horizontal" />
+						<button type="button" id="td1" class="btn btn-default">
+							Horizontal &nbsp;<input name="wp" id="1" type="radio"
+								value="Horizontal" hidden/>
 						</button>
 					</span> <span>
-						<button type="button" id="td2" class="btn" data-color="success">
-							Slanted &nbsp;<input name="wv" id="2" type="radio" value="Slanted" />
+						<button type="button" id="td2" class="btn btn-default">
+							Slanted &nbsp;<input name="wp" id="2" type="radio" value="Slanted" hidden/>
+						</button>
+					</span>
+				</div>
+				<div class="col-md-8 text-left" style="margin-bottom: 20px;">
+				<label>Select Completion Type</label><br>
+						<span>
+						<button type="button" id="td5" class="btn btn-default">
+							Open Hole &nbsp;<input name="ct" id="5" type="radio" value="Open Hole" hidden/>
+						</button>
+					</span> <span>
+						<button type="button" id="td6" class="btn btn-default">
+							Cased Hole &nbsp;<input name="ct" id="6" type="radio" value="Cased Hole" hidden/>
+						</button>
+					</span> <span>
+						<button type="button" id="td7" class="btn btn-default">
+							Slotted Liner &nbsp;<input name="ct" id="7" type="radio" value="Slotted Liner" hidden/>
+						</button>
+					</span>
+					</span> <span>
+						<button type="button" id="td8" class="btn btn-default">
+							Limited Entry &nbsp;<input name="ct" id="8" type="radio" value="Limited Entry" hidden/>
+						</button>
+					</span>
+					</span> <span>
+						<button type="button" id="td9" class="btn btn-default">
+							Sliding Sleeve &nbsp;<input name="ct" id="9" type="radio" value="Sliding Sleeve" hidden/>
 						</button>
 					</span>
 				</div>
 			</div>
-
-		</form>
-	</div>
-
+</li><br>
+	
+<li class="list-group-item">	
 	<div class="row text-left">
-		<h3 class="text-center">WELL DATA</h3>
-		<table class="table table-bordered table-striped jambo_table bulk_action">
 
+		<div class="col-md-6" style="margin-bottom: 20px; margin-top: 13px;">
+			<div class="output">
+				<div class="outputhead" id="1013" style="cursor: pointer;">
+					<h4>
+						<i id="ar7" style="position: absolute; left: 20px;"
+							class="fa fa-caret-right"></i>[[${session.wp}]]<i
+							style="position: absolute; right: 20px;" aria-hidden="true"></i>
+					</h4>
+				</div>
+				<div class="outputbody" id="1014"
+					style="height: 60%;">
+					<div style="overflow: hidden;">
+						<table
+							class="table table-bordered table-striped jambo_table bulk_action">
+							<tbody>
+								<tr class="even pointer" th:each="well: ${wellDatalist}">
+									<td class=" " th:text="${well.wp}"></td>
+									<td class=" " th:text="${well.wv}"></td>
+							</tbody>
+						</table>
+					</div>
+					<center>
+						<button id="editwp" th:style="'width:20%;'" type="button"
+							class="btn btn-primary">Edit</button>
+					</center>
+				</div>
+			</div>
+		</div>
 
-			<tbody>
-				<tr class="even pointer" th:each="well: ${wellDatalist}">
-					<td class=" " th:text="${well.wp}"></td>
-					<td class=" " th:text="${well.wv}"></td>
-			</tbody>
-
-		</table>
-<div class="row text-center"> 
-		<button id="edit" th:style="'width:20%;'" type="button"
-			class="btn btn-primary">Edit</button>
+			<div class="col-md-6" style="margin-bottom: 20px; margin-top: 13px;" th:if="${!compType.isEmpty()}">
+				<div class="output">
+					<div class="outputhead" id="1005" style="cursor: pointer;">
+						<h4>
+							<i id="ar3" style="position: absolute; left: 20px;"
+								class="fa fa-caret-right"></i>[[${session.ct}]]<i
+								style="position: absolute; right: 20px;" aria-hidden="true"></i>
+						</h4>
+					</div>
+					<div class="outputbody" id="1006"
+						style="height: 60%;">
+						<div style="overflow: hidden;">
+							<table
+								class="table table-bordered table-striped jambo_table bulk_action">
+								<tbody>
+									<tr class="even pointer" th:each="comp: ${compType}">
+										<td class=" " th:text="${comp.cn}"></td>
+										<td class=" " th:text="${comp.cv}"></td>
+								</tbody>
+							</table>
+						</div>
+						<center>
+							<button id="editct" th:style="'width:auto;'" type="button"
+								class="btn btn-primary">Edit</button>
+						</center>
+					</div>
+				</div>
 			</div>
 
-	</div>
+		</div>
+	</li>
 </body>
 </html>

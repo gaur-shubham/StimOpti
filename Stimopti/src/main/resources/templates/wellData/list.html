@@ -10,7 +10,7 @@ $("#td0").click(function(){
      $("#0").prop('checked',true); 
 		 var wp=$("#0").val();
 		$.ajax({
-			url : "/wellData/changeWell",
+			url : "/wellData/changewellprofile",
 			type : "POST",
 			data:{pid:pid,wp:wp},
 			success:function(data){
@@ -37,7 +37,7 @@ $("#td1").click(function(){
 	     $("#1").prop('checked',true); 
 			 var wp=$("#1").val();
 			$.ajax({
-				url : "/wellData/changeWell",
+				url : "/wellData/changewellprofile",
 				type : "POST",
 				data:{pid:pid,wp:wp},
 				success:function(data){
@@ -64,7 +64,7 @@ $("#td2").click(function(){
 	     $("#2").prop('checked',true); 
 			 var wp=$("#2").val();
 			$.ajax({
-				url : "/wellData/changeWell",
+				url : "/wellData/changewellprofile",
 				type : "POST",
 				data:{pid:pid,wp:wp},
 				success:function(data){
@@ -97,17 +97,17 @@ $("#td2").click(function(){
 				<div class="col-md-12" style="margin-bottom: 20px;">
 
 					<span>
-						<button type="button" id="td0" class="btn" data-color="success">
-							Vertical &nbsp;<input name="wv" id="0" type="radio" value="Vertical" />
+						<button type="button" id="td0" class="btn btn-default">
+							Vertical &nbsp;<input name="wv" id="0" type="radio" value="Vertical" hidden/>
 						</button>
 					</span> <span>
-						<button type="button" id="td1" class="btn" data-color="success">
+						<button type="button" id="td1" class="btn btn-default">
 							Horizontal &nbsp;<input name="wv" id="1" type="radio"
-								value="Horizontal" />
+								value="Horizontal" hidden/>
 						</button>
 					</span> <span>
-						<button type="button" id="td2" class="btn" data-color="success">
-							Slanted &nbsp;<input name="wv" id="2" type="radio" value="Slanted" />
+						<button type="button" id="td2" class="btn btn-default">
+							Slanted &nbsp;<input name="wv" id="2" type="radio" value="Slanted" hidden/>
 						</button>
 					</span>
 				</div>

@@ -113,6 +113,9 @@ public class ProjectDetails {
 
 	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
 	private Collection<PotentialHazard> hazard;
+
+	@OneToMany(mappedBy = "projectDetails", cascade = CascadeType.ALL)
+	private Collection<WellDataCompletionType> wdCompType;
 	/* End of the Block */
 
 	/* Getters Setters for deleteByProjectDetails */

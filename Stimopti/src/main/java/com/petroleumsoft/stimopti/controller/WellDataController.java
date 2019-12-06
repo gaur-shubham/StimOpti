@@ -1,5 +1,6 @@
 package com.petroleumsoft.stimopti.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.modal.WellData;
 import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
+import com.petroleumsoft.stimopti.repo.WellDataCompletionTypeRepo;
 import com.petroleumsoft.stimopti.repo.WellDataRepo;
 import com.petroleumsoft.stimopti.services.WellDataService;
 
@@ -26,6 +30,8 @@ public class WellDataController {
 	private ProjectDetailsRepository projectDetailsRepository;
 	@Autowired
 	private WellDataRepo wellDataRepo;
+	@Autowired
+	private WellDataCompletionTypeRepo completionTypeRepo;
 
 	private static final String map = "wellData";
 
@@ -37,31 +43,57 @@ public class WellDataController {
 			return map + "/list";
 		}
 		session.setAttribute("wp", wellDataService.getWellType(pid));
+		session.setAttribute("ct", wellDataService.getWellCompletionType(pid));
 		model.addAttribute("wellDatalist", wellDataRepo.findByProjectDetails(projectDetails));
+		model.addAttribute("compType", completionTypeRepo.findByProjectDetails(projectDetails));
 		return map + "/showWell";
 	}
 
-	@PostMapping(value = "/changeWell")
-	public String changeWell(Model model, @RequestParam("wp") String wp, @RequestParam("pid") Integer pid,
-			HttpSession session) {
-		List<WellData> wellDatalist = wellDataService.saveWell(wp, pid);
-		model.addAttribute("wellDatalist", wellDatalist);
-		session.setAttribute("wp", wp);
-		return map + "/showWell";
+	@PostMapping(value = "/changewellprofile")
+	public String changeWellProfile(Model model, @RequestParam("wp") String wp, @RequestParam("pid") Integer pid,
+			RedirectAttributes redirectAttributes) {
+		wellDataService.saveWellProfile(wp, pid);
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/wellData/list";
 	}
 
-	@PostMapping("/edit")
-	public String edit(@RequestParam("pid") Integer pid, Model model) {
+	@PostMapping("/editwp")
+	public String editWellProfile(@RequestParam("pid") Integer pid, Model model) {
 		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		model.addAttribute("wellDatalist", wellDataRepo.findByProjectDetails(details));
+		model.addAttribute("compType", new ArrayList<>());
+		return map + "/edit";
+	}
+	@PostMapping("/editct")
+	public String editCompType(@RequestParam("pid") Integer pid, Model model) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		model.addAttribute("wellDatalist", new ArrayList<>());
+		model.addAttribute("compType", completionTypeRepo.findByProjectDetails(details));
 		return map + "/edit";
 	}
 	
-	@PostMapping("/updateWell")
-	public String updateWell(Model model,@RequestParam("pid") Integer pid,@RequestParam("wv") List<String> wv,@RequestParam("wp") List<String> wp) {
+	@PostMapping("/updatewellprofile")
+	public String updateWellProfile(Model model,@RequestParam("pid") Integer pid,
+			@RequestParam("wv") List<String> wv,@RequestParam("wp") List<String> wp,
+			RedirectAttributes redirectAttributes) {
 		wellDataService.saveUpdate(pid, wp, wv);
-		ProjectDetails projectDetails = projectDetailsRepository.findById(pid).orElse(null);
-		model.addAttribute("wellDatalist", wellDataRepo.findByProjectDetails(projectDetails));
-		return map + "/showWell";
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/wellData/list";
+	}
+	@PostMapping("/updatecomptype")
+	public String updateCompletionType(Model model,@RequestParam("pid") Integer pid,
+			@RequestParam("cv") List<String> cv,@RequestParam("cn") List<String> cn,
+			RedirectAttributes redirectAttributes) {
+		wellDataService.updateCompletionType(pid, cn, cv);
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/wellData/list";
+	}
+	
+	@PostMapping("/changecomptype")
+	public String changeCompletionType(@RequestParam("ct") String ct, @RequestParam("pid") Integer pid,
+			RedirectAttributes redirectAttributes) {
+		wellDataService.saveCompletionType(ct, pid);
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/wellData/list";
 	}
 }

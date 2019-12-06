@@ -11,24 +11,36 @@ border:none;
 <script th:inline="javascript">
 var pid=[[${session.details.id}]];
 
-$("#update").click(function(){
-	url="/wellData/updateWell"
+$("#updatewp").click(function(){
+	url="/wellData/updatewellprofile"
 	$.ajax({
 		url:url,
 		type:'POST',
-		data:$("#updateWell").serialize()+"&pid="+pid,,
+		data:$("#updateWellProfile").serialize()+"&pid="+pid,
 		success:function(res){
 			$("#loadtable").html(res);
 			$("#exampleModal").modal("show");
 		}
 	});
 });
+$("#updatect").click(function(){
+	url="/wellData/updatecomptype"
+	$.ajax({
+		url:url,
+		type:'POST',
+		data:$("#updateCompType").serialize()+"&pid="+pid,
+		success:function(res){
+			$("#loadtable").html(res);
+			$("#exampleModal").modal("show");
+		}
+	});
+});
+
 </script>
 </head>
 <body>
-	<form id="updateWell">
+	<form id="updateWellProfile" th:if="${!wellDatalist.isEmpty()}">
 		<div class="row">
-		<h3 class="text-center">WELL DATA</h3>
 			<table class="table table-bordered table-striped jambo_table bulk_action text-left">
 				<tbody>
 					<tr th:each="well: ${wellDatalist}">
@@ -40,7 +52,26 @@ $("#update").click(function(){
 			</table>
 			<br>
 			<div class="row text-center">
-				<button id="update" th:style="'width:auto;'" type="button"
+				<button id="updatewp" th:style="'width:auto;'" type="button"
+					class="btn btn-primary">Update</button>
+			</div>
+		</div>
+	</form>
+	
+	<form id="updateCompType" th:if="${!compType.isEmpty()}">
+		<div class="row">
+			<table class="table table-bordered table-striped jambo_table bulk_action text-left">
+				<tbody>
+					<tr th:each="well: ${compType}">
+						<td th:text="${well.cn}"></td>
+						<td>
+						<input class=" editinput" type="text" th:style="'width:100%;'"  th:name="cn" th:value="${well.cn}" hidden/>
+						<input class="form-control editinput" type="text" th:style="'width:100%;'"  th:name="cv" th:value="${well.cv}" autofocus /></td>
+				</tbody>
+			</table>
+			<br>
+			<div class="row text-center">
+				<button id="updatect" th:style="'width:auto;'" type="button"
 					class="btn btn-primary">Update</button>
 			</div>
 		</div>
