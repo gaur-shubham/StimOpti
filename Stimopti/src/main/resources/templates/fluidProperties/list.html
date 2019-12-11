@@ -11,7 +11,7 @@ $("#td0").click(function(){
      var wp=$("#0").val();
 	 
 	$.ajax({
-		url : "/fluidProperties/changefluid",
+		url : "/fluidProperties/addfluid",
 		type : "POST",
 		data:{pid:pid,wp:wp},
 		success:function(data){
@@ -32,7 +32,7 @@ $("#td1").click(function(){
 	     $("#1").prop('checked',true); 
 	     var wp=$("#1").val();
 		$.ajax({
-			url : "/fluidProperties/changefluid",
+			url : "/fluidProperties/addfluid",
 			type : "POST",
 			data:{pid:pid,wp:wp},
 			success:function(data){
@@ -56,19 +56,26 @@ $("#td1").click(function(){
 	
 	<form>
 			<div class="row ">
-			<div class="col-md-8"></div>
+			<div class="col-md-6"></div>
 				<div class="col-md-2" style="margin-bottom: 20px;"><span>
 						<button style="width:75%;" type="button" id="td0" class="btn" data-color="success">
-							<input  name="wv" id="0" type="check" value="Oil" hidden="true"/>Oil
+							Oil <input  name="wv" id="0" type="checkbox" value="Oil" />
 						</button>
 					</span> 
 					</div>
-					
 					<div class="col-md-2" style="margin-bottom: 20px;">				
 					<span>
 						<button style="width:75%;" type="button" id="td1" class="btn" data-color="success">
-							Gas <input name="wv" id="1" type="check"
-								value="Gas" hidden="true"/>
+							Gas <input name="wv" id="1" type="checkbox"
+								value="Gas" />
+						</button>
+					</span>
+				</div>
+					<div class="col-md-2" style="margin-bottom: 20px;">				
+					<span>
+						<button style="width:75%;" type="button" id="td2" class="btn" data-color="success">
+							Water <input name="wv" id="2" type="checkbox"
+								value="Water" />
 						</button>
 					</span>
 				</div>

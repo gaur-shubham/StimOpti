@@ -69,7 +69,7 @@ public class WellCompletionController {
 		List<WellCompletion> compList = wellCompletionRepo.findByProjectDetails(details);
 		List<WellCompletionPerf> perfList = perfrepo.findByProjectDetails(details);
 		model.addAttribute("compList", compList);
-		model.addAttribute("perflist", perfList);
+		model.addAttribute("perflist", perfrepo.findByProjectDetails(details));
 		return map + "/edit";
 	}
 

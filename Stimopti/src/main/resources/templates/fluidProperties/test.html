@@ -20,6 +20,8 @@ $("#td0").click(function(){
 			$("#exampleModal").modal("show");
 		}
 	});    
+	 }else{
+		 alert("LOLOLOL");
 	 }
 	$("#td0")
    .removeClass('btn-default')
@@ -40,6 +42,8 @@ $("#td1").click(function(){
 				$("#exampleModal").modal("show");
 			}
 		}); 	 
+		 }else{
+			 alert("LOLOL22");
 		 }
 	$("#td1")
   .removeClass('btn-default')
@@ -78,7 +82,7 @@ $("#edit").click(function(){
 	<!-- top tiles -->
 		<li class="list-group-item">
 	<div class="row text-center">
-	<h3>Fluid Reservoir Properties</h3>
+	<h1>TEST PAGE</h1>
 	<form>
 			<div class="row ">
 			<div class="col-md-6"></div>
@@ -110,6 +114,12 @@ $("#edit").click(function(){
 	<div th:if="${fList}">
 		<table class="table table-bordered table-striped jambo_table bulk_action text-left">
 		<tbody>
+		<tr>
+		<td></td>
+		<td>Oil</td>
+		<td>Gas</td>
+		<td>Water</td>
+		</tr>
 				<tr th:each="fluid:${fList}">
 				<td th:text="${fluid.fluidName}"></td>
 				<td th:text="${fluid.fluidValue}"></td>

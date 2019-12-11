@@ -25,6 +25,8 @@ $("#updatewp").click(function(){
 });
 $("#updatect").click(function(){
 	url="/wellData/updatecomptype"
+		if($("#param1").val()&&$("#value1").val()){
+			console.log("inside if");
 	$.ajax({
 		url:url,
 		type:'POST',
@@ -34,8 +36,72 @@ $("#updatect").click(function(){
 			$("#exampleModal").modal("show");
 		}
 	});
+		}else{
+			console.log("inside else");
+			$.ajax({
+				url : "/wellData/savecomptypeWOperf",
+				type : "POST",
+				data:$("#updateCompType").serialize()+"&pid="+pid,
+				success:function(res){
+					$("#loadtable").html(res);
+					$("#exampleModal").modal("show");
+				}
+			});
+		}
+});
+$("#savefield").click(function(){
+	if($("#paramaa").val()&&$("#valueaa").val()){
+		Add();
+	}else{
+		alert("Fill Empty Fields.");
+	}
 });
 
+var param1 = [];
+var value1 = [];
+function Add() {
+AddRow($("#paramaa").val(), $("#valueaa").val());
+$("#paramaa").val("");
+$("#valueaa").val("");
+};
+
+function AddRow(a,b) {
+    var tBody = $("#example3 > TBODY")[0];
+param1.push(a);
+value1.push(b);
+
+
+row = tBody.insertRow(-1);
+
+var cell = $(row.insertCell(-1));
+var param=$(' <input type="text" name="startinput" value="" class="form-control" id="param1" />');
+param.val(a);
+cell.html(param);
+
+cell = $(row.insertCell(-1));
+var value=$(' <input type="text" name="endinput" value="" class="form-control" id="value1" />');
+value.val(b);
+cell.html(value);
+
+cell = $(row.insertCell(-1));
+
+
+    var btnRemove = $("<input />");
+btnRemove.attr("type", "button");
+btnRemove.attr("class", "btn btn-danger");
+btnRemove.attr("onclick", "Remove(this);");
+btnRemove.val("X");
+cell.append(btnRemove);
+};
+
+function Remove(button) {
+    var row = $(button).closest("TR");
+    var name = $("TD", row).eq(0).html();
+    if (confirm("Do you want to delete: ")) {
+    var table = $("#example3")[0];
+    table.deleteRow(row[0].rowIndex);
+    }
+    };
 </script>
 </head>
 <body>
@@ -70,6 +136,36 @@ $("#updatect").click(function(){
 				</tbody>
 			</table>
 			<br>
+			<div th:if="${session.ct!='Open Hole'} ">
+				<table id="example3"
+					class="table table-bordered table-striped jambo_table bulk_action">
+
+					<thead>
+						<tr class="headings">
+							<th class="column-title">START</th>
+							<th class="column-title">END</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr class="even pointer">
+							<td><input type="text" class="form-control" id="paramaa" /></td>
+							<td><input type="text" class="form-control" id="valueaa" /></td>
+							<td  style="width:5%"><input id="savefield" class="btn btn-primary"
+								type="button" value="+"></td>
+						</tr>
+						<tr class="even pointer" th:each="perf:${perflist}">
+							<td><input type="text" name="startinput"
+								th:value="${perf.start}" class="form-control" id="param1" /></td>
+							<td><input type="text" name="endinput"
+								th:value="${perf.end}" class="form-control" id="value1" /></td>
+							<td><input id="removefield" class="btn btn-danger"
+								type="button" value="X" onclick="Remove(this);"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 			<div class="row text-center">
 				<button id="updatect" th:style="'width:auto;'" type="button"
 					class="btn btn-primary">Update</button>

@@ -146,7 +146,7 @@ $("#td5").click(function(){
 					$("#exampleModal").modal("show");
 				}
 			}); 
-	} 
+	 
 	$("#td5")
    .removeClass('btn-default')
    .addClass('btn-success');
@@ -162,7 +162,7 @@ $("#td5").click(function(){
 	$("#td9")
 	   .removeClass('btn-success')
 	   .addClass('btn-default');
-	
+	}
 });
 $("#td6").click(function(){
 	if(!$("#6").is(':checked')){
@@ -177,7 +177,7 @@ $("#td6").click(function(){
 					$("#exampleModal").modal("show");
 				}
 			}); 
-	} 
+	
 	$("#td6")
    .removeClass('btn-default')
    .addClass('btn-success');
@@ -193,7 +193,7 @@ $("#td6").click(function(){
 	$("#td9")
 	   .removeClass('btn-success')
 	   .addClass('btn-default');
-	
+	} 
 });
 $("#td7").click(function(){
 	if(!$("#7").is(':checked')){
@@ -208,7 +208,7 @@ $("#td7").click(function(){
 					$("#exampleModal").modal("show");
 				}
 			}); 
-	} 
+	
 	$("#td7")
    .removeClass('btn-default')
    .addClass('btn-success');
@@ -224,7 +224,7 @@ $("#td7").click(function(){
 	$("#td9")
 	   .removeClass('btn-success')
 	   .addClass('btn-default');
-	
+	} 
 });
 $("#td8").click(function(){
 	if(!$("#8").is(':checked')){
@@ -239,7 +239,7 @@ $("#td8").click(function(){
 					$("#exampleModal").modal("show");
 				}
 			}); 
-	} 
+	 
 	$("#td8")
    .removeClass('btn-default')
    .addClass('btn-success');
@@ -255,7 +255,7 @@ $("#td8").click(function(){
 	$("#td9")
 	   .removeClass('btn-success')
 	   .addClass('btn-default');
-
+	}
 });
 $("#td9").click(function(){
 	if(!$("#9").is(':checked')){
@@ -270,7 +270,7 @@ $("#td9").click(function(){
 					$("#exampleModal").modal("show");
 				}
 			}); 
-	} 
+	 
 	$("#td9")
    .removeClass('btn-default')
    .addClass('btn-success');
@@ -286,6 +286,7 @@ $("#td9").click(function(){
 	$("#td5")
 	   .removeClass('btn-success')
 	   .addClass('btn-default');
+	}
 });
 
 if(light=="Vertical"){
@@ -391,7 +392,6 @@ $("#1005").click(function(){
     transition:width 0.35s ease;
     z-index:-1;
     }
-
     .outputhead:hover::after {
     width: 100%;
     border-radius: 50px;
@@ -399,7 +399,6 @@ $("#1005").click(function(){
     .outputhead h4{
     font-size: 16px;
     }
-
     .outputbody{
     height: 400px;
     font-size: 15px;
@@ -409,11 +408,12 @@ $("#1005").click(function(){
 </style>
 </head>
 <body class="nav-md" th:inline="text">
-	<!-- top tiles -->
+	<!-- top tiles -->	
 			<li class="list-group-item">
 			<div class="row ">
 				<div class="col-md-4 text-left" style="margin-bottom: 20px;">
-				<label>Select Well Type</label><br>
+				<label>Select Well Type</label>
+				<br>
 				<span>
 						<button type="button" id="td3" class="btn btn-default">
 							Producer &nbsp;<input name="wt" id="3" type="radio" value="Producer" hidden/>
@@ -469,11 +469,10 @@ $("#1005").click(function(){
 					</span>
 				</div>
 			</div>
-</li><br>
-	
+</li>
+<br>
 <li class="list-group-item">	
-	<div class="row text-left">
-
+	<div class="row">
 		<div class="col-md-6" style="margin-bottom: 20px; margin-top: 13px;">
 			<div class="output">
 				<div class="outputhead" id="1013" style="cursor: pointer;">
@@ -496,7 +495,7 @@ $("#1005").click(function(){
 						</table>
 					</div>
 					<center>
-						<button id="editwp" th:style="'width:20%;'" type="button"
+						<button id="editwp" th:style="'width:auto;'" type="button"
 							class="btn btn-primary">Edit</button>
 					</center>
 				</div>
@@ -524,6 +523,26 @@ $("#1005").click(function(){
 								</tbody>
 							</table>
 						</div>
+
+						<div th:if="${session.ct!='Open Hole' && !perflist.isEmpty()}">
+							<table
+								class="table table-bordered table-striped jambo_table bulk_action text-left">
+								<caption style="font-weight:bold">Perforation:</caption>
+								<thead>
+									<tr class="headings">
+										<th class="column-title">START</th>
+										<th class="column-title">END</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="even pointer" th:each="perf:${perflist}">
+										<td class=" " th:text="${perf.start}"></td>
+										<td class=" " th:text="${perf.end}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
 						<center>
 							<button id="editct" th:style="'width:auto;'" type="button"
 								class="btn btn-primary">Edit</button>
@@ -531,7 +550,6 @@ $("#1005").click(function(){
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</li>
 </body>

@@ -41,7 +41,7 @@ public class FluidPropertiesController {
 		return map + "/showFluid";
 	}
 
-	@RequestMapping(value = "/changefluid")
+	@RequestMapping(value = "/addfluid")
 	public String changefluid(Model model, @RequestParam("pid") Integer pid, @RequestParam("wp") String wp,
 			HttpSession session) {
 		System.out.println("Rendering from Change Fluid :" + pid + " = " + wp);

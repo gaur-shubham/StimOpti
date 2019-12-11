@@ -17,6 +17,7 @@ public class FluidProperties {
 	private Integer id;
 	private String fluidName;
 	private String fluidValue;
+	private String fluidType;
 	@JoinColumn(name = "projectDetails")
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	ProjectDetails projectDetails;
@@ -49,11 +50,24 @@ public class FluidProperties {
 		return id;
 	}
 
-	public FluidProperties(String fluidName, String fluidValue, ProjectDetails projectDetails) {
+	public FluidProperties(String fluidName, String fluidValue, String fluidType, ProjectDetails projectDetails) {
 		super();
 		this.fluidName = fluidName;
 		this.fluidValue = fluidValue;
+		this.fluidType = fluidType;
 		this.projectDetails = projectDetails;
+	}
+
+	public String getFluidType() {
+		return fluidType;
+	}
+
+	public void setFluidType(String fluidType) {
+		this.fluidType = fluidType;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public FluidProperties() {

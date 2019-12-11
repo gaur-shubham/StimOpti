@@ -124,16 +124,13 @@ $("#bd3").click(function(){
 </head>
 <body class="nav-md" th:inline="text">
 
-	<div>
-		<h4 style="font-weight: bolder;" class="text-center">DIVERTER
-			PROPERTIES</h4>
-
-		<form>
 			<div class="row ">
-				<div class="col-md-12" style="margin-bottom: 20px;">
+				<div class="col-md-6" style="margin-bottom: 20px;">
+				<label>Select Diverter Type Based On Injection Plan</label>
+				<br>
 					<span>
 						<button type="button" id="bd0" class="btn" data-color="success">
-						Viscosified	 &nbsp;<input name="bdname" id="0" type="radio" value="Viscosified" hidden />
+						Viscosified	&nbsp;<input name="bdname" id="0" type="radio" value="Viscosified" hidden />
 						</button>
 					</span> <span>
 						<button type="button" id="bd1" class="btn" data-color="success">
@@ -151,8 +148,5 @@ $("#bd3").click(function(){
 					</span>
 				</div>
 			</div>
-		</form>
-	</div>
-
 </body>
 </html>

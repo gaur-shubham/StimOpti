@@ -34,9 +34,6 @@ public class WellCompletionServiceImplementation implements WellCompletionServic
 		if (!wellCompletionRepo.findByProjectDetails(projectDetails).isEmpty()) {
 			wellCompletionRepo.deleteByProjectDetails(projectDetails);
 		}
-		if (!perfrepo.findByProjectDetails(projectDetails).isEmpty()) {
-			perfrepo.deleteByProjectDetails(projectDetails);
-		}
 		try {
 			File file = ResourceUtils.getFile("classpath:config/CarbonateDefaultData.txt");
 			BufferedReader br = null;

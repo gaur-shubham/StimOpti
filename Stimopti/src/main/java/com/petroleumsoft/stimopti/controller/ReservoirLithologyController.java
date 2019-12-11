@@ -78,7 +78,7 @@ public class ReservoirLithologyController {
 		model.addAttribute("details", details);
 		return map + "/showlist";
 	}
-
+	
 	@RequestMapping(value = "/showMenu/{Id}")
 	public String showMenu(@PathVariable("Id") Integer id, RedirectAttributes attributes) {
 		ProjectDetails details = projectDetailsRepository.findById(id).orElse(null);

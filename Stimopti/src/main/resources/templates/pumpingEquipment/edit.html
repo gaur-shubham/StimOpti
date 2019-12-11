@@ -15,7 +15,7 @@ var pid=[[${session.details.id}]];
 		$.ajax({
 			url : "/pumpingEquipment/saveupdate",
 			type : "POST",
-			data : $("#mainform").serialize()+"&pid="+pid,,
+			data : $("#mainform").serialize()+"&pid="+pid,
 			success : function(res) {
 				$("#loadtable").html(res);
 				$("#exampleModal").modal("show");

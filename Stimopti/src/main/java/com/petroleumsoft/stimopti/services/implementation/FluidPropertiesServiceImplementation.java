@@ -46,19 +46,17 @@ public class FluidPropertiesServiceImplementation implements FluidPropertiesServ
 						fp.setFluidName(data[0]);
 						fp.setFluidValue(data[1]);
 						fp.setProjectDetails(details);
+						fp.setFluidType(wp);
 						fList.add(fp);
 					}
 					fluidPropertiesRepo.saveAll(fList);
 					break;
 				}
-
 			}
 			br.close();
 		} catch (Exception fne) {
 			fne.printStackTrace();
 		}
-		
-
 		return fList;
 	}
 
@@ -87,7 +85,19 @@ public class FluidPropertiesServiceImplementation implements FluidPropertiesServ
 		}
 		return null;
 	}
-	
+
+	@Override
+	public List<String> getFluidParam(Integer pid) {
+		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
+		List<FluidProperties> fList=fluidPropertiesRepo.findByProjectDetails(details);
+		List<String> temp=new ArrayList<String>();
+		for(int i=0;i<fList.size();i++) {
+			if(!temp.contains(fList.get(i).getFluidName())) {
+				temp.add(fList.get(i).getFluidName());
+			}
+		}
+		return temp;
+	}
 	
 
 }

@@ -17,8 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.petroleumsoft.stimopti.modal.ProjectDetails;
 import com.petroleumsoft.stimopti.modal.WellData;
 import com.petroleumsoft.stimopti.repo.ProjectDetailsRepository;
+import com.petroleumsoft.stimopti.repo.WellCompletionPerfRepo;
 import com.petroleumsoft.stimopti.repo.WellDataCompletionTypeRepo;
 import com.petroleumsoft.stimopti.repo.WellDataRepo;
+import com.petroleumsoft.stimopti.services.WellCompletionPerfService;
+import com.petroleumsoft.stimopti.services.WellCompletionService;
 import com.petroleumsoft.stimopti.services.WellDataService;
 
 @Controller
@@ -32,6 +35,12 @@ public class WellDataController {
 	private WellDataRepo wellDataRepo;
 	@Autowired
 	private WellDataCompletionTypeRepo completionTypeRepo;
+	@Autowired
+	private WellCompletionPerfRepo perfrepo;
+	@Autowired
+	private WellCompletionPerfService perfService;
+	@Autowired
+	private WellCompletionService WellCompletionService;
 
 	private static final String map = "wellData";
 
@@ -46,6 +55,7 @@ public class WellDataController {
 		session.setAttribute("ct", wellDataService.getWellCompletionType(pid));
 		model.addAttribute("wellDatalist", wellDataRepo.findByProjectDetails(projectDetails));
 		model.addAttribute("compType", completionTypeRepo.findByProjectDetails(projectDetails));
+		model.addAttribute("perflist", perfrepo.findByProjectDetails(projectDetails));
 		return map + "/showWell";
 	}
 
@@ -62,6 +72,7 @@ public class WellDataController {
 		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		model.addAttribute("wellDatalist", wellDataRepo.findByProjectDetails(details));
 		model.addAttribute("compType", new ArrayList<>());
+		model.addAttribute("perflist", perfrepo.findByProjectDetails(details));
 		return map + "/edit";
 	}
 	@PostMapping("/editct")
@@ -69,6 +80,7 @@ public class WellDataController {
 		ProjectDetails details = projectDetailsRepository.findById(pid).orElse(null);
 		model.addAttribute("wellDatalist", new ArrayList<>());
 		model.addAttribute("compType", completionTypeRepo.findByProjectDetails(details));
+		model.addAttribute("perflist", perfrepo.findByProjectDetails(details));
 		return map + "/edit";
 	}
 	
@@ -80,19 +92,33 @@ public class WellDataController {
 		redirectAttributes.addAttribute("id", pid);
 		return "redirect:/wellData/list";
 	}
+	
 	@PostMapping("/updatecomptype")
 	public String updateCompletionType(Model model,@RequestParam("pid") Integer pid,
 			@RequestParam("cv") List<String> cv,@RequestParam("cn") List<String> cn,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes,@RequestParam("startinput") List<String> startinput,
+			@RequestParam("endinput") List<String> endinput) {
 		wellDataService.updateCompletionType(pid, cn, cv);
+		perfService.saveUpdate(pid, startinput, endinput);
 		redirectAttributes.addAttribute("id", pid);
 		return "redirect:/wellData/list";
 	}
+	
+	@PostMapping(value = "/savecomptypeWOperf")
+	public String savecomptypeWOperf(@RequestParam("pid") Integer pid, @RequestParam("cn") List<String> cp,
+			@RequestParam("cv") List<String> cv, Model model, RedirectAttributes redirectAttributes) {
+		wellDataService.updateCompletionType(pid, cp, cv);
+		perfService.saveUpdate(pid, new ArrayList<String>(), new ArrayList<String>());
+		redirectAttributes.addAttribute("id", pid);
+		return "redirect:/wellData/list";
+	}
+	
 	
 	@PostMapping("/changecomptype")
 	public String changeCompletionType(@RequestParam("ct") String ct, @RequestParam("pid") Integer pid,
 			RedirectAttributes redirectAttributes) {
 		wellDataService.saveCompletionType(ct, pid);
+		WellCompletionService.changeComp(pid, ct);
 		redirectAttributes.addAttribute("id", pid);
 		return "redirect:/wellData/list";
 	}
